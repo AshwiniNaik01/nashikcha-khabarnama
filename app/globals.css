@@ -5,33 +5,33 @@
 ----------------------------------- */
 :root {
   /* Backgrounds */
-  --color-bg-default: #f4f4f5;
-  /* Wild Sand */
+  --color-bg-default: #f9f9f9;
   --color-bg-secondary: #ffffff;
-  /* White surface for cards */
-  --color-bg-muted: #fafafa;
-  --color-bg-primary: #22294b;
-  /* Mirage dark */
+  --color-bg-muted: #f4f4f4;
+  --color-bg-primary: #000000;
+  /* Black */
 
   /* Text */
-  --color-text-primary: #22294b;
-  /* Mirage */
+  --color-text-primary: #1a1a1a;
   --color-text-secondary: #444444;
   --color-text-muted: #666666;
-  --color-text-default: #f4f4f5;
-  /* Wild Sand */
+  --color-text-default: #ffffff;
 
   /* Brand / Actions */
-  --color-primary: #1752c8;
-  /* Cerulean Blue */
-  --color-primary-soft: #61a9d1;
-  /* Shakespeare (hover/secondary) */
-
-  /* Accent (Categories / Highlights) */
-  --color-accent: #ff4500;
+  --color-primary: #ed1b24;
+  /* Lokmat Red */
+  --color-primary-soft: #c1121c;
+  /* Darker Red / Maroon-ish */
+  --color-accent: #800000;
+  /* Maroon */
+  --gradient-lokmat: linear-gradient(135deg, #ed1b24 0%, #800000 100%);
 
   /* Borders / UI */
-  --color-border: #e2e2e2;
+  --color-border: #dddddd;
+}
+
+.bg-lokmat-gradient {
+  background: var(--gradient-lokmat);
 }
 
 /* ----------------------------------
@@ -63,14 +63,15 @@ h6 {
    Links
 ----------------------------------- */
 a {
-  color: var(--color-primary);
+  color: var(--color-text-default);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: var(--color-primary-soft);
+  color: var(--color-text-default);
   text-decoration: underline;
+  background-color: var(--color-primary-soft);
 }
 
 /* ----------------------------------
@@ -78,7 +79,7 @@ a:hover {
 ----------------------------------- */
 button {
   cursor: pointer;
-  background-color: var(--color-primary);
+  background-color: var(--color-text-default);
   color: #ffffff;
   padding: 0.65rem 1.25rem;
   font-weight: 600;
@@ -87,7 +88,7 @@ button {
 }
 
 button:hover {
-  background-color: var(--color-primary-soft);
+  background-color: var(--color-text-default);
 }
 
 /* ----------------------------------
@@ -180,6 +181,22 @@ button:hover {
 
 .animate-slide-down {
   animation: slideDown 0.3s ease-out forwards;
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 20s linear infinite;
 }
 
 /* ----------------------------------

@@ -5,18 +5,32 @@ type Props = {
   excerpt: string;
   image: string;
   slug: string;
+  category?: string;
+  date?: string;
 };
 
-const ArticleCard: React.FC<Props> = ({ title, excerpt, image, slug }) => {
+const ArticleCard: React.FC<Props> = ({ title, excerpt, image, slug, category, date }) => {
   return (
-    <div className="border rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-300 bg-white">
-      <img src={image} alt={title} className="w-full h-48 object-cover" />
-      <div className="p-4">
-        <h2 className="font-heading font-bold text-xl mb-2">{title}</h2>
-        <p className="text-gray-600">{excerpt}</p>
-        <Link href={`/news/${slug}`} className="text-accent mt-2 inline-block">
-          Read More
-        </Link>
+    <div className="group flex flex-col gap-3 group cursor-pointer border-b border-gray-100 pb-4 last:border-0 transition-all">
+      <div className="relative overflow-hidden aspect-[16/9] rounded-sm">
+        <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        {category && (
+          <span className="absolute top-2 left-2 bg-[var(--color-primary)] text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-wider">
+            {category}
+          </span>
+        )}
+      </div>
+      <div className="space-y-2">
+        <h2 className="font-bold text-lg leading-snug group-hover:text-black transition-colors">
+          <Link href={`/news/${slug}`}>{title}</Link>
+        </h2>
+        <p className="text-gray-500 text-xs line-clamp-2 leading-relaxed">{excerpt}</p>
+        <div className="flex justify-between items-center pt-2">
+          {date && <span className="text-[10px] text-gray-400 font-semibold">{date}</span>}
+          <Link href={`/news/${slug}`} className="text-[10px] font-black text-black uppercase hover:underline">
+            वाचा »
+          </Link>
+        </div>
       </div>
     </div>
   );

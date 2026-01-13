@@ -15,67 +15,64 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="w-full">
-      {/* 1. TOP BAR */}
-      <div className="bg-[var(--color-bg-primary)] text-sm border-b border-[var(--color-border)]">
-        <div className="container mx-auto flex justify-between items-center px-4 py-2">
+    <div className="w-full font-marathi">
+      {/* 1. TOP BAR - NEW Lokmat RED STYLE */}
+      <div className="bg-lokmat-gradient text-white text-xs border-b border-[var(--color-primary-soft)]">
+        <div className="container mx-auto flex justify-between items-center px-4 py-1.5">
           {/* Left: Language + Time */}
-          <div className="flex gap-4 items-center text-white">
-            <span className="cursor-pointer hover:text-primary-soft">
+          <div className="flex gap-4 items-center font-semibold">
+            <span className="cursor-pointer hover:underline">
               मराठी
             </span>
-            {time && <span>{time.toLocaleTimeString()}</span>}
+            {time && <span className="hidden sm:inline-block border-l border-white/30 pl-4">{time.toLocaleTimeString()}</span>}
+            {time && <span className="hidden md:inline-block border-l border-white/30 pl-4">{time.toDateString()}</span>}
           </div>
 
-          {/* Right: Date + Social Icons */}
-          <div className="flex gap-3 items-center text-white">
-            {time && <span>{time.toDateString()}</span>}
-
+          {/* Right: Social Icons */}
+          <div className="flex gap-2 items-center">
             <a
               href="https://www.facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 rounded-full bg-white text-primary hover:opacity-80 transition-opacity"
+              className="flex items-center justify-center w-5 h-5 rounded-sm bg-white text-[var(--color-primary)] hover:bg-gray-100 transition-colors"
             >
-              <FaFacebookF className="text-xs" />
+              <FaFacebookF className="text-[10px]" />
             </a>
 
             <a
               href="https://www.linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 rounded-full bg-white text-[var(--color-primary)] hover:opacity-80 transition-opacity"
+              className="flex items-center justify-center w-5 h-5 rounded-sm bg-white text-[#0077B5] hover:bg-gray-100 transition-colors"
             >
-              <FaLinkedinIn className="text-xs" />
+              <FaLinkedinIn className="text-[10px]" />
             </a>
           </div>
         </div>
       </div>
 
-      {/* 2. MAIN HEADER */}
-      <div className="relative bg-sky-100 border-b border-[var(--color-border)] py-4">
-        <div className="container mx-auto px-4 flex justify-between items-center relative">
-          {/* Left placeholder */}
-          <div className="w-1/3"></div>
+      {/* 2. MAIN HEADER - CLEAN WHITE STYLE */}
+    <div className="relative bg-rose-100 border-b border-gray-200 py-6">
+        <div className="container mx-auto px-4 flex items-center justify-center relative">
 
-          {/* Logo + Motivating Text */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-            <Link href="/">
-              <img src="/logo.png" alt="Newsup Logo" className="h-12" />
-            </Link>
-            <p className="mt-2 text-black text-md font-semibold text-center">
-              माहिती ठेवा. प्रेरित व्हा. ✨
-            </p>
-          </div>
+          {/* Center Logo + Tagline */}
+          <Link href="/" className="flex flex-col items-center text-center">
+            <img src="/logo.png" alt="Lokmat Style Logo" className="h-14" />
+            <span className="text-primary font-bold text-xs uppercase tracking-widest mt-1">
+              नाशिकचा खबरनामा
+            </span>
+          </Link>
 
-          {/* Advertisement */}
-          <div className="hidden md:flex w-1/3 justify-end">
-            <div className="bg-[var(--color-bg-muted)] border border-[var(--color-border)] h-20 w-[420px] flex items-center justify-center text-sm text-[var(--color-text-muted)]">
-              Advertisement
+          {/* Right: Advertisement */}
+          <div className="hidden md:flex absolute right-4">
+            <div className="bg-white border border-gray-200 h-20 w-[468px] flex items-center justify-center text-[10px] text-gray-400 uppercase tracking-tighter">
+              - Advertisement -
             </div>
           </div>
+
         </div>
       </div>
+
     </div>
   );
 }
