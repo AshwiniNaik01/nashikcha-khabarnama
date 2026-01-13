@@ -63,7 +63,7 @@ h6 {
    Links
 ----------------------------------- */
 a {
-  color: var(--color-text-default);
+  color: var(--color-text-primary);
   text-decoration: none;
   transition: color 0.2s ease;
 }

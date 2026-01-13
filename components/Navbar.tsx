@@ -12,36 +12,18 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-    { label: "Home", href: "/" },
-    {
-        label: "World",
-        href: "/category/world",
-        subItems: [
-            { label: "Asia", href: "/category/world/asia" },
-            { label: "Europe", href: "/category/world/europe" },
-            { label: "Americas", href: "/category/world/americas" },
-        ],
-    },
-    { label: "Politics", href: "/category/politics" },
-    {
-        label: "Technology",
-        href: "/category/tech",
-        subItems: [
-            { label: "AI", href: "/category/tech/ai" },
-            { label: "Gadgets", href: "/category/tech/gadgets" },
-            { label: "Software", href: "/category/tech/software" },
-        ],
-    },
-    {
-        label: "Sports",
-        href: "/category/sports",
-        subItems: [
-            { label: "Cricket", href: "/category/sports/cricket" },
-            { label: "Football", href: "/category/sports/football" },
-            { label: "Tennis", href: "/category/sports/tennis" },
-        ],
-    },
-    { label: "Business", href: "/category/business" },
+    { label: "मुखपृष्ठ", href: "/" },
+    { label: "देश-विदेश", href: "/category/national" },
+    { label: "महाराष्ट्र", href: "/category/maharashtra" },
+    { label: "राजकारण", href: "/category/politics" },
+    { label: "नाशिक शहर", href: "/category/nashik-city" },
+    { label: "नाशिक ग्रामीण", href: "/category/nashik-rural" },
+    { label: "क्राईम", href: "/category/crime" },
+    { label: "शेती", href: "/category/agriculture" },
+    { label: "राशीभविष्य", href: "/category/horoscope" },
+    { label: "अर्थकारण", href: "/category/business" },
+    { label: "क्रीडा", href: "/category/sports" },
+    { label: "पंचायत राज", href: "/category/panchayat-raj" },
 ];
 
 export default function Navbar() {
@@ -56,12 +38,12 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="bg-[var(--color-primary)] text-[var(--color-accent)] sticky top-0 z-50 shadow-lg border-b-4 border-[var(--color-accent)]">
+        <nav className="bg-[var(--color-text-default)] text-[var(--color-text-default)] sticky top-0 z-50 shadow-lg border-b-4 border-[var(--color-accent)]">
             <div className="container mx-auto px-4">
                 <div className="flex justify-between items-center h-12">
 
                     {/* Desktop Menu */}
-                    <ul className="hidden lg:flex items-center h-full font-bold uppercase text-[13px] tracking-tight">
+                    <ul className="hidden lg:flex items-center h-full font-bold uppercase text-md tracking-tight">
                         {navItems.map((item) => {
                             const active = isActive(item.href);
                             return (
@@ -69,17 +51,17 @@ export default function Navbar() {
                                     <Link
                                         href={item.href}
                                         className={`px-5 h-full flex items-center gap-1 transition-all duration-200 border-r border-gray-100 ${active
-                                            ? "bg-[var(--color-accent)] text-[var(--color-accent)]"
-                                            : "text-black hover:bg-[var(--color-primary)] hover:text-[var(--color-accent)]"
+                                            ? "bg-[var(--color-text-default)] text-[var(--color-primary)]"
+                                            : "text-black hover:bg-[var(--color-primary)] hover:text-[var(--color-primary)]"
                                             }`}
                                     >
                                         {item.label}
-                                        {item.subItems && <FaChevronDown className={`text-[10px] mt-0.5 group-hover:rotate-180 transition-transform ${active ? "text-white" : "text-gray-400 group-hover:text-white"}`} />}
+                                        {item.subItems && <FaChevronDown className={`text-[10px] mt-0.5 group-hover:rotate-180 transition-transform ${active ? "text-gray-400" : "text-gray-400 group-hover:text-white"}`} />}
                                     </Link>
 
                                     {/* Submenu */}
                                     {item.subItems && (
-                                        <ul className="absolute left-0 top-full bg-[var(--color-accent)] text-gray-800 shadow-2xl border-t-4 border-[var(--color-accent)] py-2 min-w-[220px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform scale-95 group-hover:scale-100 origin-top">
+                                        <ul className="absolute left-0 top-full bg-gray-100 text-gray-800 shadow-2xl border-t-4 border-[var(--color-accent)] py-2 min-w-[220px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform scale-95 group-hover:scale-100 origin-top">
                                             {item.subItems.map((subItem) => (
                                                 <li key={subItem.label}>
                                                     <Link
