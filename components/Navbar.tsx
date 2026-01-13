@@ -56,35 +56,35 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="bg-[var(--color-bg-primary)] text-gray-300 sticky top-0 z-50 shadow-md">
+        <nav className="bg-[var(--color-primary)] text-[var(--color-accent)] sticky top-0 z-50 shadow-lg border-b-4 border-[var(--color-accent)]">
             <div className="container mx-auto px-4">
-                <div className="flex justify-between items-center h-14">
+                <div className="flex justify-between items-center h-12">
 
                     {/* Desktop Menu */}
-                    <ul className="hidden lg:flex items-center gap-1 h-full font-semibold">
+                    <ul className="hidden lg:flex items-center h-full font-bold uppercase text-[13px] tracking-tight">
                         {navItems.map((item) => {
                             const active = isActive(item.href);
                             return (
                                 <li key={item.label} className="group relative h-full flex items-center">
                                     <Link
                                         href={item.href}
-                                        className={`px-4 h-full flex items-center gap-1 transition-colors ${active
-                                            ? "bg-white text-[var(--color-primary)]"
-                                            : "hover:text-white"
+                                        className={`px-5 h-full flex items-center gap-1 transition-all duration-200 border-r border-gray-100 ${active
+                                            ? "bg-[var(--color-accent)] text-[var(--color-accent)]"
+                                            : "text-black hover:bg-[var(--color-primary)] hover:text-[var(--color-accent)]"
                                             }`}
                                     >
                                         {item.label}
-                                        {item.subItems && <FaChevronDown className="text-[10px] mt-0.5 group-hover:rotate-180 transition-transform" />}
+                                        {item.subItems && <FaChevronDown className={`text-[10px] mt-0.5 group-hover:rotate-180 transition-transform ${active ? "text-white" : "text-gray-400 group-hover:text-white"}`} />}
                                     </Link>
 
                                     {/* Submenu */}
                                     {item.subItems && (
-                                        <ul className="absolute left-0 top-full bg-white text-gray-800 shadow-xl border-t-2 border-[var(--color-primary-soft)] py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 animate-slide-down">
+                                        <ul className="absolute left-0 top-full bg-[var(--color-accent)] text-gray-800 shadow-2xl border-t-4 border-[var(--color-accent)] py-2 min-w-[220px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform scale-95 group-hover:scale-100 origin-top">
                                             {item.subItems.map((subItem) => (
                                                 <li key={subItem.label}>
                                                     <Link
                                                         href={subItem.href}
-                                                        className={`block px-6 py-2 hover:bg-gray-100 hover:text-[var(--color-primary)] transition-colors text-sm ${pathname === subItem.href ? "text-[var(--color-primary)] font-bold bg-gray-50" : ""
+                                                        className={`block px-6 py-2.5 hover:bg-gray-100 hover:text-black transition-colors text-sm font-semibold border-b border-gray-100 last:border-0 ${pathname === subItem.href ? "text-black font-black bg-gray-50 underline" : ""
                                                             }`}
                                                     >
                                                         {subItem.label}
@@ -99,29 +99,29 @@ export default function Navbar() {
                     </ul>
 
                     {/* Right Side Tools */}
-                    <div className="flex items-center gap-4 h-full">
+                    <div className="flex items-center gap-2 h-full">
                         {/* Search Toggle */}
                         <div className="relative flex items-center h-full">
                             <button
                                 onClick={() => setSearchOpen(!searchOpen)}
-                                className="p-2 hover:text-[var(--color-primary-soft)] transition-colors"
+                                className="px-4 h-full text-black hover:bg-[var(--color-primary-soft)] hover:text-white transition-colors border-l border-gray-100"
                                 aria-label="Search"
                             >
-                                <FaSearch size={18} />
+                                <FaSearch size={16} />
                             </button>
 
                             {/* Search Bar Popover */}
                             {searchOpen && (
-                                <div className="absolute right-0 top-full mt-2 bg-white p-3 shadow-lg rounded border border-gray-200 w-72 animate-in fade-in slide-in-from-top-2">
+                                <div className="absolute right-0 top-full mt-1 bg-white p-4 shadow-2xl rounded-sm border border-gray-200 w-80 animate-slide-down z-50">
                                     <div className="flex gap-2">
                                         <input
                                             type="text"
-                                            placeholder="Search news..."
-                                            className="flex-1 px-3 py-1.5 border border-gray-300 rounded text-sm text-gray-800 focus:outline-none focus:border-[var(--color-primary-soft)]"
+                                            placeholder="बातमी शोधा..."
+                                            className="flex-1 px-3 py-2 border border-gray-300 rounded-sm text-sm text-gray-800 focus:outline-none focus:border-[var(--color-primary)]"
                                             autoFocus
                                         />
-                                        <button className="bg-[var(--color-primary)] text-white px-3 py-1.5 rounded text-sm hover:bg-[var(--color-primary-soft)] transition-colors">
-                                            Go
+                                        <button className="bg-[var(--color-primary)] text-white px-4 py-2 rounded-sm text-sm font-bold hover:bg-[var(--color-primary-soft)] transition-colors uppercase">
+                                            शोधा
                                         </button>
                                     </div>
                                 </div>
@@ -131,9 +131,9 @@ export default function Navbar() {
                         {/* Mobile Menu Toggle */}
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="lg:hidden p-2 hover:text-[var(--color-primary-soft)] transition-colors"
+                            className="lg:hidden p-2 text-black hover:bg-[var(--color-primary-soft)] hover:text-white transition-colors ml-2"
                         >
-                            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+                            {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
                         </button>
                     </div>
                 </div>
@@ -141,29 +141,29 @@ export default function Navbar() {
 
             {/* Mobile Menu Drawer */}
             <div
-                className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[1000px] border-t border-gray-700" : "max-h-0"
+                className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out bg-[var(--color-accent)] ${isOpen ? "max-h-[1000px] border-t border-white/10 shadow-inner" : "max-h-0"
                     }`}
             >
-                <ul className="container mx-auto px-4 py-4 flex flex-col gap-2">
+                <ul className="container mx-auto px-4 py-6 flex flex-col gap-1">
                     {navItems.map((item) => {
                         const active = isActive(item.href);
                         return (
                             <li key={item.label} className="flex flex-col">
                                 <Link
                                     href={item.href}
-                                    className={`py-2 font-semibold transition-colors ${active ? "text-white bg-white/10 px-2 rounded" : "hover:text-[var(--color-primary-soft)]"
+                                    className={`py-3 px-4 font-bold uppercase text-sm tracking-wide rounded-sm transition-colors ${active ? "bg-[var(--color-primary)] text-white" : "hover:bg-[var(--color-primary-soft)] text-gray-100"
                                         }`}
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {item.label}
                                 </Link>
                                 {item.subItems && (
-                                    <ul className="pl-4 border-l border-gray-700 mt-1 flex flex-col gap-1">
+                                    <ul className="pl-6 border-l-2 border-white/20 mt-1 flex flex-col gap-0.5">
                                         {item.subItems.map((subItem) => (
                                             <li key={subItem.label}>
                                                 <Link
                                                     href={subItem.href}
-                                                    className={`py-1 text-sm transition-colors ${pathname === subItem.href ? "text-white font-bold" : "text-gray-400 hover:text-white"
+                                                    className={`py-2 px-4 text-sm font-semibold block rounded-sm transition-colors ${pathname === subItem.href ? "text-white bg-white/10" : "text-gray-300 hover:text-white hover:bg-white/5"
                                                         }`}
                                                     onClick={() => setIsOpen(false)}
                                                 >
