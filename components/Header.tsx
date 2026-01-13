@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import Navbar from "./Navbar";
 
 export default function Header() {
   const [time, setTime] = useState<Date | null>(null);
@@ -14,7 +15,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full">
+    <div className="w-full">
       {/* 1. TOP BAR */}
       <div className="bg-[var(--color-bg-primary)] text-sm border-b border-[var(--color-border)]">
         <div className="container mx-auto flex justify-between items-center px-4 py-2">
@@ -43,7 +44,7 @@ export default function Header() {
               href="https://www.linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 rounded-full bg-white text-white hover:opacity-80 transition-opacity"
+              className="flex items-center justify-center w-6 h-6 rounded-full bg-white text-[var(--color-primary)] hover:opacity-80 transition-opacity"
             >
               <FaLinkedinIn className="text-xs" />
             </a>
@@ -75,64 +76,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-
-      {/* 3. NAVIGATION BAR */}
-      <div className="bg-[var(--color-bg-primary)] text-white sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-4">
-          <nav>
-            <ul className="flex flex-wrap items-center gap-6 py-3 text-md font-semibold">
-              <li>
-                <Link
-                  href="/"
-                  className="text-white transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/category/world"
-                  className="hover:text-primary-soft transition-colors"
-                >
-                  World
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/category/politics"
-                  className="hover:text-primary-soft transition-colors"
-                >
-                  Politics
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/category/tech"
-                  className="hover:text-primary-soft transition-colors"
-                >
-                  Technology
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/category/sports"
-                  className="hover:text-primary-soft transition-colors"
-                >
-                  Sports
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/category/business"
-                  className="hover:text-primary-soft transition-colors"
-                >
-                  Business
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
+    </div>
   );
 }

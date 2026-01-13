@@ -17,7 +17,7 @@ export default function CategoryPage({ params }: Props) {
     { title: 'Sample Article 1', excerpt: 'Excerpt text', image: '/images/logo.svg', slug: 'sample-article-1' },
     { title: 'Sample Article 2', excerpt: 'Excerpt text', image: '/images/logo.svg', slug: 'sample-article-2' },
     { title: 'Sample Article 1', excerpt: 'Excerpt text', image: '/images/logo.svg', slug: 'sample-article-1' },
-    { title: 'Sample Article 2', excerpt: 'Excerpt text', image: '/images/logo.svg', slug: 'sample-article-2' },{ title: 'Sample Article 1', excerpt: 'Excerpt text', image: '/images/logo.svg', slug: 'sample-article-1' },
+    { title: 'Sample Article 2', excerpt: 'Excerpt text', image: '/images/logo.svg', slug: 'sample-article-2' }, { title: 'Sample Article 1', excerpt: 'Excerpt text', image: '/images/logo.svg', slug: 'sample-article-1' },
     { title: 'Sample Article 2', excerpt: 'Excerpt text', image: '/images/logo.svg', slug: 'sample-article-2' },
   ];
 

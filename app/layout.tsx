@@ -27,6 +27,7 @@ import type { Metadata } from 'next';
 import { Noto_Sans_Devanagari } from 'next/font/google';
 
 import Header from '@/components/Header';
+import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import './globals.css';
 
@@ -63,6 +64,7 @@ export default function RootLayout({
     <html lang="mr" className={notoSansDevanagari.variable}>
       <body className="min-h-screen flex flex-col bg-white text-gray-900 antialiased">
         <Header />
+        <Navbar />
 
         <main className="flex-1 container mx-auto px-4 py-6">
           {children}

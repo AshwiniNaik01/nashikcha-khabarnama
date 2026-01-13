@@ -5,20 +5,27 @@
 ----------------------------------- */
 :root {
   /* Backgrounds */
-  --color-bg-default: #f4f4f5;    /* Wild Sand */
-  --color-bg-secondary: #ffffff;  /* White surface for cards */
+  --color-bg-default: #f4f4f5;
+  /* Wild Sand */
+  --color-bg-secondary: #ffffff;
+  /* White surface for cards */
   --color-bg-muted: #fafafa;
-  --color-bg-primary: #22294b;    /* Mirage dark */
+  --color-bg-primary: #22294b;
+  /* Mirage dark */
 
   /* Text */
-  --color-text-primary: #22294b;  /* Mirage */
+  --color-text-primary: #22294b;
+  /* Mirage */
   --color-text-secondary: #444444;
   --color-text-muted: #666666;
-  --color-text-default: #f4f4f5;  /* Wild Sand */
+  --color-text-default: #f4f4f5;
+  /* Wild Sand */
 
   /* Brand / Actions */
-  --color-primary: #1752c8;       /* Cerulean Blue */
-  --color-primary-soft: #61a9d1;  /* Shakespeare (hover/secondary) */
+  --color-primary: #1752c8;
+  /* Cerulean Blue */
+  --color-primary-soft: #61a9d1;
+  /* Shakespeare (hover/secondary) */
 
   /* Accent (Categories / Highlights) */
   --color-accent: #ff4500;
@@ -40,7 +47,12 @@ body {
 /* ----------------------------------
    Headings
 ----------------------------------- */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Montserrat', sans-serif;
   color: var(--color-text-primary);
   margin-top: 0;
@@ -89,15 +101,19 @@ button:hover {
 .text-primary {
   color: var(--color-primary);
 }
+
 .text-primary-soft {
   color: var(--color-primary-soft);
 }
+
 .text-accent {
   color: var(--color-accent);
 }
+
 .text-secondary {
   color: var(--color-text-secondary);
 }
+
 .text-default {
   color: var(--color-text-default);
 }
@@ -105,18 +121,23 @@ button:hover {
 .bg-primary {
   background-color: var(--color-primary);
 }
+
 .bg-primary-soft {
   background-color: var(--color-primary-soft);
 }
+
 .bg-accent {
   background-color: var(--color-accent);
 }
+
 .bg-secondary {
   background-color: var(--color-bg-secondary);
 }
+
 .bg-muted {
   background-color: var(--color-bg-muted);
 }
+
 .bg-default {
   background-color: var(--color-bg-default);
 }
@@ -124,22 +145,57 @@ button:hover {
 .border-primary {
   border-color: var(--color-primary);
 }
+
 .border-secondary {
   border-color: var(--color-bg-secondary);
 }
+
 .border-muted {
   border-color: var(--color-bg-muted);
 }
+
 .border-default {
   border-color: var(--color-border);
 }
 
-/* Card / News Section */
+/* Transitions */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Animations for dropdowns */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+/* ----------------------------------
+   Card / News Section
+----------------------------------- */
 .card {
   background-color: var(--color-bg-secondary);
   border: 1px solid var(--color-border);
   border-radius: 0.5rem;
   padding: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 /* Accent Tag (like category labels) */
@@ -149,4 +205,7 @@ button:hover {
   font-size: 0.875rem;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
