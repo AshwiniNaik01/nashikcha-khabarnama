@@ -25,7 +25,7 @@ const navItems: NavItem[] = [
     { label: "नाशिक ग्रामीण", href: "/category/nashik-rural" },
     { label: "क्राईम", href: "/category/crime" },
     { label: "शेती", href: "/category/agriculture" },
-    { label: "राशीभविष्य", href: "/category/horoscope" },
+    { label: "राशीभविष्य", href: "/rashi" },
     { label: "अर्थकारण", href: "/category/business" },
     { label: "क्रीडा", href: "/category/sports" },
     { label: "पंचायत राज", href: "/category/panchayat-raj" },
