@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Camera, Maximize2, MoveRight } from 'lucide-react';
+import Link from 'next/link';
 
 interface PhotoItem {
     id: string;
@@ -60,10 +61,10 @@ export default function PhotoGallery() {
                     </div>
                     <h2 className="text-4xl md:text-5xl font-white text-white leading-none">द खबरनामा <br /><span className="text-lokmat-red underline decoration-4 underline-offset-8">गॅलरी</span></h2>
                 </div>
-                <button className="flex items-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:bg-lokmat-red transition-all group">
+                <Link href="/photos" className="flex items-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:bg-lokmat-red transition-all group">
                     सर्व फोटो पाहा
                     <MoveRight className="group-hover:translate-x-2 transition-transform" />
-                </button>
+                </Link>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[250px]">

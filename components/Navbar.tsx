@@ -24,6 +24,8 @@ const navItems: NavItem[] = [
     { label: "अर्थकारण", href: "/category/business" },
     { label: "क्रीडा", href: "/category/sports" },
     { label: "पंचायत राज", href: "/category/panchayat-raj" },
+    { label: "व्हिडीओ", href: "/video" },
+    { label: "फोटो", href: "/photos" },
 ];
 
 export default function Navbar() {
