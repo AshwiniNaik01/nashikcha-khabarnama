@@ -30,6 +30,7 @@ import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import './globals.css';
+import BreakingNews from '@/components/home/BreakingNews';
 
 /* ----------------------------------------
    Fonts
@@ -65,6 +66,11 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col bg-white text-gray-900 antialiased">
         <Header />
         <Navbar />
+        <BreakingNews newsItems={[
+          "नाशिकला थंडीचा कडाका वाढला: तापमान ६.२°C",
+          "सिंहस्थ कुंभमेळ्यासाठी प्रशासनाची जय्यत तयारी सुरू",
+          "बाजार समितीत द्राक्षांची आवक वाढली, भाव स्थिर"
+        ]} />
 
         <main className="flex-1 container mx-auto px-4 py-6 w-6xl">
           {children}
