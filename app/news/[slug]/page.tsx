@@ -158,7 +158,7 @@ export default function LoksattaUnifiedUI() {
                 <div className="p-5">
                   {/* Header */}
                   <div className="flex items-center gap-2 mb-5">
-                    <span className="text-red-600 text-2xl font-black font-sans tracking-tighter">लोकसत्ता</span>
+                    <span className="text-red-600 text-2xl font-black font-sans tracking-tighter">नाशिकचा खबरनामा</span>
                     <span className="text-2xl italic font-light font-sans tracking-tighter">Shorts</span>
                   </div>
 
