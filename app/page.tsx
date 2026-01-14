@@ -1,156 +1,172 @@
-import Link from "next/link";
-import ArticleCard from "@/components/ArticleCard";
 import NewsSlider from "@/components/NewsSlider";
-import NewsList from "@/components/NewsList";
-import { newsData } from "@/app/data/newsData";
+import BreakingNews from "@/components/home/BreakingNews";
+import HeroGrid from "@/components/home/HeroGrid";
+import CategoryBlock from "@/components/home/CategoryBlock";
+import Sidebar from "@/components/home/Sidebar";
+import LiveNewsWidget from "@/components/home/LiveNewsWidget";
+import WeatherWidget from "@/components/home/WeatherWidget";
+import LayoutWrapper from "@/components/LayoutWrapper";
+import VideoGallery from "@/components/home/VideoGallery";
+import PhotoGallery from "@/components/home/PhotoGallery";
 
-// const sampleArticles = [
-//   { title: 'रामजन्मभूमीच्या ऐतिहासिक सोहळ्याची नाशिकमध्ये जय्यत तयारी', excerpt: 'नाशिकच्या रामकुंडावर दीपोत्सव आणि विशेष महाआरतीचे आयोजन करण्यात आले आहे...', image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800', slug: 'nashik-ram-mandir-celebration', category: 'नाशिक', date: '१३ जाने २०२६' },
-//   { title: 'नाशिकच्या द्राक्ष निर्यातीत विक्रमी वाढ; शेतकऱ्यांमध्ये आनंदाचे वातावरण', excerpt: 'चालू हंगामात द्राक्ष निर्यातीने नवा टप्पा गाठला असून युरोपियन देशांतून मोठी मागणी...', image: 'https://images.unsplash.com/photo-1596401057633-531035ef832a?auto=format&fit=crop&q=80&w=800', slug: 'nashik-grapes-export', category: 'शेती', date: '१३ जाने २०२६' },
-//   { title: 'नाशिक पुणे हायस्पीड रेल्वे प्रकल्पाला गती; जमीन संपादनाचे काम ९०% पूर्ण', excerpt: 'राज्य सरकारने प्रकल्पासाठी अतिरिक्त निधी मंजूर केला असून लवकरच प्रत्यक्ष कामाला सुरुवात...', image: 'https://images.unsplash.com/photo-1474487056217-76fe4540d6e6?auto=format&fit=crop&q=80&w=800', slug: 'nashik-pune-railway-update', category: 'विकास', date: '१३ जाने २०२६' },
-//   { title: 'हिवाळ्याचा कडाका वाढला; नाशिककर गुलाबी थंडीचा आनंद घेत आहेत', excerpt: 'गेल्या २४ तासांत नाशिकचे तापमान १० अंशांच्या खाली गेले असून थंडीचा जोर वाढला...', image: 'https://images.unsplash.com/photo-1507367612148-cc12c4440026?auto=format&fit=crop&q=80&w=800', slug: 'nashik-winter-update', category: 'नाशिक', date: '१३ जाने २०२६' },
-//   { title: 'तंत्रज्ञान क्षेत्रात मोठी क्रांती; एआयमुळे रोजगाराच्या संधी वाढणार', excerpt: 'तज्ज्ञांच्या मते आर्टिफिशियल इंटेलिजन्समुळे नवीन कौशल्य असलेल्या युवकांना मोठी संधी मिळणारे...', image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800', slug: 'tech-ai-future', category: 'तंत्रज्ञान', date: '१३ जाने २०२६' },
-//   { title: 'सांगलीचे सुपुत्र भारतीय सैन्यात मेजर पदावर बढती', excerpt: 'देशसेवेसाठी समर्पित असलेल्या सांगलीच्या सुपुत्राने अभूतपूर्व कामगिरी करत गौरव मिळवला असून...', image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800', slug: 'national-pride', category: 'राष्ट्रीय', date: '१३ जाने २०२६' },
-// ];
-const sampleArticles = [
+// Unified Article definition
+interface Article {
+  title: string;
+  excerpt: string;
+  image: string;
+  slug: string;
+  category: string;
+  date: string;
+  views?: string;
+  isBreaking?: boolean;
+}
+
+const sampleArticles: Article[] = [
   {
-    title: "नाशिकमध्ये रामजन्मभूमीच्या पूजनाची जय्यत तयारी",
-    excerpt: "शहरातील मंदिरांमध्ये विशेष कार्यक्रमांचे आयोजन...",
-    image: "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?w=800",
-    slug: "ram-temple-preparation-nashik",
-    category: "नाशिक",
-    date: "१४ जाने २०२६",
+    title: 'रामजन्मभूमीच्या ऐतिहासिक सोहळ्याची नाशिकमध्ये जय्यत तयारी',
+    excerpt: 'नाशिकच्या रामकुंडावर दीपोत्सव आणि विशेष महाआरतीचे आयोजन करण्यात आले आहे...',
+    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800',
+    slug: 'nashik-ram-mandir-celebration',
+    category: 'नाशिक',
+    date: '१३ जाने २०२६',
+    views: '१२.५k',
+    isBreaking: true
   },
   {
-    title: "द्राक्ष निर्यातीमध्ये विक्रमी वाढ, शेतकऱ्यांमध्ये उत्साह",
-    excerpt: "या हंगामात निर्यातीमध्ये ३०% वाढ नोंदवली गेली आहे...",
-    image: "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?w=800",
-    slug: "grapes-export-growth",
-    category: "शेती",
-    date: "१३ जाने २०२६",
+    title: 'नाशिकच्या द्राक्ष निर्यातीत विक्रमी वाढ; शेतकऱ्यांमध्ये आनंदाचे वातावरण',
+    excerpt: 'चालू हंगामात द्राक्ष निर्यातीने नवा टप्पा गाठला असून युरोपियन देशांतून मोठी मागणी...',
+    image: 'https://images.pexels.com/photos/708777/pexels-photo-708777.jpeg?cs=srgb&dl=pexels-qjpioneer-708777.jpg&fm=jpg',
+    slug: 'nashik-grapes-export',
+    category: 'शेती',
+    date: '१३ जाने २०२६',
+    views: '८.२k',
+    isBreaking: false
   },
   {
-    title: "त्र्यंबकेश्वर येथे भाविकांची वाढलेली गर्दी",
-    excerpt: "श्री त्र्यंबकेश्वर मंदिरात भाविकांचा मोठा ओघ पाहायला मिळतो...",
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800",
-    slug: "trimbakeshwar-crowd-update",
-    category: "धर्म",
-    date: "११ जाने २०२६",
+    title: 'नाशिक पुणे हायस्पीड रेल्वे प्रकल्पाला गती; जमीन संपादनाचे काम ९०% पूर्ण',
+    excerpt: 'राज्य सरकारने प्रकल्पासाठी अतिरिक्त निधी मंजूर केला असून लवकरच प्रत्यक्ष कामाला सुरुवात...',
+    image: 'https://static.vecteezy.com/system/resources/thumbnails/070/593/008/small/winter-night-in-urban-park-with-snow-and-soft-glow-of-lights-photo.jpeg',
+    slug: 'nashik-pune-railway-update',
+    category: 'विकास',
+    date: '१३ जाने २०२६',
+    views: '१०.३k',
+    isBreaking: true
   },
   {
-    title: "नाशिकमध्ये नवीन मेट्रो प्रकल्पाला गती",
-    excerpt: "महत्त्वाचे भूखंड अधिग्रहण पूर्ण; पुढील टप्प्यास मान्यता...",
-    image: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=800",
-    slug: "nashik-metro-project",
-    category: "विकास",
-    date: "१० जाने २०२६",
+    title: 'हिवाळ्याचा कडाका वाढला; नाशिककर गुलाबी थंडीचा आनंद घेत आहेत',
+    excerpt: 'गेल्या २४ तासांत नाशिकचे तापमान १० अंशांच्या खाली गेले असून थंडीचा जोर वाढला...',
+    image: 'https://images.pexels.com/photos/730256/pexels-photo-730256.jpeg',
+    slug: 'nashik-winter-update',
+    category: 'नाशिक',
+    date: '१३ जाने २०२६',
+    views: '५.७k',
+    isBreaking: false
   },
   {
-    title: "शहरात थंडीचा कडाका वाढला",
-    excerpt: "नाशिकमध्ये किमान तापमानात पुन्हा घसरण...",
-    image: "https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?w=800",
-    slug: "cold-wave-nashik",
-    category: "हवामान",
-    date: "९ जाने २०२६",
+    title: 'तंत्रज्ञान क्षेत्रात मोठी क्रांती; एआयमुळे रोजगाराच्या संधी वाढणार',
+    excerpt: 'तज्ज्ञांच्या मते आर्टिफिशियल इंटेलिजन्समुळे नवीन कौशल्य असलेल्या युवकांना मोठी संधी मिळणारे...',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800',
+    slug: 'tech-ai-future',
+    category: 'तंत्रज्ञान',
+    date: '१३ जाने २०२६',
+    views: '१५.२k',
+    isBreaking: true
+  },
+  {
+    title: 'सांगलीचे सुपुत्र भारतीय सैन्यात मेजर पदावर बढती',
+    excerpt: 'देशसेवेसाठी समर्पित असलेल्या सांगलीच्या सुपुत्राने अभूतपूर्व कामगिरी करत गौरव मिळवला असून...',
+    image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800',
+    slug: 'national-pride',
+    category: 'राष्ट्रीय',
+    date: '१३ जाने २०२६',
+    views: '२०.१k',
+    isBreaking: true
   },
 ];
 
+const sampleSliderArticles = sampleArticles.slice(0, 3);
+
+const trendingItems = [
+  { id: 1, title: 'नाशिक बाजार समितीत कांद्याच्या दरात घसरण, शेतकरी हवालदिल...', views: '१२.३k' },
+  { id: 2, title: 'राम मंदिर प्रसन्नतेत नाशिककरांचा उत्साह: विशेष आरती आयोजित...', views: '१५.७k' },
+  { id: 3, title: 'गोदावरी नदीच्या पात्रातील गाळ काढण्याचे काम गतीवर...', views: '८.९k' },
+  { id: 4, title: 'महिला क्रिकेट संघाला शहराचा गौरव: विशेष समारंभ आयोजित...', views: '६.५k' },
+  { id: 5, title: 'नाशिक एमपीएससी परीक्षेचे निकाल जाहीर: १२७ उमेदवार निवड...', views: '१८.२k' },
+];
 
 export default function HomePage() {
   return (
-    <div className="space-y-8 animate-in fade-in duration-700">
-      {/* 1. BREAKING NEWS TICKER */}
-      <div className="bg-red-50 border-y border-red-100 overflow-hidden py-1 flex items-center">
-        <div className="bg-[var(--color-primary)] text-white text-[10px] font-bold px-3 py-1 flex-shrink-0 uppercase italic tracking-tighter">
-          ब्रेकिंग न्युज
-        </div>
-        <div className="flex-1 whitespace-nowrap overflow-hidden relative">
-          <div className="animate-marquee inline-block pl-8 text-sm font-semibold text-black">
-            नाशिकला थंडीचा कडाका वाढला... सिंहस्थ कुंभमेळ्यासाठी प्रशासनाची जय्यत तयारी... बाजार समितीत द्राक्षांची आवक वाढली...
-          </div>
-        </div>
-      </div>
+    <LayoutWrapper>
+      <div className="space-y-12 animate-in fade-in duration-700 pt-4 pb-12">
+        {/* TOP SECTION: Grid with Sidebar */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
 
-      {/* 2. HERO GRID SECTION */}
-      <section className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {/* Main News Card */}
-        <div className="lg:col-span-2 relative group overflow-hidden rounded-sm shadow-xl aspect-[16/10]">
-          <img src={sampleArticles[0].image} alt={sampleArticles[0].title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-6">
-            <span className="bg-[var(--color-primary)] text-white text-[10px] uppercase font-bold px-2 py-0.5 w-fit mb-2">
-              {sampleArticles[0].category}
-            </span>
-            <h1 className="text-white text-2xl md:text-3xl font-bold leading-tight line-clamp-2 hover:underline cursor-pointer transition-all">
-              {sampleArticles[0].title}
-            </h1>
-          </div>
-        </div>
-
-        {/* Side News Stack */}
-        <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-          {sampleArticles.slice(1, 5).map((article, i) => (
-            <div key={i} className="flex flex-col gap-2 group cursor-pointer border-b border-gray-100 pb-2">
-              <div className="relative overflow-hidden aspect-[16/9] rounded-sm">
-                <img src={article.image} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-              </div>
-              <div>
-                <span className="text-[var(--color-primary)] text-[10px] font-bold uppercase">{article.category}</span>
-                <h3 className="text-sm font-bold line-clamp-2 group-hover:text-black transition-colors leading-snug">
-                  {article.title}
-                </h3>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 2.5 NEWS SLIDER SECTION */}
-      <NewsSlider title="ताज्या बातम्या" articles={sampleArticles} />
-
-
-
-      {/* 3. CATEGORY BLOCKS - MORE SORTED FORM */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Category Column 1 */}
-        <div className="lg:col-span-2 space-y-8">
-          <div className="border-t-2 border-[var(--color-primary)] pt-4">
-            <div className="flex justify-between items-end mb-6">
-              <h2 className="text-xl font-bold uppercase border-l-4 border-[var(--color-primary)] pl-3">नाशिक जिल्हा</h2>
-              <Link href="/category/nashik" className="text-xs font-bold text-black hover:underline uppercase">आणखी पहा »</Link>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {sampleArticles.slice(0, 4).map((article, i) => (
-                <ArticleCard key={i} {...article} />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Sidebar */}
-        <div className="space-y-8">
-          {/* Trending Section */}
-          <div className="bg-gray-50 p-4 border-t-2 border-black">
-            <h2 className="text-lg font-bold mb-4 uppercase">ट्रेन्डिंग बातम्या</h2>
+          {/* LEFT: Hero & Main Featured Category */}
+          <div className="lg:col-span-2 space-y-12">
+            {/* 2. HERO GRID SECTION */}
             <div className="space-y-4">
-              {[1, 2, 3, 4, 5].map((num) => (
-                <div key={num} className="flex gap-3 items-start group cursor-pointer border-b border-gray-100 pb-2 last:border-0 mb-3">
-                  <span className="text-3xl font-black text-gray-200 group-hover:text-black transition-colors">{num}</span>
-                  <p className="text-xs font-bold line-clamp-2 leading-tight group-hover:text-black">नाशिक बाजार समितीत कांद्याच्या दरात घसरण, शेतकरी हवालदिल...</p>
+              <div className="flex items-center justify-between border-b-2 border-lokmat-red pb-2">
+                <h2 className="text-xl font-bold uppercase border-l-4 border-lokmat-red pl-3">मुख्य बातम्या</h2>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs bg-red-50 text-lokmat-dark px-2 py-1 rounded-full">🔥 लाईव्ह</span>
+                  <span className="text-xs text-gray-500">आत्ताच अपडेट</span>
                 </div>
-              ))}
+              </div>
+              <HeroGrid articles={sampleArticles} />
             </div>
+
+            {/* Nashik District Category Block */}
+            <CategoryBlock
+              title="नाशिक जिल्हा"
+              articles={sampleArticles.slice(0, 4)}
+              href="/category/nashik"
+            />
           </div>
-          <NewsList articles={newsData} />
-          {/* Newsletter or Link */}
-          <div className="bg-[var(--color-accent)] text-white p-6 rounded-sm text-center">
-            <h3 className="text-sm font-bold uppercase mb-2">महत्वाच्या बातम्या मिळवा</h3>
-            <p className="text-[10px] mb-4 opacity-80">आमच्या व्हॉट्सॲप चॅनेलला जॉईन करा आणि ताज्या अपडेट्स मिळवा</p>
-            <button className="bg-white text-[var(--color-accent)] w-full py-2 text-xs font-black uppercase rounded-sm hover:bg-gray-100 transition-colors">
-              जॉईन करा
-            </button>
-          </div>
+
+          {/* RIGHT: Sidebar Widgets */}
+          <aside className="lg:col-span-1 space-y-6 lg:sticky lg:top-24 h-fit">
+            <LiveNewsWidget />
+            <WeatherWidget />
+            <Sidebar trendingItems={trendingItems} />
+
+            {/* Advertisement Space */}
+            {/* <div className="bg-gradient-to-r from-lokmat-red to-lokmat-maroon text-white p-6 rounded-lg text-center shadow-lg border border-red-700/20">
+              <div className="text-sm font-bold mb-2">विशेष ऑफर</div>
+              <div className="text-xs opacity-90 mb-4 font-medium">आमच्या ePaper सबस्क्रिप्शनवर ५०% सवलत</div>
+              <button className="bg-white text-lokmat-maroon hover:bg-gray-100 px-6 py-2.5 rounded shadow-sm text-sm font-black uppercase tracking-wider transition-all transform hover:scale-105">
+                सबस्क्राईब करा
+              </button>
+            </div> */}
+          </aside>
         </div>
+
+        {/* BOTTOM SECTION: Full Width Categories & Galleries */}
+        <div className="space-y-16 w-full">
+          <NewsSlider articles={sampleArticles} title="देश-विदेश" />
+
+          <div className="space-y-12">
+            <NewsSlider articles={sampleArticles} title="महाराष्ट्र" />
+
+            {/* NEW: Cinematic Video Gallery */}
+            <VideoGallery />
+          </div>
+
+          <NewsSlider articles={sampleSliderArticles} title="राजकारण" />
+          <NewsSlider articles={sampleSliderArticles} title="नाशिक शहर" />
+
+          <div className="space-y-12">
+            <NewsSlider articles={sampleSliderArticles} title="नाशिक ग्रामीण" />
+
+            {/* NEW: Asymmetric Photo Gallery */}
+            <PhotoGallery />
+          </div>
+
+          <NewsSlider articles={sampleSliderArticles} title="क्राईम" />
+          <NewsSlider articles={sampleSliderArticles} title="शेती" />
+          <NewsSlider articles={sampleSliderArticles} title="क्रीडा" />
+        </div>
+
       </div>
-    </div>
+    </LayoutWrapper>
   );
 }

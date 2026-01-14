@@ -31,31 +31,31 @@ const NewsSlider: React.FC<Props> = ({ articles, title }) => {
 
     return (
         <div className="space-y-4">
-            <div className="flex justify-between items-end border-b-2 border-[var(--color-primary)] pb-2 mb-4">
-                <h2 className="text-xl font-bold uppercase border-l-4 border-[var(--color-primary)] pl-3">
+            <div className="flex justify-between items-end border-b-2 border-lokmat-red pb-2 mb-4">
+                <h2 className="text-xl font-black uppercase border-l-4 border-lokmat-red pl-3 tracking-wide">
                     {title}
                 </h2>
                 <div className="flex gap-2">
                     <button
                         onClick={() => scroll('left')}
-                        className="p-2 bg-gray-100 hover:bg-[var(--color-primary)] hover:text-white transition-colors rounded-full"
+                        className="p-2 bg-gray-100 hover:bg-lokmat-red hover:text-white transition-all rounded-full shadow-sm"
                         aria-label="Previous"
                     >
-                        <FaChevronLeft size={14} />
+                        <FaChevronLeft size={12} />
                     </button>
                     <button
                         onClick={() => scroll('right')}
-                        className="p-2 bg-gray-100 hover:bg-[var(--color-primary)] hover:text-white transition-colors rounded-full"
+                        className="p-2 bg-gray-100 hover:bg-lokmat-red hover:text-white transition-all rounded-full shadow-sm"
                         aria-label="Next"
                     >
-                        <FaChevronRight size={14} />
+                        <FaChevronRight size={12} />
                     </button>
                 </div>
             </div>
 
             <div
                 ref={scrollRef}
-                className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4"
+                className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
                 {articles.map((article, i) => (
@@ -63,25 +63,25 @@ const NewsSlider: React.FC<Props> = ({ articles, title }) => {
                         key={i}
                         className="min-w-[280px] md:min-w-[320px] lg:min-w-[350px] snap-start group"
                     >
-                        <div className="relative overflow-hidden aspect-[16/9] rounded-sm mb-3">
+                        <div className="relative overflow-hidden aspect-[16/9] rounded-sm mb-3 shadow-md">
                             <img
                                 src={article.image}
                                 alt={article.title}
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             />
                             {article.category && (
-                                <span className="absolute top-2 left-2 bg-[var(--color-primary)] text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-wider">
+                                <span className="absolute top-2 left-2 bg-lokmat-red text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-wider shadow-sm">
                                     {article.category}
                                 </span>
                             )}
                         </div>
                         <div className="space-y-2">
-                            <h3 className="font-bold text-sm md:text-md line-clamp-2 leading-snug group-hover:text-black transition-colors">
+                            <h3 className="font-bold text-sm md:text-md line-clamp-2 leading-snug group-hover:text-lokmat-red transition-colors">
                                 <Link href={`/news/${article.slug}`}>{article.title}</Link>
                             </h3>
-                            <div className="flex justify-between items-center">
+                            <div className="flex justify-between items-center pt-1">
                                 {article.date && <span className="text-[10px] text-gray-400 font-semibold">{article.date}</span>}
-                                <Link href={`/news/${article.slug}`} className="text-[10px] font-black text-black uppercase hover:underline">
+                                <Link href={`/news/${article.slug}`} className="text-[10px] font-black text-black uppercase hover:text-lokmat-red hover:underline transition-colors">
                                     वाचा »
                                 </Link>
                             </div>
