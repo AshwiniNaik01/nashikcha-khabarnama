@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Play, ChevronRight, Video } from 'lucide-react';
+import Link from "next/link";
 
 interface VideoItem {
     id: string;
@@ -58,9 +59,17 @@ export default function VideoGallery() {
                             <p className="text-lokmat-red text-xs font-bold tracking-widest uppercase mt-1">Video Spotlight</p>
                         </div>
                     </div>
-                    <button className="hidden md:flex items-center gap-2 text-white/60 hover:text-lokmat-red transition-colors text-sm font-bold uppercase tracking-widest">
-                        सर्व पाहा <ChevronRight size={16} />
-                    </button>
+
+
+                    <Link href="/videos">
+                        <button className="hidden md:flex items-center gap-2 text-zinc-500 hover:text-red-600 transition-colors text-sm font-bold uppercase tracking-widest group">
+                            सर्व पाहा
+                            <ChevronRight
+                                size={16}
+                                className="transform group-hover:translate-x-1 transition-transform"
+                            />
+                        </button>
+                    </Link>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
