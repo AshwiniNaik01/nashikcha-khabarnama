@@ -10,11 +10,7 @@ interface NavItem {
     href: string;
     subItems?: NavItem[];
 }
-interface NavItem {
-    label: string;
-    href: string;
-    subItems?: NavItem[];
-}
+
 
 const navItems: NavItem[] = [
     { label: "मुखपृष्ठ", href: "/" },
