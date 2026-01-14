@@ -1,16 +1,60 @@
 import Link from "next/link";
 import ArticleCard from "@/components/ArticleCard";
 import NewsSlider from "@/components/NewsSlider";
+import NewsList from "@/components/NewsList";
+import { newsData } from "@/app/data/newsData";
 
-
+// const sampleArticles = [
+//   { title: 'रामजन्मभूमीच्या ऐतिहासिक सोहळ्याची नाशिकमध्ये जय्यत तयारी', excerpt: 'नाशिकच्या रामकुंडावर दीपोत्सव आणि विशेष महाआरतीचे आयोजन करण्यात आले आहे...', image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800', slug: 'nashik-ram-mandir-celebration', category: 'नाशिक', date: '१३ जाने २०२६' },
+//   { title: 'नाशिकच्या द्राक्ष निर्यातीत विक्रमी वाढ; शेतकऱ्यांमध्ये आनंदाचे वातावरण', excerpt: 'चालू हंगामात द्राक्ष निर्यातीने नवा टप्पा गाठला असून युरोपियन देशांतून मोठी मागणी...', image: 'https://images.unsplash.com/photo-1596401057633-531035ef832a?auto=format&fit=crop&q=80&w=800', slug: 'nashik-grapes-export', category: 'शेती', date: '१३ जाने २०२६' },
+//   { title: 'नाशिक पुणे हायस्पीड रेल्वे प्रकल्पाला गती; जमीन संपादनाचे काम ९०% पूर्ण', excerpt: 'राज्य सरकारने प्रकल्पासाठी अतिरिक्त निधी मंजूर केला असून लवकरच प्रत्यक्ष कामाला सुरुवात...', image: 'https://images.unsplash.com/photo-1474487056217-76fe4540d6e6?auto=format&fit=crop&q=80&w=800', slug: 'nashik-pune-railway-update', category: 'विकास', date: '१३ जाने २०२६' },
+//   { title: 'हिवाळ्याचा कडाका वाढला; नाशिककर गुलाबी थंडीचा आनंद घेत आहेत', excerpt: 'गेल्या २४ तासांत नाशिकचे तापमान १० अंशांच्या खाली गेले असून थंडीचा जोर वाढला...', image: 'https://images.unsplash.com/photo-1507367612148-cc12c4440026?auto=format&fit=crop&q=80&w=800', slug: 'nashik-winter-update', category: 'नाशिक', date: '१३ जाने २०२६' },
+//   { title: 'तंत्रज्ञान क्षेत्रात मोठी क्रांती; एआयमुळे रोजगाराच्या संधी वाढणार', excerpt: 'तज्ज्ञांच्या मते आर्टिफिशियल इंटेलिजन्समुळे नवीन कौशल्य असलेल्या युवकांना मोठी संधी मिळणारे...', image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800', slug: 'tech-ai-future', category: 'तंत्रज्ञान', date: '१३ जाने २०२६' },
+//   { title: 'सांगलीचे सुपुत्र भारतीय सैन्यात मेजर पदावर बढती', excerpt: 'देशसेवेसाठी समर्पित असलेल्या सांगलीच्या सुपुत्राने अभूतपूर्व कामगिरी करत गौरव मिळवला असून...', image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800', slug: 'national-pride', category: 'राष्ट्रीय', date: '१३ जाने २०२६' },
+// ];
 const sampleArticles = [
-  { title: 'रामजन्मभूमीच्या ऐतिहासिक सोहळ्याची नाशिकमध्ये जय्यत तयारी', excerpt: 'नाशिकच्या रामकुंडावर दीपोत्सव आणि विशेष महाआरतीचे आयोजन करण्यात आले आहे...', image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800', slug: 'nashik-ram-mandir-celebration', category: 'नाशिक', date: '१३ जाने २०२६' },
-  { title: 'नाशिकच्या द्राक्ष निर्यातीत विक्रमी वाढ; शेतकऱ्यांमध्ये आनंदाचे वातावरण', excerpt: 'चालू हंगामात द्राक्ष निर्यातीने नवा टप्पा गाठला असून युरोपियन देशांतून मोठी मागणी...', image: 'https://images.unsplash.com/photo-1596401057633-531035ef832a?auto=format&fit=crop&q=80&w=800', slug: 'nashik-grapes-export', category: 'शेती', date: '१३ जाने २०२६' },
-  { title: 'नाशिक पुणे हायस्पीड रेल्वे प्रकल्पाला गती; जमीन संपादनाचे काम ९०% पूर्ण', excerpt: 'राज्य सरकारने प्रकल्पासाठी अतिरिक्त निधी मंजूर केला असून लवकरच प्रत्यक्ष कामाला सुरुवात...', image: 'https://images.unsplash.com/photo-1474487056217-76fe4540d6e6?auto=format&fit=crop&q=80&w=800', slug: 'nashik-pune-railway-update', category: 'विकास', date: '१३ जाने २०२६' },
-  { title: 'हिवाळ्याचा कडाका वाढला; नाशिककर गुलाबी थंडीचा आनंद घेत आहेत', excerpt: 'गेल्या २४ तासांत नाशिकचे तापमान १० अंशांच्या खाली गेले असून थंडीचा जोर वाढला...', image: 'https://images.unsplash.com/photo-1507367612148-cc12c4440026?auto=format&fit=crop&q=80&w=800', slug: 'nashik-winter-update', category: 'नाशिक', date: '१३ जाने २०२६' },
-  { title: 'तंत्रज्ञान क्षेत्रात मोठी क्रांती; एआयमुळे रोजगाराच्या संधी वाढणार', excerpt: 'तज्ज्ञांच्या मते आर्टिफिशियल इंटेलिजन्समुळे नवीन कौशल्य असलेल्या युवकांना मोठी संधी मिळणारे...', image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800', slug: 'tech-ai-future', category: 'तंत्रज्ञान', date: '१३ जाने २०२६' },
-  { title: 'सांगलीचे सुपुत्र भारतीय सैन्यात मेजर पदावर बढती', excerpt: 'देशसेवेसाठी समर्पित असलेल्या सांगलीच्या सुपुत्राने अभूतपूर्व कामगिरी करत गौरव मिळवला असून...', image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800', slug: 'national-pride', category: 'राष्ट्रीय', date: '१३ जाने २०२६' },
+  {
+    title: "नाशिकमध्ये रामजन्मभूमीच्या पूजनाची जय्यत तयारी",
+    excerpt: "शहरातील मंदिरांमध्ये विशेष कार्यक्रमांचे आयोजन...",
+    image: "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?w=800",
+    slug: "ram-temple-preparation-nashik",
+    category: "नाशिक",
+    date: "१४ जाने २०२६",
+  },
+  {
+    title: "द्राक्ष निर्यातीमध्ये विक्रमी वाढ, शेतकऱ्यांमध्ये उत्साह",
+    excerpt: "या हंगामात निर्यातीमध्ये ३०% वाढ नोंदवली गेली आहे...",
+    image: "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?w=800",
+    slug: "grapes-export-growth",
+    category: "शेती",
+    date: "१३ जाने २०२६",
+  },
+  {
+    title: "त्र्यंबकेश्वर येथे भाविकांची वाढलेली गर्दी",
+    excerpt: "श्री त्र्यंबकेश्वर मंदिरात भाविकांचा मोठा ओघ पाहायला मिळतो...",
+    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800",
+    slug: "trimbakeshwar-crowd-update",
+    category: "धर्म",
+    date: "११ जाने २०२६",
+  },
+  {
+    title: "नाशिकमध्ये नवीन मेट्रो प्रकल्पाला गती",
+    excerpt: "महत्त्वाचे भूखंड अधिग्रहण पूर्ण; पुढील टप्प्यास मान्यता...",
+    image: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=800",
+    slug: "nashik-metro-project",
+    category: "विकास",
+    date: "१० जाने २०२६",
+  },
+  {
+    title: "शहरात थंडीचा कडाका वाढला",
+    excerpt: "नाशिकमध्ये किमान तापमानात पुन्हा घसरण...",
+    image: "https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?w=800",
+    slug: "cold-wave-nashik",
+    category: "हवामान",
+    date: "९ जाने २०२६",
+  },
 ];
+
 
 export default function HomePage() {
   return (
@@ -61,7 +105,9 @@ export default function HomePage() {
       </section>
 
       {/* 2.5 NEWS SLIDER SECTION */}
-      <NewsSlider articles={sampleArticles} title="विशेष बातम्या" />
+      <NewsSlider title="ताज्या बातम्या" articles={sampleArticles} />
+
+
 
       {/* 3. CATEGORY BLOCKS - MORE SORTED FORM */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -94,7 +140,7 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-
+          <NewsList articles={newsData} />
           {/* Newsletter or Link */}
           <div className="bg-[var(--color-accent)] text-white p-6 rounded-sm text-center">
             <h3 className="text-sm font-bold uppercase mb-2">महत्वाच्या बातम्या मिळवा</h3>
