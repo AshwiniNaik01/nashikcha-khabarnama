@@ -59,15 +59,10 @@ export default function Header() {
           <div className="w-[120px] hidden md:block opacity-0">spacer</div> {/* Flex spacer */}
 
           {/* Center Logo + Tagline */}
-          <Link href="/" className="flex flex-col items-center text-center group">
-            <img src="/logo.png" alt="Lokmat Style Logo" className="h-16 group-hover:scale-105 transition-transform duration-500" />
-            <span className="text-lokmat-red font-black text-sm uppercase tracking-[0.2em] mt-2">
-              नाशिकचा खबरनामा
-            </span>
-          </Link>
+
 
           {/* Right: Advertisement */}
-          <div className="hidden lg:flex w-[468px]">
+          <div className="hidden lg:flex w-full">
             <div className="bg-gray-50 border border-gray-100 h-20 w-full flex items-center justify-center text-[10px] text-gray-300 uppercase tracking-tighter font-bold font-sans">
               - Advertisement -
             </div>
