@@ -99,7 +99,7 @@ const RashiCard: React.FC<RashiCardProps> = ({ rashi }) => {
                     </div>
 
                     {/* Action Button */}
-                    <button className="w-full mt-3 py-2.5 bg-lokmat-gradient  text-white font-bold rounded-lg hover:shadow-lg hover:from-amber-600 hover:to-orange-600 transition-all duration-300 flex items-center justify-center gap-2">
+                    <button className="w-full mt-3 py-2.5 bg-lokmat-gradient text-white font-bold rounded-lg hover:shadow-lg hover:from-amber-600 hover:to-orange-600 transition-all duration-300 flex items-center justify-center gap-2">
                         <TrendingUp size={16} />
                         संपूर्ण भविष्य वाचा
                     </button>

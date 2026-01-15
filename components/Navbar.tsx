@@ -21,12 +21,18 @@ const navItems: NavItem[] = [
     { label: "नाशिक ग्रामीण", href: "/category/nashik-rural" },
     { label: "क्राईम", href: "/category/crime" },
     { label: "शेती", href: "/category/agriculture" },
-    { label: "राशीभविष्य", href: "/rashi" },
-    { label: "अर्थकारण", href: "/category/business" },
-    { label: "क्रीडा", href: "/category/sports" },
-    { label: "पंचायत राज", href: "/category/panchayat-raj" },
-    { label: "व्हिडीओ", href: "/videos" },
-    { label: "फोटो", href: "/photos" },
+    {
+        label: "अधिक",
+        href: "#",
+        subItems: [
+            { label: "राशीभविष्य", href: "/rashi" },
+            { label: "अर्थकारण", href: "/category/business" },
+            { label: "क्रीडा", href: "/category/sports" },
+            { label: "पंचायत राज", href: "/category/panchayat-raj" },
+            { label: "व्हिडीओ", href: "/videos" },
+            { label: "फोटो", href: "/photos" },
+        ],
+    },
 ];
 
 export default function Navbar() {
@@ -45,6 +51,18 @@ export default function Navbar() {
             <div className="container mx-auto px-4">
                 <div className="flex justify-between items-center h-14">
 
+                    <Link href="/" className="flex items-center group py-2">
+                        <div className="flex items-center bg-white transition-all duration-300">
+
+                            <div className="hidden md:flex flex-col justify-center leading-none">
+                                <span className="text-pink-500 font-bold text-[25px] uppercase tracking-[0.2em] mb-1">
+                                    नाशिकचा खबरनामा
+                                </span>
+
+                            </div>
+
+                        </div>
+                    </Link>
                     {/* Desktop Menu */}
                     <ul className="hidden lg:flex items-center h-full font-black uppercase text-lg tracking-tight mx-10">
                         {navItems.map((item) => {
@@ -64,15 +82,14 @@ export default function Navbar() {
 
                                     {/* Submenu */}
                                     {item.subItems && (
-                                        <ul className="absolute left-0 top-full bg-white text-gray-800 shadow-2xl border-t-4 border-lokmat-maroon py-2 min-w-[220px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform scale-95 group-hover:scale-100 origin-top">
-                                            {item.subItems.map((subItem) => (
-                                                <li key={subItem.label}>
+                                        <ul className="absolute right-0 top-full bg-white shadow-2xl border-t-4 border-[#E1261C] py-2 min-w-[250px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                                            {item.subItems.map((sub) => (
+                                                <li key={sub.label}>
                                                     <Link
-                                                        href={subItem.href}
-                                                        className={`block px-6 py-3 hover:bg-gray-50 hover:text-lokmat-red transition-colors text-sm font-bold border-b border-gray-50 last:border-0 ${pathname === subItem.href ? "text-lokmat-red font-black bg-gray-50" : ""
-                                                            }`}
+                                                        href={sub.href}
+                                                        className="block px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-[#E1261C] text-lg font-bold border-b border-gray-50 last:border-0"
                                                     >
-                                                        {subItem.label}
+                                                        {sub.label}
                                                     </Link>
                                                 </li>
                                             ))}
@@ -124,7 +141,7 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile Menu Drawer */}
+
             <div
                 className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out bg-lokmat-maroon ${isOpen ? "max-h-[1000px] border-t border-white/10 shadow-inner" : "max-h-0"
                     }`}
