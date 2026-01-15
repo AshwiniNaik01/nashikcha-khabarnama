@@ -5,27 +5,27 @@ import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadat
 type TEntry = typeof import('./page.js')
 
 type SegmentParams<T extends Object = any> = T extends Record<string, any>
-  ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }
-  : T
+    ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }
+    : T
 
 // Check that the entry is a valid entry
 checkFields<Diff<{
-  default: Function
-  config?: {}
-  generateStaticParams?: Function
-  revalidate?: RevalidateRange<TEntry> | false
-  dynamic?: 'auto' | 'force-dynamic' | 'error' | 'force-static'
-  dynamicParams?: boolean
-  fetchCache?: 'auto' | 'force-no-store' | 'only-no-store' | 'default-no-store' | 'default-cache' | 'only-cache' | 'force-cache'
-  preferredRegion?: 'auto' | 'global' | 'home' | string | string[]
-  runtime?: 'nodejs' | 'experimental-edge' | 'edge'
-  maxDuration?: number
+    default: Function
+    config?: {}
+    generateStaticParams?: Function
+    revalidate?: RevalidateRange<TEntry> | false
+    dynamic?: 'auto' | 'force-dynamic' | 'error' | 'force-static'
+    dynamicParams?: boolean
+    fetchCache?: 'auto' | 'force-no-store' | 'only-no-store' | 'default-no-store' | 'default-cache' | 'only-cache' | 'force-cache'
+    preferredRegion?: 'auto' | 'global' | 'home' | string | string[]
+    runtime?: 'nodejs' | 'experimental-edge' | 'edge'
+    maxDuration?: number
 
-  metadata?: any
-  generateMetadata?: Function
-  viewport?: any
-  generateViewport?: Function
-  experimental_ppr?: boolean
+    metadata?: any
+    generateMetadata?: Function
+    viewport?: any
+    generateViewport?: Function
+    experimental_ppr?: boolean
 
 }, TEntry, ''>>()
 
@@ -35,30 +35,30 @@ checkFields<Diff<PageProps, FirstArg<TEntry['default']>, 'default'>>()
 
 // Check the arguments and return type of the generateMetadata function
 if ('generateMetadata' in entry) {
-  checkFields<Diff<PageProps, FirstArg<MaybeField<TEntry, 'generateMetadata'>>, 'generateMetadata'>>()
-  checkFields<Diff<ResolvingMetadata, SecondArg<MaybeField<TEntry, 'generateMetadata'>>, 'generateMetadata'>>()
+    checkFields<Diff<PageProps, FirstArg<MaybeField<TEntry, 'generateMetadata'>>, 'generateMetadata'>>()
+    checkFields<Diff<ResolvingMetadata, SecondArg<MaybeField<TEntry, 'generateMetadata'>>, 'generateMetadata'>>()
 }
 
 // Check the arguments and return type of the generateViewport function
 if ('generateViewport' in entry) {
-  checkFields<Diff<PageProps, FirstArg<MaybeField<TEntry, 'generateViewport'>>, 'generateViewport'>>()
-  checkFields<Diff<ResolvingViewport, SecondArg<MaybeField<TEntry, 'generateViewport'>>, 'generateViewport'>>()
+    checkFields<Diff<PageProps, FirstArg<MaybeField<TEntry, 'generateViewport'>>, 'generateViewport'>>()
+    checkFields<Diff<ResolvingViewport, SecondArg<MaybeField<TEntry, 'generateViewport'>>, 'generateViewport'>>()
 }
 
 // Check the arguments and return type of the generateStaticParams function
 if ('generateStaticParams' in entry) {
-  checkFields<Diff<{ params: SegmentParams }, FirstArg<MaybeField<TEntry, 'generateStaticParams'>>, 'generateStaticParams'>>()
-  checkFields<Diff<{ __tag__: 'generateStaticParams', __return_type__: any[] | Promise<any[]> }, { __tag__: 'generateStaticParams', __return_type__: ReturnType<MaybeField<TEntry, 'generateStaticParams'>> }>>()
+    checkFields<Diff<{ params: SegmentParams }, FirstArg<MaybeField<TEntry, 'generateStaticParams'>>, 'generateStaticParams'>>()
+    checkFields<Diff<{ __tag__: 'generateStaticParams', __return_type__: any[] | Promise<any[]> }, { __tag__: 'generateStaticParams', __return_type__: ReturnType<MaybeField<TEntry, 'generateStaticParams'>> }>>()
 }
 
 export interface PageProps {
-  params?: Promise<SegmentParams>
-  searchParams?: Promise<any>
+    params?: Promise<SegmentParams>
+    searchParams?: Promise<any>
 }
 export interface LayoutProps {
-  children?: React.ReactNode
+    children?: React.ReactNode
 
-  params?: Promise<SegmentParams>
+    params?: Promise<SegmentParams>
 }
 
 // =============
