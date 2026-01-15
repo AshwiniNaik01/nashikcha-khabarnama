@@ -58,7 +58,7 @@ export default function LoksattaUnifiedUI() {
         {/* --- SECTION HEADER --- */}
         <div className="flex items-center gap-4 mb-6">
           <h2 className="text-3xl font-black text-gray-900 font-sans tracking-tight">देश-विदेश</h2>
-          <h1 className="text-red-600  border-b-2 border-gray-900 text-xl md:text-3xl font-bold leading-tight drop-shadow-lg">
+          <h1 className="text-red-600  border-b-2 border-gray-900 text-xl md:text-sm font-bold leading-tight drop-shadow-lg">
             Mumbai Ahmedabad Flight: मुंबईहून अहमदाबादसाठी उड्डाण केलेल्या विमानाचे लँडिंग दोनदा अपयशी, १५ ते २० मिनिटे चालला थरार
           </h1>
           <div className="flex-1 border-t-2 border-gray-900" />
@@ -83,8 +83,86 @@ export default function LoksattaUnifiedUI() {
                   </h1>
                 </div>
               </div>
-            </div>
 
+
+            </div>
+            <div className="bg-white p-6 md:p-10 rounded-2xl shadow-sm border border-gray-100 max-w-4xl mx-auto">
+
+              {/* --- मुख्य बातमीचा मजकूर --- */}
+              <div className="prose prose-lg max-w-none text-gray-800 leading-relaxed font-serif">
+
+                {/* ड्रॉप-कॅप (First Letter Large) सह सुरुवात */}
+                <p className="mb-6 first-letter:text-6xl first-letter:font-black first-letter:text-red-600 first-letter:mr-3 first-letter:float-left">
+                  <span className="font-bold text-xl text-black">Sanjay Raut:</span> मुंबईची लढाई आता सुरू झाली आहे ती फक्त निवडणुकीपुरती नाही. महापालिका जिंकली आणि लढाई थांबली असं नाही. केंद्रामधील राक्षसी सत्ता, महाराष्ट्रामधली मराठीद्रोही सत्ता काही धनदांडगे यांना मिळून मुंबई मोदींच्या आणि अमित शाहांच्या लाडक्या उद्योगपतींच्या घशात घालायची आहे आणि ती लढाई मोठी लढाई आणि बराच काळ चालणारी लढाई असल्याचे शिवसेना खासदार संजय राऊत यांनी म्हटलं आहे.
+                </p>
+
+                <p className="mb-6 bg-gray-50 p-5 rounded-xl border-l-4 border-red-500 italic font-sans text-gray-700">
+                  "आज देशाचं नव्हे तर जगातील अनेकांचं लक्ष मुंबईत काय होणार, मुंबईवर कोणाचा ताबा असेल कोण जिंकेल याकडे नक्कीच लागलंय. कदाचित प्रेसिडेंट ट्रम्प सुद्धा आजच्या मतदानाकडे लक्ष ठेवून असतील."
+                </p>
+
+                {/* Sub-heading 1 */}
+                <h3 className="text-2xl font-black text-gray-900 mt-10 mb-4 font-sans flex items-center gap-2">
+                  <span className="h-2 w-2 bg-red-600 rounded-full"></span>
+                  आम्ही रस्त्यावर उतरल्याशिवाय राहणार नाही
+                </h3>
+                <p className="mb-6">
+                  ते म्हणाले की, एकदा मुंबई गिळली का मुंबई वेगळी केली जाईल मराठी माणसापासून हृदय तोडलं जाईल महाराष्ट्राचे. यासाठी आम्हाला सज्ज राहावं लागेल जर १०६ हुतात्मे तेव्हा झाले असतील तर शिवसेना आणि महाराष्ट्र नवनिर्माण सेना राष्ट्रवादी काँग्रेस आम्ही सगळे मराठीची मशाल पेटली आहे हृदयात ते सगळे आम्ही रस्त्यावर उतरल्याशिवाय राहणार नाही.
+                </p>
+
+                {/* Sub-heading 2 */}
+                <h3 className="text-2xl font-black text-gray-900 mt-10 mb-4 font-sans flex items-center gap-2">
+                  <span className="h-2 w-2 bg-red-600 rounded-full"></span>
+                  मराठी माणूस जागा झाला आहे
+                </h3>
+                <p className="mb-6">
+                  त्यांनी पुढे सांगितले की, मराठी माणूस जागा झाला आहे. उद्धव ठाकरे आणि राज ठाकरे यांनी जे वादळ निर्माण केलं. गेल्या एक महिन्यामध्ये मराठी माणूस पूर्णपणे खडबडून जागा झाला आहे आणि तो मुंबईसाठी आणि मराठी माणसाच्या अस्मितेसाठी मतदान करणार आहे. महायुतीमधील तिन्ही पक्ष सत्ता आणि पैसा यासाठी एकत्र आले आहेत, त्यांना मुंबई आणि मराठी माणसाचं काहीही पडलेलं नाही.
+                </p>
+
+                {/* Highlight Box */}
+                <div className="my-8 p-6 bg-red-50 rounded-2xl border border-red-100">
+                  <p className="text-red-900 font-bold mb-2 flex items-center gap-2">
+                    <span className="bg-red-600 text-white text-[10px] px-2 py-0.5 rounded">BREAKING</span>
+                    अजित पवारांवर निशाणा
+                  </p>
+                  <p className="text-red-800 text-base">
+                    अजित पवार भारतीय जनता पक्षाचा ४० हजार कोटीचा भ्रष्टाचार बाहेर काढतायत आणि देवेंद्र फडणवीस अजित पवारांचे कपडे फाडतायत. महाराष्ट्रामध्ये सरकारमध्ये एक प्रकारची अनागोंदी माजली आहे.
+                  </p>
+                </div>
+
+                {/* Adani Context */}
+                <h3 className="text-2xl font-black text-gray-900 mt-10 mb-4 font-sans flex items-center gap-2">
+                  <span className="h-2 w-2 bg-red-600 rounded-full"></span>
+                  त्या भूखंडावर सुद्धा अदानीचा बोर्ड लागला
+                </h3>
+                <p className="mb-10">
+                  घाटकोपर होर्डिंग दुर्घटनेवर ते म्हणाले की, घाटकोपरला एक होर्डिंग कोसळलं आणि ४० लोक ठार झाले, फार दुर्दैवी घटना होती. मी काल पाहिलं त्या भूखंडावर सुद्धा अदानीचा बोर्ड लागला आहे.
+                </p>
+              </div>
+
+              {/* --- रिलेटेड न्युज सेक्शन --- */}
+              <div className="mt-12 pt-8 border-t-2 border-dashed border-gray-200">
+                <div className="flex items-center justify-between mb-6">
+                  <h4 className="text-lg font-black font-sans uppercase tracking-wider text-gray-500">इतर महत्वाच्या बातम्या</h4>
+                  <div className="h-[1px] flex-1 bg-gray-200 ml-4"></div>
+                </div>
+
+                <div className="group cursor-pointer bg-gray-50 hover:bg-white hover:shadow-xl hover:ring-1 hover:ring-gray-100 transition-all p-5 rounded-2xl flex items-center gap-4">
+                  <div className="bg-red-100 text-red-600 p-3 rounded-xl group-hover:bg-red-600 group-hover:text-white transition-colors">
+                    <ChevronRight size={24} />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-red-600 uppercase font-sans tracking-tight">पुणे राजकारण</span>
+                    <p className="text-lg font-bold text-gray-900 leading-snug mt-1">
+                      Chandrakant Patil: अजितदादांनी पुण्यात भाजपची पिसे काढताच चंद्रकांतदादांचा तीळपापड; मतदान करताच दिला सूचक इशारा...
+                    </p>
+                  </div>
+                </div>
+
+                <button className="w-full mt-8 py-4 bg-gray-900 text-white font-bold rounded-xl hover:bg-red-600 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-gray-200">
+                  आणखी वाचा <ChevronRight size={18} />
+                </button>
+              </div>
+            </div>
             {/* List News Items */}
             <div className="space-y-10">
               {newsList.map((item, idx) => (
