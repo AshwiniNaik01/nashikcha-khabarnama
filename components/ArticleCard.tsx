@@ -97,7 +97,7 @@ export default function ArticleCard({
               <span className="absolute -bottom-0.5 left-0 w-full h-[1.5px] bg-[#E1261C] scale-x-0 group-hover/link:scale-x-100 transition-transform origin-left" />
             </span>
 
-
+            {/* Small Arrow Icon */}
             <span className="flex items-center justify-center w-7 h-7 rounded-full bg-zinc-100 group-hover/link:bg-[#E1261C] group-hover/link:text-white transition-all duration-300">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7" />
