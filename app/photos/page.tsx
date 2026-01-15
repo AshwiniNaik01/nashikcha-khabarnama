@@ -1,5 +1,6 @@
-import PhotoGalleryPage from '@/components/photos/PhotoGalleryPage';
 import LayoutWrapper from '@/components/LayoutWrapper';
+import PhotoGalleryPage from '@/components/photos/PhotoGalleryPage';
+
 
 export const metadata = {
   title: 'फोटो गॅलरी | नाशिकचा खबरनामा',

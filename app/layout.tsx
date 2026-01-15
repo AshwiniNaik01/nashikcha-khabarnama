@@ -38,8 +38,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="mr" className={notoSansDevanagari.variable}>
-      <body className="min-h-screen flex flex-col bg-white text-gray-900 antialiased">
+    <html lang="mr" className={notoSansDevanagari.variable} suppressHydrationWarning>
+      <body className="min-h-screen flex flex-col bg-white text-gray-900 antialiased" suppressHydrationWarning>
         <Header />
         <Navbar />
         <BreakingNews newsItems={[
@@ -48,7 +48,7 @@ export default function RootLayout({
           "बाजार समितीत द्राक्षांची आवक वाढली, भाव स्थिर"
         ]} />
 
-        <main className="flex-1 container mx-auto px-4 py-6 w-6xl">
+        <main className="flex-1 container mx-auto px-4 py-6 max-w-6xl">
           {children}
         </main>
 

@@ -40,6 +40,7 @@ const NewsSlider: React.FC<Props> = ({ articles, title }) => {
                         onClick={() => scroll('left')}
                         className="p-2 bg-gray-100 hover:bg-lokmat-red hover:text-white transition-all rounded-full shadow-sm"
                         aria-label="Previous"
+                        suppressHydrationWarning
                     >
                         <FaChevronLeft size={12} />
                     </button>
@@ -47,6 +48,7 @@ const NewsSlider: React.FC<Props> = ({ articles, title }) => {
                         onClick={() => scroll('right')}
                         className="p-2 bg-gray-100 hover:bg-lokmat-red hover:text-white transition-all rounded-full shadow-sm"
                         aria-label="Next"
+                        suppressHydrationWarning
                     >
                         <FaChevronRight size={12} />
                     </button>

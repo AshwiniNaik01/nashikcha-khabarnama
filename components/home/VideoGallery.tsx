@@ -61,14 +61,12 @@ export default function VideoGallery() {
                     </div>
 
 
-                    <Link href="/videos">
-                        <button className="hidden md:flex items-center gap-2 text-zinc-500 hover:text-red-600 transition-colors text-sm font-bold uppercase tracking-widest group">
-                            सर्व पाहा
-                            <ChevronRight
-                                size={16}
-                                className="transform group-hover:translate-x-1 transition-transform"
-                            />
-                        </button>
+                    <Link href="/videos" className="hidden md:flex items-center gap-2 text-zinc-500 hover:text-red-600 transition-colors text-sm font-bold uppercase tracking-widest group">
+                        सर्व पाहा
+                        <ChevronRight
+                            size={16}
+                            className="transform group-hover:translate-x-1 transition-transform"
+                        />
                     </Link>
                 </div>
 

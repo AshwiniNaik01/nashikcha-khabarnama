@@ -106,8 +106,9 @@ export default function Navbar() {
                         <div className="relative flex items-center h-full">
                             <button
                                 onClick={() => setSearchOpen(!searchOpen)}
-                                className="px-5 h-full text-gray-800 hover:bg-lokmat-red hover:text-white transition-all border-l border-gray-50"
+                                className="px-5 h-full text-gray-800 hover:bg-lokmat-red hover:text-black transition-all border-l border-gray-50"
                                 aria-label="Search"
+                                suppressHydrationWarning
                             >
                                 <FaSearch size={16} />
                             </button>
@@ -122,7 +123,7 @@ export default function Navbar() {
                                             className="flex-1 px-4 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm text-gray-800 focus:outline-none focus:border-lokmat-red focus:bg-white transition-all"
                                             autoFocus
                                         />
-                                        <button className="bg-lokmat-red text-white px-4 py-2 rounded-md text-sm font-black hover:bg-lokmat-maroon transition-colors uppercase shadow-sm">
+                                        <button className="bg-lokmat-red text-black px-4 py-2 rounded-md text-sm font-black hover:bg-lokmat-maroon transition-colors uppercase shadow-sm" suppressHydrationWarning>
                                             शोधा
                                         </button>
                                     </div>
@@ -134,6 +135,7 @@ export default function Navbar() {
                         <button
                             onClick={() => setIsOpen(!isOpen)}
                             className="lg:hidden px-4 h-full text-gray-800 hover:bg-lokmat-red hover:text-white transition-all border-l border-gray-50"
+                            suppressHydrationWarning
                         >
                             {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
                         </button>

@@ -15,8 +15,10 @@ const RashiPage = () => {
                 style={{
                     backgroundImage:
                         "url('https://img.freepik.com/premium-psd/circle-golden-zodiac-signs-capricorn_684888-663.jpg?ga=GA1.1.1339275905.1751605421&w=740&q=80')",
+                    backgroundAttachment: 'fixed',
                 }}
             />
+
 
             {/* Soft Gradient Overlay */}
             {/* <div className="absolute inset-0 bg-gradient-to-b from-white via-[#fffaf0] to-[#f7f4ef] -z-10" /> */}

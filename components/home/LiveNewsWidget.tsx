@@ -36,6 +36,7 @@ const LiveNewsWidget = () => {
                 <button
                     onClick={() => setIsPlaying(!isPlaying)}
                     className="flex items-center gap-2 bg-gray-100 hover:bg-lokmat-red hover:text-white transition-all px-3 py-1.5 rounded-full text-xs font-bold"
+                    suppressHydrationWarning
                 >
                     {isPlaying ? <Volume2 size={14} /> : <Radio size={14} />}
                     {isPlaying ? 'थांबा' : 'सुरू करा'}

@@ -14,12 +14,12 @@ const LayoutWrapper: React.FC<LayoutWrapperProps> = ({ children }) => {
 
             {/* Floating WhatsApp Button */}
             <div className="fixed bottom-8 right-8 z-50">
-                <button className="bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group">
-                    <span className="text-xl group-hover:rotate-12 block">💬</span>
+                <button className="bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group" suppressHydrationWarning>
+                    <span className="text-xl group-hover:rotate-12 block" aria-hidden="true">💬</span>
                     <span className="sr-only">WhatsApp Channel</span>
-                    <div className="absolute right-0 bottom-full mb-3 bg-white text-gray-800 text-[10px] font-black px-3 py-1.5 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-gray-100 uppercase tracking-widest pointer-events-none">
+                    <span className="absolute right-0 bottom-full mb-3 bg-white text-gray-800 text-[10px] font-black px-3 py-1.5 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-gray-100 uppercase tracking-widest pointer-events-none block">
                         व्हॉट्सॲपला जॉईन करा
-                    </div>
+                    </span>
                 </button>
             </div>
         </div>

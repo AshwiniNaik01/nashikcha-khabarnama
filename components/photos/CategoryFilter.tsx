@@ -52,7 +52,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({ categories, activeCateg
                     onClick={() => onSelect(category)}
                     className={`relative px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 group ${activeCategory === category
                         ? 'text-white shadow-lg scale-105'
-                        : 'text-gray-700 hover:text-white border border-gray-300 hover:border-transparent'
+                        : 'text-gray-700  border border-gray-300 hover:border-transparent'
                         }`}
                 >
                     <span className="relative z-10 flex items-center gap-2">
@@ -62,8 +62,8 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({ categories, activeCateg
                         )}
                     </span>
                     <span className={`absolute inset-0 rounded-full bg-gradient-to-r ${activeCategory === category
-                        ? 'from-[#ed1b24] to-[#800000] opacity-100'
-                        : 'from-gray-800 to-gray-600 opacity-0 group-hover:opacity-100'
+                        ? 'from-lokmat-red to-lokmat-maroon opacity-100'
+                        : 'from-gray-100 to-gray-200 opacity-0 group-hover:opacity-100'
                         } transition-opacity duration-300`} />
                 </button>
             ))}
