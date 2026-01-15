@@ -55,7 +55,7 @@ export default function Navbar() {
                         <div className="flex items-center bg-white transition-all duration-300">
 
                             <div className="hidden md:flex flex-col justify-center leading-none">
-                                <span className="text-pink-500 font-bold text-[25px] uppercase tracking-[0.2em] mb-1">
+                                <span className="text-pink-500 font-bold text-[28px] uppercase " >
                                     नाशिकचा खबरनामा
                                 </span>
 
