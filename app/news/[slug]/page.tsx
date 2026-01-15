@@ -5,7 +5,8 @@
 
 import React from "react";
 import { Share2, ChevronRight, Play } from "lucide-react";
-
+import FlightDescription from "@/components/news/FlightDescription"
+import NewsCard from "@/components/news/NewsCard"
 export default function LoksattaUnifiedUI() {
   const newsList = [
     {
@@ -48,6 +49,39 @@ export default function LoksattaUnifiedUI() {
     {
       title: "ट्रम्प यांनी इराणवर लादलेल्या टॅरिफचा भारताला किती फटका बसणार? केंद्र सरकारने दिलं उत्तर",
       img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+    },
+    {
+      title: "ट्रम्प यांनी इराणवर लादलेल्या टॅरिफचा भारताला किती फटका बसणार? केंद्र सरकारने दिलं उत्तर",
+      img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+    },
+
+  ];
+
+  const News = [
+
+    {
+      title: "Makar Sankranti 2026: मकर संक्रांतीनिमित्त प्रियजनांना पाठवा या खास मराठी शुभेच्छा!",
+      img: "https://images.unsplash.com/photo-1590011221312-320d398d5771" // किंवा प्रतिमेची लिंक
+    },
+    {
+      title: "Mumbai Ahmedabad Flight: मुंबईहून अहमदाबादसाठी उड्डाण केलेल्या विमानाचे लँडिंग दोनदा अपयशी...",
+      img: "https://images.unsplash.com/photo-1436491865332-7a61a109c0f3"
+    },
+    {
+      title: "युजवेंद्र चहल एक्स पत्नी धनश्रीबरोबर शोमध्ये एकत्र दिसणार? क्रिकेटपटूने सोडलं मौन...",
+      img: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e"
+    },
+    {
+      title: "ट्रम्प यांनी इराणवर लादलेल्या टॅरिफचा भारताला किती फटका बसणार? केंद्र सरकारने दिलं उत्तर",
+      img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+    },
+    {
+      title: "युजवेंद्र चहल एक्स पत्नी धनश्रीबरोबर शोमध्ये एकत्र दिसणार? क्रिकेटपटूने सोडलं मौन...",
+      img: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e"
+    },
+    {
+      title: "ट्रम्प यांनी इराणवर लादलेल्या टॅरिफचा भारताला किती फटका बसणार? केंद्र सरकारने दिलं उत्तर",
+      img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
     }
   ];
 
@@ -55,13 +89,20 @@ export default function LoksattaUnifiedUI() {
     <div className="bg-white text-black min-h-screen font-serif">
       <div className="max-w-7xl mx-auto px-4 py-6">
 
-        {/* --- SECTION HEADER --- */}
-        <div className="flex items-center gap-4 mb-6">
-          <h2 className="text-3xl font-black text-gray-900 font-sans tracking-tight">देश-विदेश</h2>
-          <h1 className="text-red-600  border-b-2 border-gray-900 text-xl md:text-3xl font-bold leading-tight drop-shadow-lg">
-            Mumbai Ahmedabad Flight: मुंबईहून अहमदाबादसाठी उड्डाण केलेल्या विमानाचे लँडिंग दोनदा अपयशी, १५ ते २० मिनिटे चालला थरार
+        <div className="group mb-8">
+          <div className="flex items-center gap-4 mb-3">
+            {/* Category Badge */}
+            <span className="bg-gray-900 text-white px-3 py-1 text-sm font-bold uppercase tracking-widest">
+              देश-विदेश
+            </span>
+            {/* Decorative Line */}
+            <div className="flex-1 h-[2px] bg-gray-200 group-hover:bg-red-600 transition-colors duration-300" />
+          </div>
+
+          {/* Headline */}
+          <h1 className="text-2xl md:text-4xl font-black text-gray-900 leading-tight hover:text-red-600 transition-colors cursor-pointer">
+            Mumbai Ahmedabad Flight: <span className="text-red-600">मुंबईहून अहमदाबादसाठी</span> उड्डाण केलेल्या विमानाचे लँडिंग दोनदा अपयशी, १५ ते २० मिनिटे चालला थरार
           </h1>
-          <div className="flex-1 border-t-2 border-gray-900" />
         </div>
 
         <div className="grid grid-cols-12 gap-8">
@@ -70,20 +111,47 @@ export default function LoksattaUnifiedUI() {
           <div className="col-span-12 lg:col-span-8 space-y-8">
 
             {/* Main Featured Hero */}
+
             <div className="relative group cursor-pointer mb-10">
-              <div className="overflow-hidden rounded-sm h-[480px]">
+              <div className="overflow-hidden rounded-sm h-[480px] relative">
                 <img
                   src="https://images.unsplash.com/photo-1542291026-7eec264c27ff"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6">
-                  <span className="bg-red-600 text-white text-xs font-bold px-2 py-1 w-fit mb-3 font-sans">देश-विदेश</span>
-                  <h1 className="text-white text-3xl md:text-4xl font-bold leading-tight drop-shadow-lg">
-                    Mumbai Ahmedabad Flight: मुंबईहून अहमदाबादसाठी उड्डाण केलेल्या विमानाचे लँडिंग दोनदा अपयशी, १५ ते २० मिनिटे चालला थरार
+
+                {/* Gradient Layer */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-6">
+
+                  {/* CATEGORY BADGE */}
+                  <span className="bg-red-600 text-white text-xs font-bold px-2 py-1 w-fit mb-3 font-sans">
+                    देश-विदेश
+                  </span>
+
+                  {/* HEADLINE */}
+                  <h1 className="text-white text-3xl md:text-xl font-bold leading-tight drop-shadow-lg mb-3">
+                    Mumbai Ahmedabad Flight: मुंबईहून अहमदाबादसाठी उड्डाण केलेल्या विमानाचे लँडिंग दोनदा अपयशी; १५ ते २० मिनिटे चालला थरार
                   </h1>
+
+                  {/* DESCRIPTION + SHOW MORE */}
+
                 </div>
               </div>
             </div>
+
+            {/* ADVERTISEMENT */}
+            <div className="col-span-12 lg:col-span-4 space-y-6">
+              {/* Advertisement */}
+              <div>
+                <p className="text-center text-xs text-gray-500 mb-1">ADVERTISEMENT</p>
+                <img
+                  src="https://dummyimage.com/300x250/0aa/fff&text=Advertisement"
+                  className="w-full h-50 object-cover"
+                />
+              </div>
+
+            </div>
+            <FlightDescription />
+            <NewsCard />
 
             {/* List News Items */}
             <div className="space-y-10">
@@ -134,6 +202,37 @@ export default function LoksattaUnifiedUI() {
                 <img
                   src="https://dummyimage.com/300x250/0aa/fff&text=Advertisement"
                   className="w-full"
+                />
+              </div>
+
+            </div>
+
+
+            <div className="space-y-5">
+              <div className="flex items-center gap-3 mb-4">
+                <h3 className="text-xl font-bold font-sans">संबंधित बातम्या</h3>
+                <div className="flex-1 border-t-2 border-gray-900" />
+              </div>
+              {News.map((news, i) => (
+                <div key={i} className="flex gap-4 border-b border-gray-100 pb-4 last:border-0 cursor-pointer group">
+                  <p className="text-sm font-bold flex-1 leading-snug group-hover:text-red-600">
+                    {news.title}
+                  </p>
+                  <div className="w-24 h-16 shrink-0 overflow-hidden">
+                    <img src={news.img} className="w-full h-full object-cover" />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* ADVERTISEMENT */}
+            <div className="col-span-12 lg:col-span-4 space-y-6">
+              {/* Advertisement */}
+              <div>
+                <p className="text-center text-xs text-gray-500 mb-1">ADVERTISEMENT</p>
+                <img
+                  src="https://dummyimage.com/300x250/0aa/fff&text=Advertisement"
+                  className="w-full h-50 object-cover"
                 />
               </div>
 
