@@ -33,9 +33,17 @@ const RashiPage = () => {
                         ✨ आजचे नक्षत्र भाकीत
                     </div> */}
 
-                    <h1 className="text-2xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 via-orange-500 to-red-500  mb-2">
-                        राशीभविष्य
+                    <h1 className="text-4xl md:text-7xl font-black mb-4 tracking-tighter leading-none">
+
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-600 via-orange-500 to-red-500">
+                            राशी
+                        </span>
+
+                        <span className="text-[#E1261C]">
+                            भविष्य
+                        </span>
                     </h1>
+
 
                     <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
                         ग्रह-ताऱ्यांच्या चालीवर आधारित तुमचे आजचे, उद्याचे आणि या आठवड्याचे भविष्य जाणून घ्या.

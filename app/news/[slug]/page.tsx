@@ -58,6 +58,9 @@ export default function LoksattaUnifiedUI() {
         {/* --- SECTION HEADER --- */}
         <div className="flex items-center gap-4 mb-6">
           <h2 className="text-3xl font-black text-gray-900 font-sans tracking-tight">देश-विदेश</h2>
+          <h1 className="text-red-600  border-b-2 border-gray-900 text-xl md:text-3xl font-bold leading-tight drop-shadow-lg">
+            Mumbai Ahmedabad Flight: मुंबईहून अहमदाबादसाठी उड्डाण केलेल्या विमानाचे लँडिंग दोनदा अपयशी, १५ ते २० मिनिटे चालला थरार
+          </h1>
           <div className="flex-1 border-t-2 border-gray-900" />
         </div>
 
