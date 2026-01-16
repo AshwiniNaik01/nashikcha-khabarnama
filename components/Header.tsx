@@ -17,60 +17,76 @@ export default function Header() {
   return (
     <div className="w-full font-marathi">
       {/* 1. TOP BAR - NEW Lokmat RED STYLE */}
-      <div className="bg-gradient-to-r from-lokmat-red to-lokmat-maroon text-white text-[10px] sm:text-xs">
-        <div className="container mx-auto flex justify-between items-center px-4 py-2">
+      <div className="bg-gradient-to-r from-lokmat-red to-lokmat-maroon text-white text-[9px] xs:text-[10px] sm:text-xs md:text-sm">
+        <div className="container mx-auto flex justify-between items-center px-2 xs:px-3 sm:px-4 py-2 sm:py-3">
           {/* Left: Language + Time */}
-          <div className="flex gap-4 items-center font-bold">
-            <span className="cursor-pointer hover:underline text-white">
+          <div className="flex gap-2 xs:gap-3 sm:gap-4 items-center font-bold whitespace-nowrap overflow-hidden">
+            <span className="cursor-pointer hover:underline text-white text-[9px] xs:text-[10px] sm:text-xs">
               मराठी
             </span>
-            {time && <span className="hidden sm:inline-block border-l border-white/20 pl-4">{time.toLocaleTimeString()}</span>}
-            {time && <span className="hidden md:inline-block border-l border-white/20 pl-4 uppercase">{time.toDateString()}</span>}
+            {time && (
+              <span className="hidden xs:inline-block border-l border-white/20 pl-2 xs:pl-3 text-[8px] xs:text-[9px] sm:text-[10px]">
+                {time.toLocaleTimeString()}
+              </span>
+            )}
+            {time && (
+              <span className="hidden sm:inline-block border-l border-white/20 pl-2 xs:pl-3 sm:pl-4 uppercase text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs">
+                {time.toDateString()}
+              </span>
+            )}
           </div>
 
           {/* Right: Social Icons */}
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-2 xs:gap-3 items-center flex-shrink-0">
             <a
               href="https://www.facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-5 h-5 rounded-sm bg-white text-lokmat-red hover:bg-gray-100 transition-all hover:scale-110 shadow-sm"
+              className="flex items-center justify-center w-4 xs:w-5 h-4 xs:h-5 rounded-sm bg-white text-lokmat-red hover:bg-gray-100 transition-all hover:scale-110 shadow-sm"
             >
-              <FaFacebookF className="text-[10px]" />
+              <FaFacebookF className="text-[8px] xs:text-[10px]" />
             </a>
 
             <a
               href="https://www.linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-5 h-5 rounded-sm bg-white text-[#0077B5] hover:bg-gray-100 transition-all hover:scale-110 shadow-sm"
+              className="flex items-center justify-center w-4 xs:w-5 h-4 xs:h-5 rounded-sm bg-white text-[#0077B5] hover:bg-gray-100 transition-all hover:scale-110 shadow-sm"
             >
-              <FaLinkedinIn className="text-[10px]" />
+              <FaLinkedinIn className="text-[8px] xs:text-[10px]" />
             </a>
           </div>
         </div>
       </div>
 
       {/* 2. MAIN HEADER - CLEAN WHITE STYLE */}
-      <div className="relative bg-red-50 border-b border-gray-100 py-8">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="relative bg-red-50 border-b border-gray-100 py-4 xs:py-6 sm:py-8">
+        <div className="container mx-auto px-2 xs:px-3 sm:px-4 flex flex-col md:flex-row items-center justify-center gap-3 xs:gap-4 sm:gap-6">
+          {/* Logo Section - Hidden Spacer on desktop */}
+          <div className="w-[100px] xs:w-[110px] md:w-[120px] hidden md:block opacity-0">
+            spacer
+          </div>
 
-          {/* Logo Section */}
-          <div className="w-[120px] hidden md:block opacity-0">spacer</div> {/* Flex spacer */}
-
-          {/* Center Logo + Tagline */}
-
+          {/* Center Logo + Tagline - Could be added here */}
+          <div className="flex-1 flex items-center justify-center text-center">
+            {/* Add your logo/title here */}
+          </div>
 
           {/* Right: Advertisement */}
-          <div className="hidden lg:flex w-full">
-            <div className="bg-gray-50 border border-gray-100 h-20 w-full flex items-center justify-center text-[10px] text-gray-300 uppercase tracking-tighter font-bold font-sans">
+          <div className="hidden lg:flex w-full max-w-xs xl:max-w-sm">
+            <div className="bg-gray-50 border border-gray-100 h-16 xs:h-18 sm:h-20 w-full flex items-center justify-center text-[8px] xs:text-[9px] sm:text-[10px] text-gray-300 uppercase tracking-tighter font-bold font-sans">
               - Advertisement -
             </div>
           </div>
 
+          {/* Mobile Advertisement - Show on smaller screens */}
+          <div className="lg:hidden w-full max-w-xs">
+            <div className="bg-gray-50 border border-gray-100 h-12 xs:h-14 sm:h-16 w-full flex items-center justify-center text-[7px] xs:text-[8px] sm:text-[9px] text-gray-300 uppercase tracking-tighter font-bold font-sans">
+              - Ad -
+            </div>
+          </div>
         </div>
       </div>
-
     </div>
   );
 }

@@ -1,103 +1,214 @@
 "use client";
 
-import React, { useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useRef, useState } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ArrowUpRight,
+  TrendingUp,
+} from "lucide-react";
 
 export default function GridNewsScroller() {
-    const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-    const allItems = [
-        { category: "निवडणूक", title: "नागपुरात काँग्रेस उमेदवाराचं कार्यालय जाळलं; भाजपकडे संशयाचं बोट; आरोप-प्रत्यारोपांनी राजकारण तापलं!" },
-        { category: "राजकारण", title: "छत्रपती संभाजीनगरमध्ये भाजपच्या अतुल सावेंच्या वडिलांचे नाव मतदार यादीत, निवडणूक आयोगाचा भोंगळ..." },
-        { category: "निवडणूक", title: "मुंबईत ठाकरेंचा 'भगवा गार्ड' पोलिसांना नडला, दुबार मतदारांना हेरण्यासाठी मतदान केंद्राबाहेर उभा!" },
-        { category: "करमणूक", title: "तमन्ना भाटिया ते अक्षय कुमार; सेलिब्रिटींनी बजावला मतदानाचा हक्क" },
-        { category: "पुणे", title: "मला राजकारण कळत नाही; भाजपचे आमदार सुभाष देशमुख नाराज?" },
-        { category: "राजकारण", title: "मोठी बातमी: मुंबईत मतदारांच्या बोटावरील शाई पुसली" },
-        { category: "भविष्य", title: "जानेवारीचा तिसरा आठवडा भाग्याचा की टेन्शनचा?" },
-        { category: "निवडणूक", title: "मुंबई जिंकणं मराठी माणसाची पहिली लढाई" },
-        { category: "नाशिक", title: "प्रभाग १२ मध्ये राष्ट्रवादी काँग्रेसची गोंधळात भर" },
+  const allItems = [
+    {
+      category: "निवडणूक",
+      title:
+        "नागपुरात काँग्रेस उमेदवाराचं कार्यालय जाळलं; भाजपकडे संशयाचं बोट; आरोप-प्रत्यारोपांनी राजकारण तापलं!",
+    },
+    {
+      category: "राजकारण",
+      title:
+        "छत्रपती संभाजीनगरमध्ये भाजपच्या अतुल सावेंच्या वडिलांचे नाव मतदार यादीत, आयोगाचा भोंगळ कारभार...",
+    },
+    {
+      category: "निवडणूक",
+      title:
+        "मुंबईत ठाकरेंचा 'भगवा गार्ड' पोलिसांना नडला, दुबार मतदारांना हेरण्यासाठी केंद्राबाहेर उभा!",
+    },
+    {
+      category: "करमणूक",
+      title: "तमन्ना भाटिया ते अक्षय कुमार; सेलिब्रिटींनी बजावला मतदानाचा हक्क",
+    },
+    {
+      category: "पुणे",
+      title: "मला राजकारण कळत नाही; भाजपचे आमदार सुभाष देशमुख नाराज?",
+    },
+    {
+      category: "राजकारण",
+      title: "मोठी बातमी: मुंबईत मतदारांच्या बोटावरील शाई पुसली",
+    },
+    {
+      category: "भविष्य",
+      title: "जानेवारीचा तिसरा आठवडा भाग्याचा की टेन्शनचा?",
+    },
+    { category: "निवडणूक", title: "मुंबई जिंकणं मराठी माणसाची पहिली लढाई" },
+    {
+      category: "नाशिक",
+      title: "प्रभाग १२ मध्ये राष्ट्रवादी काँग्रेसची गोंधळात भर",
+    },
+    {
+      category: "निवडणूक",
+      title:
+        "नागपुरात काँग्रेस उमेदवाराचं कार्यालय जाळलं; भाजपकडे संशयाचं बोट; आरोप-प्रत्यारोपांनी राजकारण तापलं!",
+    },
+    {
+      category: "राजकारण",
+      title:
+        "छत्रपती संभाजीनगरमध्ये भाजपच्या अतुल सावेंच्या वडिलांचे नाव मतदार यादीत, आयोगाचा भोंगळ कारभार...",
+    },
+    {
+      category: "निवडणूक",
+      title:
+        "मुंबईत ठाकरेंचा 'भगवा गार्ड' पोलिसांना नडला, दुबार मतदारांना हेरण्यासाठी केंद्राबाहेर उभा!",
+    },
+    {
+      category: "करमणूक",
+      title: "तमन्ना भाटिया ते अक्षय कुमार; सेलिब्रिटींनी बजावला मतदानाचा हक्क",
+    },
+    {
+      category: "पुणे",
+      title: "मला राजकारण कळत नाही; भाजपचे आमदार सुभाष देशमुख नाराज?",
+    },
+    {
+      category: "राजकारण",
+      title: "मोठी बातमी: मुंबईत मतदारांच्या बोटावरील शाई पुसली",
+    },
+    {
+      category: "भविष्य",
+      title: "जानेवारीचा तिसरा आठवडा भाग्याचा की टेन्शनचा?",
+    },
+    { category: "निवडणूक", title: "मुंबई जिंकणं मराठी माणसाची पहिली लढाई" },
+    {
+      category: "नाशिक",
+      title: "प्रभाग १२ मध्ये राष्ट्रवादी काँग्रेसची गोंधळात भर",
+    },
+  ];
 
-        { category: "निवडणूक", title: "नागपुरात काँग्रेस उमेदवाराचं कार्यालय जाळलं; भाजपकडे संशयाचं बोट; आरोप-प्रत्यारोपांनी राजकारण तापलं!" },
-        { category: "राजकारण", title: "छत्रपती संभाजीनगरमध्ये भाजपच्या अतुल सावेंच्या वडिलांचे नाव मतदार यादीत, निवडणूक आयोगाचा भोंगळ..." },
-        { category: "निवडणूक", title: "मुंबईत ठाकरेंचा 'भगवा गार्ड' पोलिसांना नडला, दुबार मतदारांना हेरण्यासाठी मतदान केंद्राबाहेर उभा!" },
-        { category: "करमणूक", title: "तमन्ना भाटिया ते अक्षय कुमार; सेलिब्रिटींनी बजावला मतदानाचा हक्क" },
-        { category: "नाशिक", title: "मला राजकारण कळत नाही; भाजपचे आमदार सुभाष देशमुख नाराज?" },
-        { category: "राजकारण", title: "मोठी बातमी: मुंबईत मतदारांच्या बोटावरील शाई पुसली" },
-        { category: "भविष्य", title: "जानेवारीचा तिसरा आठवडा भाग्याचा की टेन्शनचा?" },
-        { category: "निवडणूक", title: "मुंबई जिंकणं मराठी माणसाची पहिली लढाई" },
-        { category: "नाशिक", title: "प्रभाग १२ मध्ये राष्ट्रवादी काँग्रेसची गोंधळात भर" },
+  const chunkedSlides = [];
+  for (let i = 0; i < allItems.length; i += 9) {
+    chunkedSlides.push(allItems.slice(i, i + 9));
+  }
 
-    ];
+  const scroll = (dir: "left" | "right") => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollTo =
+        dir === "left" ? scrollLeft - clientWidth : scrollLeft + clientWidth;
 
-    const chunkedSlides = [];
-    for (let i = 0; i < allItems.length; i += 9) {
-        chunkedSlides.push(allItems.slice(i, i + 9));
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+
+      // Update dot index
+      if (dir === "left" && activeIndex > 0) setActiveIndex(activeIndex - 1);
+      if (dir === "right" && activeIndex < chunkedSlides.length - 1)
+        setActiveIndex(activeIndex + 1);
     }
+  };
 
-    const scroll = (dir: "left" | "right") => {
-        if (scrollRef.current) {
-            const { scrollLeft, clientWidth } = scrollRef.current;
-            const scrollTo = dir === "left" ? scrollLeft - clientWidth : scrollLeft + clientWidth;
-
-            scrollRef.current.scrollTo({
-                left: scrollTo,
-                behavior: "smooth",
-            });
-        }
-    };
-
-    return (
-        <div className="bg-white py-5">
-            <div className="max-w-[1200px] mx-auto px-4 relative group">
-
-                <div
-                    ref={scrollRef}
-                    className="flex overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory"
-                >
-                    {chunkedSlides.map((slide, slideIndex) => (
-                        <div
-                            key={slideIndex}
-                            className="min-w-full grid grid-cols-1 md:grid-cols-3 grid-rows-3 gap-x-12 gap-y-8 snap-start"
-                        >
-                            {slide.map((item, i) => (
-                                <div key={i} className="flex flex-col group/item cursor-pointer">
-                                    <span className="text-red-600 text-[14px] font-bold mb-1">
-                                        {item.category}
-                                    </span>
-                                    <h3 className="text-[#222] text-[16px] font-medium leading-[1.45] group-hover/item:text-red-600 transition-colors line-clamp-3">
-                                        {item.title}
-                                    </h3>
-                                </div>
-                            ))}
-                        </div>
-                    ))}
-                </div>
-
-                <button
-                    onClick={() => scroll("left")}
-                    className="absolute -left-3 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hidden group-hover:block"
-                >
-                    <ChevronLeft size={22} />
-                </button>
-
-                <button
-                    onClick={() => scroll("right")}
-                    className="absolute -right-3 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hidden group-hover:block"
-                >
-                    <ChevronRight size={22} />
-                </button>
-
-                <div className="flex justify-center gap-2 mt-8">
-                    <div className="h-2 w-2 bg-red-600 rounded-full"></div>
-                    <div className="h-1 w-6 bg-gray-400 rounded-full"></div>
-                </div>
-
+  return (
+    <div className="bg-[#fcfcfc] py-8 font-sans">
+      <div className="max-w-[1240px] mx-auto px-6 relative group">
+        {/* Header Section */}
+        <div className="flex items-center justify-between mb-10 border-b border-gray-100 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="bg-red-600 p-2 rounded-lg">
+              <TrendingUp size={20} className="text-white" />
             </div>
+            <h2 className="text-2xl font-black text-gray-900 tracking-tight uppercase">
+              महत्त्वाच्या घडामोडी
+            </h2>
+          </div>
 
-            <style jsx>{`
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
+          <div className="flex gap-2">
+            <button
+              onClick={() => scroll("left")}
+              className="p-2.5 rounded-full border border-gray-200 hover:bg-black hover:text-white transition-all duration-300 disabled:opacity-30 shadow-sm"
+              disabled={activeIndex === 0}
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="p-2.5 rounded-full border border-gray-200 hover:bg-black hover:text-white transition-all duration-300 disabled:opacity-30 shadow-sm"
+              disabled={activeIndex === chunkedSlides.length - 1}
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
         </div>
-    );
+
+        {/* Scrollable Container */}
+        <div
+          ref={scrollRef}
+          className="flex overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory gap-4"
+        >
+          {chunkedSlides.map((slide, slideIndex) => (
+            <div
+              key={slideIndex}
+              className="min-w-full grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-10 snap-start px-1"
+            >
+              {slide.map((item, i) => (
+                <div
+                  key={i}
+                  className="group/card relative flex flex-col cursor-pointer border-b border-gray-50 pb-4 hover:border-red-200 transition-all"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                    <span className="text-red-600 text-[16px] font-black uppercase tracking-widest">
+                      {item.category}
+                    </span>
+                  </div>
+
+                  <h3 className="text-[#1a1a1a] text-[17px] font-bold leading-[1.5] transition-colors duration-300 line-clamp-3 mb-2">
+                    {item.title}
+                  </h3>
+
+                  <div className="mt-auto flex items-center text-gray-400 group-hover/card:text-red-600 transition-all opacity-0 group-hover/card:opacity-100">
+                    <span className="text-[11px] font-bold uppercase tracking-tighter">
+                      सविस्तर वाचा
+                    </span>
+                    <ArrowUpRight size={14} className="ml-1" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        {/* Custom Pagination Indicators */}
+        <div className="flex justify-center items-center gap-3 mt-12">
+          {chunkedSlides.map((_, i) => (
+            <button
+              key={i}
+              className={`transition-all duration-500 rounded-full ${
+                activeIndex === i
+                  ? "w-10 h-2 bg-red-600"
+                  : "w-2 h-2 bg-gray-300 hover:bg-gray-400"
+              }`}
+              onClick={() => {
+                const scrollAmount = i * (scrollRef.current?.clientWidth || 0);
+                scrollRef.current?.scrollTo({
+                  left: scrollAmount,
+                  behavior: "smooth",
+                });
+                setActiveIndex(i);
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      <style jsx>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+    </div>
+  );
 }
