@@ -3,7 +3,8 @@ import RashiGrid from "@/components/rashi/RashiGrid";
 
 export const metadata = {
     title: "राशीभविष्य | नाशिकचा खबरनामा",
-    description: "तुमचे आजचे राशीभविष्य जाणून घ्या. मेष ते मीन सर्व १२ राशींचे अचूक भविष्य.",
+    description:
+        "तुमचे आजचे राशीभविष्य जाणून घ्या. मेष ते मीन सर्व १२ राशींचे अचूक भविष्य.",
 };
 
 /**

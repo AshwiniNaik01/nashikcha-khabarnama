@@ -23,20 +23,18 @@ export default function ArticleCard({
   return (
     <article
       className={`group relative overflow-hidden bg-white text-black transition-all duration-500 px-3 flex flex-col h-full
-      ${
-        featured
+      ${featured
           ? "lg:grid lg:grid-cols-12 gap-6 lg:gap-10 border-b-4 border-red-600 pb-8 lg:pb-12 mb-8 lg:mb-12"
           : "border-b border-zinc-200 pb-6"
-      }`}
+        }`}
     >
       {/* Image Section */}
       <div
         className={`relative overflow-hidden cursor-pointer shrink-0 w-full
-        ${
-          featured
+        ${featured
             ? "lg:col-span-7 aspect-video mb-4 lg:mb-0"
             : "aspect-[16/10] mb-4"
-        }`}
+          }`}
       >
         <Link href={`/news/${slug}`} className="block w-full h-full">
           <Image
@@ -59,9 +57,8 @@ export default function ArticleCard({
 
       {/* Content */}
       <div
-        className={`flex flex-col flex-grow ${
-          featured ? "lg:col-span-5 py-0 lg:py-2" : "w-full"
-        }`}
+        className={`flex flex-col flex-grow ${featured ? "lg:col-span-5 py-0 lg:py-2" : "w-full"
+          }`}
       >
         {/* Meta Section */}
         {date && (
@@ -95,11 +92,10 @@ export default function ArticleCard({
     py-1
     
     /* 3. Font Size Scaling */
-    ${
-      featured
-        ? "text-xl sm:text-2xl md:text-3xl lg:text-5xl mb-3"
-        : "text-base sm:text-lg lg:text-xl mb-2 line-clamp-2"
-    } 
+    ${featured
+              ? "text-xl sm:text-2xl md:text-3xl lg:text-5xl mb-3"
+              : "text-base sm:text-lg lg:text-xl mb-2 line-clamp-2"
+            } 
     
     /* 4. Rendering Fix */
     antialiased`}
@@ -118,17 +114,16 @@ export default function ArticleCard({
         {/* Excerpt */}
         <p
           className={`text-zinc-500 leading-relaxed mb-4 
-          ${
-            featured
+          ${featured
               ? "text-sm sm:text-base lg:text-lg line-clamp-2 lg:line-clamp-4"
               : "text-xs sm:text-sm line-clamp-2"
-          }`}
+            }`}
         >
           {excerpt}
         </p>
 
         {/* CTA Section */}
-        <div className="mt-auto pt-4 border-t border-zinc-100 flex justify-center">
+        <div className="mt-auto pt-1 border-t border-zinc-100 flex justify-center">
           <Link
             href={`/news/${slug}`}
             className="group/link inline-flex items-center gap-3  text-md font-black text-zinc-900 uppercase tracking-tighter"

@@ -21,9 +21,11 @@ const VideosPage = () => {
   const videoData = [
     {
       id: 1,
-      title: "नाशिक: काळाराम मंदिरातील रामोत्सवाची जय्यत तयारी; पाहा खास व्हिडिओ",
+      title:
+        "नाशिक: काळाराम मंदिरातील रामोत्सवाची जय्यत तयारी; पाहा खास व्हिडिओ",
       duration: "05:20",
-      image: "https://images.unsplash.com/photo-1621360841013-c7683c659ec6?q=80&w=1000",
+      image:
+        "https://images.unsplash.com/photo-1621360841013-c7683c659ec6?q=80&w=1000",
       slug: "kalaram-mandir",
       category: "विशेष वार्तांकन",
       date: "आज",
@@ -32,25 +34,30 @@ const VideosPage = () => {
       id: 2,
       title: "नाशिकच्या द्राक्ष बागांना अवकाळीचा तडाखा; बळीराजा पुन्हा संकटात",
       duration: "03:45",
-      image: "https://images.unsplash.com/photo-1595034313331-295383560662?q=80&w=1000",
+      image:
+        "https://images.unsplash.com/photo-1595034313331-295383560662?q=80&w=1000",
       slug: "grapes-loss",
       category: "शेती",
       date: "१ दिवसापूर्वी",
     },
     {
       id: 3,
-      title: "नाशिक-पुणे सेमी हायस्पीड रेल्वे: जमिनीच्या मोजणीला वेग, लवकरच काम सुरू",
+      title:
+        "नाशिक-पुणे सेमी हायस्पीड रेल्वे: जमिनीच्या मोजणीला वेग, लवकरच काम सुरू",
       duration: "04:12",
-      image: "https://images.unsplash.com/photo-1474487585617-9df73aa82417?q=80&w=1000",
+      image:
+        "https://images.unsplash.com/photo-1474487585617-9df73aa82417?q=80&w=1000",
       slug: "railway-update",
       category: "विकास",
       date: "२ दिवसापूर्वी",
     },
     {
       id: 4,
-      title: "त्र्यंबकेश्वर मंदिर परिसरात भाविकांची तुफान गर्दी; सुरक्षिततेसाठी कडक बंदोबस्त",
+      title:
+        "त्र्यंबकेश्वर मंदिर परिसरात भाविकांची तुफान गर्दी; सुरक्षिततेसाठी कडक बंदोबस्त",
       duration: "02:30",
-      image: "https://images.unsplash.com/photo-1614033463133-1463990494a8?q=80&w=1000",
+      image:
+        "https://images.unsplash.com/photo-1614033463133-1463990494a8?q=80&w=1000",
       slug: "trimbakeshwar",
       category: "धर्म-अध्यात्म",
       date: "२ दिवसापूर्वी",
@@ -59,23 +66,34 @@ const VideosPage = () => {
       id: 5,
       title: "नाशिक मिसळ महोत्सव: खवय्यांची तुफान गर्दी, पाहा सर्वात मोठी मिसळ",
       duration: "06:15",
-      image: "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?q=80&w=1000",
+      image:
+        "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?q=80&w=1000",
       slug: "misal-festival",
       category: "मनोरंजन",
       date: "३ दिवसापूर्वी",
     },
     {
       id: 6,
-      title: "नाशिक महानगरपालिका: निवडणुकीच्या हालचालींना वेग, कोण मारणार बाजी?",
+      title:
+        "नाशिक महानगरपालिका: निवडणुकीच्या हालचालींना वेग, कोण मारणार बाजी?",
       duration: "08:10",
-      image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1000",
+      image:
+        "https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1000",
       slug: "nmc-election",
       category: "राजकारण",
       date: "४ दिवसापूर्वी",
     },
   ];
 
-  const categories = ["सर्व", "मनोरंजन", "विशेष वार्तांकन", "खेळ", "शेती", "विकास", "राजकारण"];
+  const categories = [
+    "सर्व",
+    "मनोरंजन",
+    "विशेष वार्तांकन",
+    "खेळ",
+    "शेती",
+    "विकास",
+    "राजकारण",
+  ];
 
   const filteredVideos =
     selectedCategory === "सर्व"
@@ -94,7 +112,11 @@ const VideosPage = () => {
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-16 h-16 md:w-24 md:h-24 bg-red-600 text-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
-                <Play fill="currentColor" size={30} className="md:size-40 ml-1 md:ml-2" />
+                <Play
+                  fill="currentColor"
+                  size={30}
+                  className="md:size-40 ml-1 md:ml-2"
+                />
               </div>
             </div>
             <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 flex flex-wrap items-center gap-2 md:gap-3">
@@ -115,11 +137,18 @@ const VideosPage = () => {
 
         <div className="lg:col-span-4 flex flex-col gap-6">
           <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-4">
-            <h3 className="text-sm font-black uppercase tracking-widest text-red-600 italic">लोकप्रिय व्हिडिओ</h3>
-            <Share2 size={18} className="text-zinc-400 cursor-pointer hover:text-red-600 transition-colors" />
+            <h3 className="text-sm font-black uppercase tracking-widest text-red-600 italic">
+              लोकप्रिय व्हिडिओ
+            </h3>
+            <Share2
+              size={18}
+              className="text-zinc-400 cursor-pointer hover:text-red-600 transition-colors"
+            />
           </div>
           <div className="bg-gray-100 aspect-video lg:aspect-square flex flex-col items-center justify-center border-2 border-dashed border-zinc-200 p-6 group cursor-pointer transition-all rounded-xl text-center">
-            <p className="text-zinc-400 text-[10px] font-black tracking-[0.3em] uppercase mb-4">Advertisement</p>
+            <p className="text-zinc-400 text-[10px] font-black tracking-[0.3em] uppercase mb-4">
+              Advertisement
+            </p>
             <span className="text-zinc-400 italic font-medium group-hover:text-zinc-600">
               नाशिक एक्सप्रेस <br /> विशेष जाहिरात जागा
             </span>
@@ -139,10 +168,11 @@ const VideosPage = () => {
                 key={item}
                 onClick={() => setSelectedCategory(item)}
                 suppressHydrationWarning
-                className={`text-[11px] md:text-sm font-bold uppercase tracking-widest transition-colors shrink-0 ${selectedCategory === item
-                  ? "text-red-600"
-                  : "text-zinc-500 dark:text-zinc-400 hover:text-red-600"
-                  }`}
+                className={`text-[11px] md:text-sm font-bold uppercase tracking-widest transition-colors shrink-0 ${
+                  selectedCategory === item
+                    ? "text-red-600"
+                    : "text-zinc-500 dark:text-zinc-400 hover:text-red-600"
+                }`}
               >
                 {item}
               </button>
@@ -161,9 +191,16 @@ const VideosPage = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredVideos.map((post) => (
-            <div key={post.id} className="flex flex-col group bg-white overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 rounded-xl">
+            <div
+              key={post.id}
+              className="flex flex-col group bg-white overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 rounded-xl"
+            >
               <div className="relative aspect-video overflow-hidden">
-                <img src={post.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={post.title} />
+                <img
+                  src={post.image}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  alt={post.title}
+                />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
                   <div className="w-14 h-14 bg-red-600 backdrop-blur-md border border-white/30 rounded-full flex items-center justify-center text-white">
                     <Play fill="white" size={24} className="ml-1" />
@@ -171,12 +208,19 @@ const VideosPage = () => {
                 </div>
               </div>
               <div className="p-4 md:p-5 flex flex-col flex-grow">
-                <h3 className="font-bold text-base md:text-lg text-black leading-snug mb-4 line-clamp-2">{post.title}</h3>
+                <h3 className="font-bold text-base md:text-lg text-black leading-snug mb-4 line-clamp-2">
+                  {post.title}
+                </h3>
                 <div className="mt-auto flex items-center justify-between pt-4 border-t border-zinc-50">
                   <span className="text-zinc-400 text-[10px] md:text-[11px] font-bold flex items-center gap-1">
                     <Calendar size={12} /> {post.date}
                   </span>
-                  <button suppressHydrationWarning className="text-red-600 text-xs font-black uppercase">पहा</button>
+                  <button
+                    suppressHydrationWarning
+                    className="text-red-600 text-xs font-black uppercase"
+                  >
+                    पहा
+                  </button>
                 </div>
               </div>
             </div>
