@@ -42,7 +42,6 @@ export default function RashiDetailPage({ params }: PageProps) {
 
     return (
         <div className="relative min-h-screen bg-white">
-            {/* Background Image with Low Opacity */}
             <div
                 className="fixed inset-0 z-0 bg-cover bg-center transition-opacity duration-1000"
                 style={{
@@ -51,9 +50,7 @@ export default function RashiDetailPage({ params }: PageProps) {
                 }}
             />
 
-            {/* Content Layer */}
             <div className="relative z-10">
-                {/* Navigation Header */}
                 <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
                     <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                         <button
@@ -66,12 +63,9 @@ export default function RashiDetailPage({ params }: PageProps) {
                         </button>
                         <div className="flex items-center gap-3">
                             <span className="text-2xl">{rashi.icon}</span>
-                            <h1 className="text-xl font-black text-gray-900 font-serif">{rashi.name} - संपूर्ण भविष्य</h1>
+                            <h1 className="text-xl font-black text-gray-900 font-serif">{rashi.name}</h1>
                         </div>
-                        <button
-                            suppressHydrationWarning
-                            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-                        >
+                        <button suppressHydrationWarning className="p-2 rounded-full hover:bg-gray-100 transition-colors">
                             <Share2 size={20} />
                         </button>
                     </div>
@@ -79,51 +73,36 @@ export default function RashiDetailPage({ params }: PageProps) {
 
                 <div className="container mx-auto px-4 py-8 lg:py-12">
                     <div className="max-w-5xl mx-auto space-y-12">
-
-                        {/* Hero Section */}
                         <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                             <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
-                                <img
-                                    src={rashi.image}
-                                    alt={rashi.name}
-                                    className="w-full h-full object-cover"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                                <div className="absolute bottom-8 left-8 right-8 text-white">
-                                    <div className="text-5xl mb-4">{rashi.icon}</div>
-                                    <h2 className="text-4xl font-black font-serif mb-1">{rashi.name}</h2>
-                                    <p className="text-lg opacity-90 font-medium">{rashi.sanskritName}</p>
+                                <img src={rashi.image} alt={rashi.name} className="w-full h-full object-cover" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                <div className="absolute bottom-8 left-8 text-white">
+                                    <h2 className="text-4xl font-black font-serif">{rashi.name}</h2>
+                                    <p className="text-lg opacity-90">{rashi.sanskritName}</p>
                                 </div>
                             </div>
 
-                            <div className="space-y-8">
+                            <div className="space-y-6">
                                 <div className="inline-flex items-center gap-2 bg-red-50 text-red-600 px-4 py-2 rounded-full text-sm font-black uppercase tracking-widest border border-red-100">
-                                    <Star size={16} fill="currentColor" />
-                                    आजचा विशेष अंदाज
+                                    <Star size={16} fill="currentColor" /> आजचा विशेष अंदाज
                                 </div>
-
                                 <p className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight font-serif italic">
                                     "{rashi.forecast}"
                                 </p>
-
-                                <div className="grid grid-cols-2 gap-6">
-                                    <div className="p-6 bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                                        <div className="text-zinc-400 font-bold text-xs uppercase tracking-widest mb-2 flex items-center gap-2">
-                                            <Calendar size={14} className="text-red-600" /> कालावधी
-                                        </div>
-                                        <div className="text-lg font-black text-gray-900">{rashi.date}</div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                                        <div className="text-gray-400 text-xs font-bold uppercase mb-1">कालावधी</div>
+                                        <div className="font-black">{rashi.date}</div>
                                     </div>
-                                    <div className="p-6 bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                                        <div className="text-zinc-400 font-bold text-xs uppercase tracking-widest mb-2 flex items-center gap-2">
-                                            <Zap size={14} className="text-orange-500" /> घटक
-                                        </div>
-                                        <div className="text-lg font-black text-gray-900">{rashi.element}</div>
+                                    <div className="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                                        <div className="text-gray-400 text-xs font-bold uppercase mb-1">घटक</div>
+                                        <div className="font-black">{rashi.element}</div>
                                     </div>
                                 </div>
                             </div>
                         </section>
 
-                        {/* Detailed Stats Grid */}
                         <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             {[
                                 { label: "स्वामी ग्रह", value: rashi.rulingPlanet, color: "text-blue-600", bg: "bg-blue-50" },
@@ -138,84 +117,21 @@ export default function RashiDetailPage({ params }: PageProps) {
                             ))}
                         </section>
 
-                        {/* In-depth Analysis Section */}
-                        <section className="space-y-6">
-                            <h3 className="text-3xl font-black font-serif flex items-center gap-3">
-                                <Shield className="text-red-600" /> सविस्तर विश्लेषण
-                            </h3>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {/* Feature Cards */}
-                                <div className="p-8 bg-white/60 backdrop-blur-md rounded-[2.5rem] border border-gray-100 shadow-sm space-y-4">
-                                    <div className="w-12 h-12 rounded-2xl bg-pink-50 flex items-center justify-center text-pink-600">
-                                        <Heart />
-                                    </div>
-                                    <h4 className="text-xl font-bold">प्रेम आणि नातेसंबंध</h4>
-                                    <p className="text-zinc-600 leading-relaxed">
-                                        आज जोडीदारासोबतचे संबंध मधुर राहतील. अविवाहितांसाठी विवाहाचे योग येण्याची शक्यता आहे. कुटुंबातील मोठ्यांचे आशीर्वाद लाभतील.
-                                    </p>
-                                </div>
-
-                                <div className="p-8 bg-white/60 backdrop-blur-md rounded-[2.5rem] border border-gray-100 shadow-sm space-y-4">
-                                    <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
-                                        <Briefcase />
-                                    </div>
-                                    <h4 className="text-xl font-bold">करिअर आणि शिक्षण</h4>
-                                    <p className="text-zinc-600 leading-relaxed">
-                                        नोकरीत पदोन्नतीचे संकेत मिळत आहेत. विद्यार्थ्यांना अभ्यासात चांगले यश मिळेल. नवीन प्रकल्पांची सुरुवात करण्यासाठी आजचा दिवस उत्तम आहे.
-                                    </p>
-                                </div>
-
-                                <div className="p-8 bg-white/60 backdrop-blur-md rounded-[2.5rem] border border-gray-100 shadow-sm space-y-4">
-                                    <div className="w-12 h-12 rounded-2xl bg-green-50 flex items-center justify-center text-green-600">
-                                        <Coins />
-                                    </div>
-                                    <h4 className="text-xl font-bold">आर्थिक स्थिती</h4>
-                                    <p className="text-zinc-600 leading-relaxed">
-                                        गुंतवणुकीसाठी विचारपूर्वक पाऊल उचलणे गरजेचे आहे. धनलाभाचे योग असले तरी अनावश्यक खर्च टाळणे हिताचे ठरेल.
-                                    </p>
-                                </div>
-
-                                <div className="p-8 bg-white/60 backdrop-blur-md rounded-[2.5rem] border border-gray-100 shadow-sm space-y-4">
-                                    <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center text-orange-600">
-                                        <Activity />
-                                    </div>
-                                    <h4 className="text-xl font-bold">आरोग्य</h4>
-                                    <p className="text-zinc-600 leading-relaxed">
-                                        मानसिक शांतीसाठी योगासने आणि ध्यानधारणा करा. आहारावर नियंत्रण ठेवावे. प्रकृतीकडे दुर्लक्ष करू नका.
-                                    </p>
-                                </div>
+                        <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="p-8 bg-white/60 backdrop-blur-md rounded-[2.5rem] border border-gray-100 shadow-sm space-y-4">
+                                <Heart className="text-pink-600" />
+                                <h4 className="text-xl font-bold">प्रेम आणि नातेसंबंध</h4>
+                                <p className="text-zinc-600">आज जोडीदारासोबतचे संबंध मधुर राहतील. अविवाहितांसाठी विवाहाचे योग आहेत.</p>
+                            </div>
+                            <div className="p-8 bg-white/60 backdrop-blur-md rounded-[2.5rem] border border-gray-100 shadow-sm space-y-4">
+                                <Briefcase className="text-blue-600" />
+                                <h4 className="text-xl font-bold">करिअर आणि शिक्षण</h4>
+                                <p className="text-zinc-600">नोकरीत पदोन्नतीचे संकेत आहेत. विद्यार्थ्यांना अभ्यासात यश मिळेल.</p>
                             </div>
                         </section>
-
-                        {/* Bottom Call to Action */}
-                        {/* <div className="bg-gradient-to-r from-red-600 to-orange-500 rounded-[3rem] p-12 text-center text-white space-y-6 shadow-2xl relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-                            <div className="relative z-10">
-                                <h2 className="text-3xl font-black font-serif">तुमच्या भविष्याबद्दल अधिक जाणून घ्यायचे आहे का?</h2>
-                                <p className="text-white/80 max-w-xl mx-auto">आमच्या तज्ज्ञ ज्योतिषांशी संवाद साधा आणि तुमच्या आयुष्यातील समस्यांवर अचूक उपाय मिळवा.</p>
-                                <button className="mt-8 bg-white text-red-600 px-10 py-4 rounded-full font-black uppercase tracking-widest shadow-xl hover:scale-105 transition-all">
-                                    संपर्क करा
-                                </button>
-                            </div>
-                        </div> */}
-
                     </div>
                 </div>
-
-                {/* Footer info */}
-                {/* <footer className="py-12 text-center text-gray-400 text-sm border-t border-gray-100 container mx-auto px-4">
-                    <p>© 2026 खबरनामा राशिभविष्य. सर्व हक्क राखीव.</p>
-                    <p className="mt-2 text-xs opacity-60">टीप: हे भविष्य ग्रहांच्या स्थितीवर आधारित असून सामान्य मार्गदर्शनासाठी आहे.</p>
-                </footer> */}
             </div>
-
-            <style jsx global>{`
-        @keyframes shimmer {
-          0% { transform: translateX(-100%) skewX(-25deg); }
-          100% { transform: translateX(200%) skewX(-25deg); }
-        }
-      `}</style>
         </div>
     );
 }

@@ -58,24 +58,26 @@ export default function RootLayout({
           ]}
         />
 
-        <div className="flex-1 relative flex justify-center w-full overflow-x-hidden bg-gray-50/20">
-          {/* Left Gutter - Sticky Advertisements */}
-          <aside className="hidden 2xl:flex flex-col w-48 p-4 sticky top-0 h-screen border-r border-gray-100/50">
-            <Add className="flex-1 w-full h-full grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
+        <div className="site-layout-wrapper">
+          {/* Left Gutter - Sticky Advertisements (Only on Very Wide Screens) */}
+          <aside className="hidden min-[1600px]:flex flex-col w-44 p-4 sticky top-0 h-screen border-r border-gray-100/50">
+            <Add className="flex-1 w-full h-full grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-[1.2s]" />
           </aside>
 
           {/* 
               Global Content Container 
-              - Standardized width (max-w-6xl) prevents layout shifting between pages
-              - White background and consistent padding for a premium feel
+              - Uses the Universal Display Parity Engine (.site-main-content)
+              - Ensures consistent width and spacing regardless of laptop display scaling
           */}
-          <main className="flex-1 w-full max-w-6xl bg-white shadow-sm px-4 py-8 md:px-10 lg:px-12 transition-all duration-500 min-h-screen">
-            {children}
+          <main className="site-main-content">
+            <div className="parity-container">
+              {children}
+            </div>
           </main>
 
-          {/* Right Gutter - Sticky Advertisements */}
-          <aside className="hidden 2xl:flex flex-col w-48 p-4 sticky top-0 h-screen border-l border-gray-100/50">
-            <Add className="flex-1 w-full h-full grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
+          {/* Right Gutter - Sticky Advertisements (Only on Very Wide Screens) */}
+          <aside className="hidden min-[1600px]:flex flex-col w-44 p-4 sticky top-0 h-screen border-l border-gray-100/50">
+            <Add className="flex-1 w-full h-full grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-[1.2s]" />
           </aside>
         </div>
 

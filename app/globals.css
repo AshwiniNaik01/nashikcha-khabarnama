@@ -20,17 +20,21 @@
 ----------------------------------- */
 :root {
   /* 
-     Acer vs Lenovo Fix:
-     This dynamic font-size ensures the UI scales relative to the viewport.
-     On high-scaling laptops (Acer), it prevents the UI from becoming huge.
-     On standard screens (Lenovo), it maintains crisp readability.
+     Universal Display Parity Engine (Acer & Lenovo Sync)
+     - Normalizes logical pixel density across different scaling factors.
+     - 1rem is dynamic relative to viewport width to keep proportions constant.
   */
-  font-size: clamp(14px, 0.4vw + 12px, 18px);
+  font-size: clamp(14px, 0.35vw + 12.5px, 17.5px);
+
+  /* Fluid Layout Widths - Scales with the device logic */
+  --site-max-width: clamp(1000px, 92vw, 1280px);
+  --gutter-width: clamp(12px, 2.5vw, 24px);
 
   /* Shared Fluid Spacing Variables */
-  --fluid-space-2: clamp(0.5rem, 1vw, 0.75rem);
-  --fluid-space-4: clamp(1rem, 2vw, 1.5rem);
-  --fluid-space-8: clamp(2rem, 4vw, 3rem);
+  --fluid-space-1: clamp(0.25rem, 0.5vw, 0.35rem);
+  --fluid-space-2: clamp(0.45rem, 1vw, 0.7rem);
+  --fluid-space-4: clamp(0.9rem, 2vw, 1.4rem);
+  --fluid-space-8: clamp(1.8rem, 4vw, 2.8rem);
 
   /* Backgrounds */
   --color-bg-default: #f9f9f9;
@@ -120,6 +124,47 @@ a {
 /* ----------------------------------
    Utility Classes
 ----------------------------------- */
+/* ----------------------------------
+   High-Parity Layout Utilities
+----------------------------------- */
+.parity-container {
+  width: 100%;
+  max-width: var(--site-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter-width);
+  padding-right: var(--gutter-width);
+}
+
+.site-layout-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex: 1;
+  position: relative;
+  overflow-x: hidden;
+  background-color: #f8fafc;
+  /* Subtle gray background for gutters */
+}
+
+.site-main-content {
+  flex: 1;
+  width: 100%;
+  max-width: var(--site-max-width);
+  background-color: #ffffff;
+  padding: var(--fluid-space-8) 0;
+  /* Padding handled by parity-container inside or here */
+  transition: all 0.5s ease;
+  min-height: 100vh;
+}
+
+@media (min-width: 1600px) {
+  .site-main-content {
+    /* Add subtle separation on ultra-wide screens */
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.03);
+  }
+}
+
 .text-muted {
   color: var(--color-text-muted);
 }
@@ -338,6 +383,8 @@ a {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  line-clamp: 1;
+  /* Standard property for compatibility */
 }
 
 .line-clamp-2 {
@@ -345,6 +392,8 @@ a {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  line-clamp: 2;
+  /* Standard property for compatibility */
 }
 
 .line-clamp-3 {
@@ -352,6 +401,8 @@ a {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  line-clamp: 3;
+  /* Standard property for compatibility */
 }
 
 @keyframes slideInLeft {
@@ -384,4 +435,14 @@ a {
 
 .animate-slide-right {
   animation: slideInRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Utility to hide scrollbars while keeping functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

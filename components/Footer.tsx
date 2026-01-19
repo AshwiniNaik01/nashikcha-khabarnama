@@ -19,8 +19,8 @@ export default function Footer() {
       <div className="absolute -top-24 -left-24 w-48 md:w-96 h-48 md:h-96 bg-lokmat-red/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
       <div className="absolute -bottom-24 -right-24 w-48 md:w-96 h-48 md:h-96 bg-lokmat-maroon/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
 
-      {/* Replaced fixed mx-30 with responsive container padding */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-20 relative z-10">
+      {/* Parity Container for consistent layout */}
+      <div className="parity-container relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* 1. Brand Section */}
           <div className="space-y-6 md:space-y-8 text-center sm:text-left flex flex-col items-center sm:items-start">
