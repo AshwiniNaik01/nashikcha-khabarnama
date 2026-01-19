@@ -184,30 +184,32 @@ export default function RashiDetailPage({ params }: PageProps) {
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* प्रेम */}
                 <div className="p-8 bg-white/70 backdrop-blur-md border border-gray-100 shadow-sm rounded-[2rem] space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-pink-50 flex items-center justify-center text-pink-600">
                     <Heart />
                   </div>
                   <h4 className="text-xl font-bold">प्रेम आणि नातेसंबंध</h4>
                   <p className="text-zinc-600 leading-relaxed">
-                    आज जोडीदारासोबतचे संबंध मधुर राहतील. कुटुंबात आनंदाचे
-                    वातावरण असेल. अविवाहितांसाठी विवाहाचे नवीन प्रस्ताव येण्याची
-                    शक्यता आहे. जुन्या मित्रांची भेट होईल.
+                    आज जोडीदारासोबतचे संबंध मधुर राहतील. कुटुंबात आनंदाचे वातावरण असेल.
+                    अविवाहितांसाठी विवाहाचे नवीन प्रस्ताव येण्याची शक्यता आहे.
+                    जुन्या मित्रांची भेट होईल.
                   </p>
                 </div>
 
+                {/* करिअर */}
                 <div className="p-8 bg-white/70 backdrop-blur-md border border-gray-100 shadow-sm rounded-[2rem] space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
                     <Briefcase />
                   </div>
                   <h4 className="text-xl font-bold">करिअर आणि शिक्षण</h4>
                   <p className="text-zinc-600 leading-relaxed">
-                    नोकरीत पदोन्नतीचे संकेत मिळत आहेत. वरिष्ठ तुमच्या कामाची दखल
-                    घेतील. विद्यार्थ्यांना अभ्यासात एकाग्रता राखणे सोपे जाईल आणि
-                    परीक्षेत यश मिळेल.
+                    नोकरीत पदोन्नतीचे संकेत मिळत आहेत. वरिष्ठ तुमच्या कामाची दखल घेतील.
+                    विद्यार्थ्यांना अभ्यासात एकाग्रता राखणे सोपे जाईल.
                   </p>
                 </div>
 
+                {/* आर्थिक */}
                 <div className="p-8 bg-white/70 backdrop-blur-md border border-gray-100 shadow-sm rounded-[2rem] space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-green-50 flex items-center justify-center text-green-600">
                     <Coins />
@@ -215,20 +217,45 @@ export default function RashiDetailPage({ params }: PageProps) {
                   <h4 className="text-xl font-bold">आर्थिक स्थिती</h4>
                   <p className="text-zinc-600 leading-relaxed">
                     गुंतवणुकीसाठी आजचा दिवस उत्तम आहे. जुनी येणी वसूल होतील.
-                    अनावश्यक खर्च टाळल्यास तुमची आर्थिक बाजू अधिक भक्कम होईल.
-                    धनलाभाचे योग आहेत.
+                    अनावश्यक खर्च टाळल्यास आर्थिक बाजू अधिक भक्कम होईल.
                   </p>
                 </div>
 
+                {/* आरोग्य */}
                 <div className="p-8 bg-white/70 backdrop-blur-md border border-gray-100 shadow-sm rounded-[2rem] space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center text-orange-600">
                     <Activity />
                   </div>
                   <h4 className="text-xl font-bold">आरोग्य</h4>
                   <p className="text-zinc-600 leading-relaxed">
-                    मानसिक शांततेसाठी योगासने आणि ध्यानधारणा करा. आहारावर
-                    नियंत्रण ठेवा. बाह्य पदार्थ खाणे टाळावे. प्रकृतीमध्ये मोठी
-                    सुधारणा दिसून येईल.
+                    मानसिक शांततेसाठी योगासने आणि ध्यानधारणा करा.
+                    आहारावर नियंत्रण ठेवा. प्रकृतीत सकारात्मक बदल दिसून येतील.
+                  </p>
+                </div>
+
+                {/* भाग्य */}
+                <div className="p-8 bg-white/70 backdrop-blur-md border border-gray-100 shadow-sm rounded-[2rem] space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center text-purple-600">
+                    <Zap />
+                  </div>
+                  <h4 className="text-xl font-bold">भाग्य व संधी</h4>
+                  <p className="text-zinc-600 leading-relaxed">
+                    आज भाग्य तुमच्या बाजूने राहील. अचानक नवीन संधी मिळू शकतात.
+                    महत्त्वाचे निर्णय घेण्यासाठी दिवस अनुकूल आहे.
+                    प्रवासाचे योग संभवतात.
+                  </p>
+                </div>
+
+                {/* उपाय */}
+                <div className="p-8 bg-white/70 backdrop-blur-md border border-gray-100 shadow-sm rounded-[2rem] space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-yellow-50 flex items-center justify-center text-yellow-600">
+                    <Shield />
+                  </div>
+                  <h4 className="text-xl font-bold">शुभ उपाय व सल्ला</h4>
+                  <p className="text-zinc-600 leading-relaxed">
+                    आज सकाळी सूर्यदेवाला जल अर्पण करा.
+                    गरजू व्यक्तीस अन्नदान केल्यास सकारात्मक ऊर्जा वाढेल.
+                    मन शांत ठेवण्यासाठी ध्यान करा.
                   </p>
                 </div>
               </div>

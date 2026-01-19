@@ -100,6 +100,7 @@ const RashiCard: React.FC<RashiCardProps> = ({ rashi }) => {
 
                     <button
                         onClick={handleDetail}
+                        suppressHydrationWarning
                         className="relative w-full overflow-hidden group/btn bg-gradient-to-r from-[#800000] to-[#E1261C] text-white py-3 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:scale-[1.02] flex items-center justify-center gap-2 mt-auto"
                     >
                         <div className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-[-25deg] -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite]" />

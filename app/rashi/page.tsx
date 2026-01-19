@@ -6,50 +6,63 @@ export const metadata = {
   description:
     "तुमचे आजचे राशीभविष्य जाणून घ्या. मेष ते मीन सर्व १२ राशींचे अचूक भविष्य.",
 };
+
+/**
+ * Rashi Page - Optimized for Display Parity & Visual Hierarchy
+ * - Fixed: Background image visibility by adjusting stacking context.
+ * - Improved: Blur and opacity for a premium "ethereal" look.
+ */
 const RashiPage = () => {
   return (
-    <div className="text-gray-900 relative">
-      {/* Zodiac Background Image */}
+    <div className="text-gray-900 relative min-h-[80vh] overflow-hidden rounded-3xl">
+      {/* 
+                ZODIAC BACKGROUND LAYER
+                - Changed from -z-10 to z-0 to prevent it from sliding behind the main page background.
+                - Reduced blur slightly for better performance and actual visibility.
+            */}
       <div
-        className="absolute inset-0 bg-center bg-no-repeat bg-contain opacity-[0.05] -z-1"
+        className="fixed inset-0 z-0 opacity-20 filter pointer-events-none"
         style={{
-          backgroundImage:
-            "url('https://img.freepik.com/premium-psd/circle-golden-zodiac-signs-capricorn_684888-663.jpg?ga=GA1.1.1339275905.1751605421&w=740&q=80')",
-          backgroundAttachment: "fixed",
+          backgroundImage: "url('https://img.freepik.com/premium-psd/circle-golden-zodiac-signs-capricorn_684888-663.jpg?ga=GA1.1.1339275905.1751605421&w=740&q=80')",
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'contain',
+          backgroundAttachment: 'fixed',
         }}
       />
 
-      <div className="py-2 md:py-6 relative z-10">
+      {/* MAIN CONTENT LAYER */}
+      <div className="py-8 md:py-12 relative z-10">
         {/* Hero Section */}
-        <div className="text-center mb-6 relative">
-          {/* <div className="inline-block mb-3 px-4 py-1.5 rounded-full bg-yellow-100 border border-yellow-300 text-yellow-700 text-sm font-bold tracking-widest uppercase">
-                        ✨ आजचे नक्षत्र भाकीत
-                    </div> */}
+        <div className="text-center mb-10 md:mb-16 relative">
+          <div className="inline-block mb-4 px-4 py-1 rounded-full bg-red-50 border border-red-100 text-red-600 text-[10px] font-black uppercase tracking-[0.2em]">
+            भाग्य आणि भविष्य
+          </div>
 
-          <h1 className="text-4xl md:text-7xl font-black mb-4 tracking-tighter leading-none">
+          <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter leading-none">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-600 via-orange-500 to-red-500">
               राशी
             </span>
-
-            <span className="text-[#E1261C]">भविष्य</span>
+            <span className="text-lokmat-red"> भविष्य</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
-            ग्रह-ताऱ्यांच्या चालीवर आधारित तुमचे आजचे, उद्याचे आणि या आठवड्याचे
-            भविष्य जाणून घ्या.
-            <span className="block mt-2 text-lokmat-red font-semibold">
+          <p className="text-lg md:text-2xl text-gray-700 max-w-2xl mx-auto font-serif italic">
+            ग्रह-ताऱ्यांच्या चालीवर आधारित तुमचे आजचे, उद्याचे आणि या आठवड्याचे भविष्य जाणून घ्या.
+            <span className="block mt-3 text-lokmat-maroon font-black not-italic">
               तुमचा दिवस शुभ राहो!
             </span>
           </p>
         </div>
 
-        {/* Grid */}
-        <RashiGrid />
+        {/* Zodiac Grid */}
+        <div className="animate-in fade-in slide-in-from-bottom-5 duration-1000">
+          <RashiGrid />
+        </div>
 
         {/* Footer Message */}
-        <div className="mt-20 text-center">
-          <p className="text-gray-500 text-sm max-w-md mx-auto">
-            टीप: वरील राशीभविष्य हे सामान्य ग्रहमानावर आधारित आहे.
+        <div className="mt-20 text-center opacity-50">
+          <p className="text-gray-500 text-xs font-bold uppercase tracking-widest max-w-md mx-auto">
+            टीप: वरील राशीभविष्य हे सामान्य ग्रहमानावर आधारित आहे. अचूक मार्गदर्शनासाठी तज्ज्ञांचा सल्ला घ्या.
           </p>
         </div>
       </div>

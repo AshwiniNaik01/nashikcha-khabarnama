@@ -16,9 +16,9 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="w-full font-marathi">
+    <div className="w-full font-marathi relative z-[60]">
       {/* 1. TOP BAR - NEW Lokmat RED STYLE */}
-      <div className="bg-gradient-to-r from-lokmat-red to-lokmat-maroon text-white text-[9px] xs:text-[10px] sm:text-xs md:text-sm">
+      <div className="bg-gradient-to-r from-lokmat-red to-lokmat-maroon text-white z-50 text-[9px] xs:text-[10px] sm:text-xs md:text-sm">
         <div className="parity-container flex justify-between items-center py-2 sm:py-3 font-bold">
           {/* Left: Language + Time */}
           <div className="flex gap-2 xs:gap-3 sm:gap-4 items-center font-bold whitespace-nowrap overflow-hidden">
