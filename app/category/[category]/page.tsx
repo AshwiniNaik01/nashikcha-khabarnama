@@ -1,7 +1,7 @@
 import ArticleCard from "@/components/ArticleCard";
 
 interface Props {
-  params: { category: string };
+  params: Promise<{ category: string }>;
 }
 
 

@@ -1,7 +1,7 @@
 import ArticleCard from "@/components/ArticleCard";
 
 interface Props {
-  params: { category: string };
+  params: Promise<{ slug: string[] }>;
 }
 
 const categoryMap: Record<string, string> = {
@@ -19,8 +19,8 @@ const categoryMap: Record<string, string> = {
 };
 
 export default async function CategoryPage({ params }: Props) {
-  // No await needed
-  const categoryKey = params.category;
+  const { slug } = await params;
+  const categoryKey = slug[0];
 
   // Convert slug to Marathi label
   const categoryName = categoryMap[categoryKey] || categoryKey;
