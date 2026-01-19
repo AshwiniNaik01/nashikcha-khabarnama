@@ -4,12 +4,34 @@
   --color-lokmat-red: #ed1b24;
   --color-lokmat-maroon: #800000;
   --color-lokmat-dark: #c1121c;
+
+  /* Custom Aspect Ratios for "Display Ratio" support */
+  --aspect-video: 16 / 9;
+  --aspect-square: 1 / 1;
+  --aspect-portrait: 3 / 4;
+  --aspect-cinema: 21 / 9;
+
+  /* Custom Screen Scales */
+  --breakpoint-xs: 480px;
 }
 
 /* ----------------------------------
-   Theme Variables (Newsup style)
+   Fluid Scaling & Display Ratio Management
 ----------------------------------- */
 :root {
+  /* 
+     Acer vs Lenovo Fix:
+     This dynamic font-size ensures the UI scales relative to the viewport.
+     On high-scaling laptops (Acer), it prevents the UI from becoming huge.
+     On standard screens (Lenovo), it maintains crisp readability.
+  */
+  font-size: clamp(14px, 0.4vw + 12px, 18px);
+
+  /* Shared Fluid Spacing Variables */
+  --fluid-space-2: clamp(0.5rem, 1vw, 0.75rem);
+  --fluid-space-4: clamp(1rem, 2vw, 1.5rem);
+  --fluid-space-8: clamp(2rem, 4vw, 3rem);
+
   /* Backgrounds */
   --color-bg-default: #f9f9f9;
   --color-bg-secondary: #ffffff;
@@ -37,8 +59,6 @@
   background: var(--gradient-lokmat);
 }
 
-
-
 /* ----------------------------------
    Base Styles
 ----------------------------------- */
@@ -47,6 +67,9 @@ body {
   color: var(--color-text-primary);
   font-family: var(--font-marathi), system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 
@@ -60,24 +83,21 @@ h4,
 h5,
 h6 {
   font-family: 'Montserrat', sans-serif;
-  /* color: var(--color-text-primary); */
   margin-top: 0;
   margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
 }
 
 /* ----------------------------------
    Links
 ----------------------------------- */
 a {
-  /* color: var(--color-text-default); */
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 :where(a:hover) {
-  /* color: var(--color-text-default); */
   text-decoration: underline;
-  /* background-color: var(--color-primary-soft); */
 }
 
 /* ----------------------------------

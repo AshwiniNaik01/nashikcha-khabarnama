@@ -45,7 +45,7 @@ const photos: PhotoItem[] = [
 
 export default function PhotoGallery() {
   return (
-    <section className="my-10 md:my-20 bg-gradient-to-b from-neutral-900 to-neutral-800 rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-white/5 p-4 md:p-8">
+    <section className="my-10 md:my-20 bg-gradient-to-b from-neutral-900 to-neutral-600  rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-white/5 p-4 md:p-8">
       {/* Header: Centered on mobile, spread on desktop */}
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-10 md:mb-16">
         <div className="space-y-3 text-center lg:text-left">
