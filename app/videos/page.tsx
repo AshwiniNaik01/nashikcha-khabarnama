@@ -106,7 +106,7 @@ const VideosPage = () => {
               </span>
             </div>
           </div>
-          <div className="p-4 md:p-8 bg-gradient-to-t from-black via-black/60 to-transparent">
+          <div className="p-4 md:p-8 bg-gradient-to-b from-neutral-800 to-neutral-500">
             <h1 className="text-xl md:text-3xl lg:text-5xl font-black text-white leading-tight tracking-tighter">
               {videoData[0].title}
             </h1>
