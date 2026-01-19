@@ -131,10 +131,14 @@ export default function Footer() {
                   type="email"
                   placeholder="ई-मेल पत्ता"
                   className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-lokmat-red transition-colors font-medium"
+                  suppressHydrationWarning
                 />
                 <FaEnvelope className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600" />
               </div>
-              <button className="bg-lokmat-red hover:bg-lokmat-maroon text-white py-3 px-6 rounded-xl transition-all shadow-lg shadow-lokmat-red/20 active:scale-95 text-xs font-black uppercase tracking-widest whitespace-nowrap">
+              <button
+                className="bg-lokmat-red hover:bg-lokmat-maroon text-white py-3 px-6 rounded-xl transition-all shadow-lg shadow-lokmat-red/20 active:scale-95 text-xs font-black uppercase tracking-widest whitespace-nowrap"
+                suppressHydrationWarning
+              >
                 नोंदणी
               </button>
             </div>

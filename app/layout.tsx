@@ -24,8 +24,8 @@ const notoSansDevanagari = Noto_Sans_Devanagari({
 ----------------------------------------- */
 export const metadata: Metadata = {
   title: {
-    default: "Newsup Clone",
-    template: "%s | Newsup Clone",
+    default: "Nashikcha Khabarnama",
+    template: "%s | Nashikcha Khabarnama",
   },
   description: "Next.js + TypeScript + Tailwind news website",
 };
@@ -58,20 +58,42 @@ export default function RootLayout({
           ]}
         />
 
-        <div className="flex-1 relative flex justify-center">
-          {/* Left Advertisement Column */}
-          <aside className="hidden xl:flex flex-col w-40 p-4 sticky top-0 h-screen">
-            <Add className="flex-1 w-full h-full" />
+        <div className="flex-1 relative flex justify-center w-full overflow-x-hidden bg-gray-50/20">
+          {/* Left Gutter - Sticky Advertisements */}
+          <aside className="hidden 2xl:flex flex-col w-48 p-4 sticky top-0 h-screen border-r border-gray-100/50">
+            <Add className="flex-1 w-full h-full grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
           </aside>
 
-          {/* Main Content */}
-          <main className="flex-1 w-full max-w-6xl px-4 py-6">{children}</main>
+          {/* 
+              Global Content Container 
+              - Standardized width (max-w-6xl) prevents layout shifting between pages
+              - White background and consistent padding for a premium feel
+          */}
+          <main className="flex-1 w-full max-w-6xl bg-white shadow-sm px-4 py-8 md:px-10 lg:px-12 transition-all duration-500 min-h-screen">
+            {children}
+          </main>
 
-          {/* Right Advertisement Column */}
-          <aside className="hidden xl:flex flex-col w-40 p-4 sticky top-0 h-screen">
-            <Add className="flex-1 w-full h-full" />
+          {/* Right Gutter - Sticky Advertisements */}
+          <aside className="hidden 2xl:flex flex-col w-48 p-4 sticky top-0 h-screen border-l border-gray-100/50">
+            <Add className="flex-1 w-full h-full grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
           </aside>
         </div>
+
+        {/* Global Floating Actions (WhatsApp) */}
+        {/* <div className="fixed bottom-8 right-8 z-50">
+          <a
+            href="https://whatsapp.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group flex items-center justify-center"
+            suppressHydrationWarning
+          >
+            <span className="text-xl group-hover:rotate-12 block" aria-hidden="true">💬</span>
+            <span className="absolute right-0 bottom-full mb-3 bg-white text-gray-800 text-[10px] font-black px-3 py-1.5 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-gray-100 uppercase tracking-widest pointer-events-none">
+              व्हॉट्सॲपला जॉईन करा
+            </span>
+          </a>
+        </div> */}
 
         <Footer />
       </body>

@@ -5,7 +5,8 @@ import CategoryBlock from "@/components/home/CategoryBlock";
 import Sidebar from "@/components/home/Sidebar";
 import LiveNewsWidget from "@/components/home/LiveNewsWidget";
 import WeatherWidget from "@/components/home/WeatherWidget";
-import LayoutWrapper from "@/components/LayoutWrapper";
+
+
 import VideoGallery from "@/components/home/VideoGallery";
 import PhotoGallery from "@/components/home/PhotoGallery";
 
@@ -96,8 +97,8 @@ const trendingItems = [
 
 export default function HomePage() {
   return (
-    <LayoutWrapper>
-      <div className="space-y-12 animate-in fade-in duration-700 pt-4 pb-12">
+    <>
+      <div className="space-y-12 animate-in fade-in duration-700">
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
 
@@ -167,6 +168,6 @@ export default function HomePage() {
         </div>
 
       </div>
-    </LayoutWrapper>
+    </>
   );
 }
