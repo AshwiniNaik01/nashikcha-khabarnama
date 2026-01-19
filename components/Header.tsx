@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import Navbar from "./Navbar";
+import Advertisement from "./news/Advertisement";
 
 export default function Header() {
   const [time, setTime] = useState<Date | null>(null);
@@ -60,33 +61,36 @@ export default function Header() {
       </div>
 
       {/* 2. MAIN HEADER - CLEAN WHITE STYLE */}
-      <div className="relative bg-red-50 border-b border-gray-100 py-4 xs:py-6 sm:py-8">
-        <div className="container mx-auto px-2 xs:px-3 sm:px-4 flex flex-col md:flex-row items-center justify-center gap-3 xs:gap-4 sm:gap-6">
-          {/* Logo Section - Hidden Spacer on desktop */}
-          <div className="w-[100px] xs:w-[110px] md:w-[120px] hidden md:block opacity-0">
+      {/* 2. MAIN HEADER - CLEAN WHITE STYLE */}
+      <div className="relative bg-red-50 border-b border-gray-100 py-2 xs:py-3 sm:py-3">
+        <div className="container mx-auto px-2 xs:px-3 sm:px-4 flex flex-col md:flex-row items-center justify-center gap-2 xs:gap-3 sm:gap-4">
+
+          {/* Left Spacer for Desktop */}
+          <div className="w-[100px] xs:w-[110px] md:w-[120px] hidden lg:block opacity-0">
             spacer
           </div>
 
-          {/* Center Logo + Tagline - Could be added here */}
-          <div className="flex-1 flex items-center justify-center text-center">
-            {/* Add your logo/title here */}
-          </div>
+          {/* Center: Advertisement on large screens, logo on all screens */}
+          <div className="flex-1 flex flex-col items-center justify-center">
+            {/* Logo Section */}
+            <div className="mb-1 lg:mb-2">
+              {/* Add your logo/title here */}
+            </div>
 
-          {/* Right: Advertisement */}
-          <div className="hidden lg:flex w-full max-w-xs xl:max-w-sm">
-            <div className="bg-gray-50 border border-gray-100 h-16 xs:h-18 sm:h-20 w-full flex items-center justify-center text-[8px] xs:text-[9px] sm:text-[10px] text-gray-300 uppercase tracking-tighter font-bold font-sans">
-              - Advertisement -
+            {/* Advertisement: centered on large screens */}
+            <div className="w-full max-w-xs lg:max-w-xl">
+              <Advertisement className="w-full" />
             </div>
           </div>
 
-          {/* Mobile Advertisement - Show on smaller screens */}
-          <div className="lg:hidden w-full max-w-xs">
-            <div className="bg-gray-50 border border-gray-100 h-12 xs:h-14 sm:h-16 w-full flex items-center justify-center text-[7px] xs:text-[8px] sm:text-[9px] text-gray-300 uppercase tracking-tighter font-bold font-sans">
-              - Ad -
-            </div>
+          {/* Right Spacer for Desktop */}
+          <div className="w-[100px] xs:w-[110px] md:w-[120px] hidden lg:block opacity-0">
+            spacer
           </div>
         </div>
       </div>
+
+
     </div>
   );
 }
