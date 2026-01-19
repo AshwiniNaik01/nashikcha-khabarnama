@@ -64,7 +64,6 @@ export default function Header() {
       {/* 2. MAIN HEADER - CLEAN WHITE STYLE */}
       <div className="relative bg-red-50 border-b border-gray-100 py-2 xs:py-3 sm:py-3">
         <div className="container mx-auto px-2 xs:px-3 sm:px-4 flex flex-col md:flex-row items-center justify-center gap-2 xs:gap-3 sm:gap-4">
-
           {/* Left Spacer for Desktop */}
           <div className="w-[100px] xs:w-[110px] md:w-[120px] hidden lg:block opacity-0">
             spacer
@@ -73,9 +72,7 @@ export default function Header() {
           {/* Center: Advertisement on large screens, logo on all screens */}
           <div className="flex-1 flex flex-col items-center justify-center">
             {/* Logo Section */}
-            <div className="mb-1 lg:mb-2">
-              {/* Add your logo/title here */}
-            </div>
+            <div className="mb-1 lg:mb-2">{/* Add your logo/title here */}</div>
 
             {/* Advertisement: centered on large screens */}
             <div className="w-full max-w-xs lg:max-w-xl">
@@ -89,8 +86,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-
-
     </div>
   );
 }

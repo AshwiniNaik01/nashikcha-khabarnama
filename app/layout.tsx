@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
 import BreakingNews from "@/components/home/BreakingNews";
-import Advertisement from "@/components/news/Advertisement";
+import Add from "@/components/home/Add";
 
 /* ----------------------------------------
    Fonts
@@ -61,7 +61,7 @@ export default function RootLayout({
         <div className="flex-1 relative flex justify-center">
           {/* Left Advertisement Column */}
           <aside className="hidden xl:flex flex-col w-40 p-4 sticky top-0 h-screen">
-            <Advertisement className="flex-1 w-full h-full" />
+            <Add className="flex-1 w-full h-full" />
           </aside>
 
           {/* Main Content */}
@@ -69,7 +69,7 @@ export default function RootLayout({
 
           {/* Right Advertisement Column */}
           <aside className="hidden xl:flex flex-col w-40 p-4 sticky top-0 h-screen">
-            <Advertisement className="flex-1 w-full h-full" />
+            <Add className="flex-1 w-full h-full" />
           </aside>
         </div>
 
