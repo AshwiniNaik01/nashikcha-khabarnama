@@ -48,7 +48,7 @@ export default function LatestNews({ news }: { news: LatestNewsItem[] }) {
       </div>
 
       {/* View More Button */}
-      <button className="w-full mt-2 py-2 text-xs font-bold text-gray-500 hover:text-red-600 border border-gray-200 rounded-sm bg-white transition-colors">
+      <button suppressHydrationWarning className="w-full mt-2 py-2 text-xs font-bold text-gray-500 hover:text-red-600 border border-gray-200 rounded-sm bg-white transition-colors">
         आणखी बातम्या पाहा
       </button>
     </div>

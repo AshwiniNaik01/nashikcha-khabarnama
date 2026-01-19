@@ -100,7 +100,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setSearchOpen((prev) => !prev)}
-                className="px-4 md:px-5 h-full text-gray-800 hover:bg-lokmat-red hover:text-white transition-all border-l border-gray-50"
+                className="px-4 md:px-5 h-full text-gray-800 hover:bg-lokmat-red hover:text-lokmat-maroon transition-all border-l border-gray-50"
                 aria-label="Search"
                 suppressHydrationWarning
               >
@@ -116,7 +116,7 @@ export default function Navbar() {
                     placeholder="बातमी शोधा..."
                     className="flex-1 px-3 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm focus:outline-none focus:border-lokmat-red text-gray-800"
                   />
-                  <button className="bg-lokmat-red text-white px-3 py-2 rounded-md text-sm font-bold">
+                  <button suppressHydrationWarning className="bg-lokmat-red text-lokmat-maroon px-3 py-2 rounded-md text-sm font-bold">
                     शोधा
                   </button>
                 </div>
@@ -124,6 +124,15 @@ export default function Navbar() {
             </div>
           </div>
 
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden px-4 h-full text-gray-800 hover:bg-lokmat-red hover:text-lokmat-maroon transition-all border-l border-gray-50"
+            suppressHydrationWarning
+            aria-label="Toggle Menu"
+          >
+            {isOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+          </button>
         </div>
       </div>
 
@@ -143,6 +152,7 @@ export default function Navbar() {
                   <>
                     <button
                       onClick={() => setIsAdhikOpen(!isAdhikOpen)}
+                      suppressHydrationWarning
                       className={`flex justify-between items-center py-3 px-4 font-bold uppercase text-xl tracking-wider rounded-md transition-all ${isAdhikOpen ? "bg-lokmat-red text-white" : "text-gray-100"
                         }`}
                     >

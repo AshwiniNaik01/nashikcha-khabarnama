@@ -28,7 +28,7 @@ export default function ShortsCard({
               नाशिकचा खबरनामा
             </span>
             <span className="text-2xl italic font-light font-sans tracking-tighter">
-              Shorts
+              Videos
             </span>
           </div>
 
@@ -68,8 +68,8 @@ export default function ShortsCard({
           </p>
 
           {/* Footer Button */}
-          <button className="w-full border-t border-gray-200 pt-5 text-red-600 font-bold text-lg flex items-center justify-center gap-1 hover:underline group transition-all">
-            सर्व शॉर्ट्स पाहा
+          <button suppressHydrationWarning className="w-full border-t border-gray-200 pt-5 text-red-600 font-bold text-lg flex items-center justify-center gap-1 hover:underline group transition-all">
+            सर्व व्हिडिओज पाहा
             <ChevronRight
               size={22}
               className="stroke-[3px] group-hover:translate-x-1 transition-transform"

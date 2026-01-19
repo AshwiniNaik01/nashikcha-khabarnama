@@ -18,9 +18,8 @@ function FlightDescription() {
       {/* Description Area */}
       <div className="relative">
         <div
-          className={`text-gray-800 text-base md:text-lg leading-relaxed transition-all duration-500 ${
-            !showMore ? "line-clamp-2" : ""
-          }`}
+          className={`text-gray-800 text-base md:text-lg leading-relaxed transition-all duration-500 ${!showMore ? "line-clamp-2" : ""
+            }`}
         >
           <span className="font-bold text-red-600 italic">थोडक्यात:</span>{" "}
           <span className="font-medium">{shortDesc}</span>
@@ -45,6 +44,7 @@ function FlightDescription() {
       {/* Modern Action Button */}
       <button
         onClick={() => setShowMore(!showMore)}
+        suppressHydrationWarning
         className="mt-6 flex items-center gap-3 group transition-all"
       >
         <div className="bg-red-600 text-white px-6 py-2 rounded-full text-sm font-bold uppercase tracking-widest group-hover:bg-black transition-all duration-300 shadow-lg transform group-active:scale-95">

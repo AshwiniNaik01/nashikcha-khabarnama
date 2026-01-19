@@ -124,6 +124,7 @@ export default function GridNewsScroller() {
           <div className="flex gap-2">
             <button
               onClick={() => scroll("left")}
+              suppressHydrationWarning
               className="p-2.5 rounded-full border border-gray-200 hover:bg-black hover:text-white transition-all duration-300 disabled:opacity-30 shadow-sm"
               disabled={activeIndex === 0}
             >
@@ -131,6 +132,7 @@ export default function GridNewsScroller() {
             </button>
             <button
               onClick={() => scroll("right")}
+              suppressHydrationWarning
               className="p-2.5 rounded-full border border-gray-200 hover:bg-black hover:text-white transition-all duration-300 disabled:opacity-30 shadow-sm"
               disabled={activeIndex === chunkedSlides.length - 1}
             >
@@ -182,11 +184,11 @@ export default function GridNewsScroller() {
           {chunkedSlides.map((_, i) => (
             <button
               key={i}
-              className={`transition-all duration-500 rounded-full ${
-                activeIndex === i
+              suppressHydrationWarning
+              className={`transition-all duration-500 rounded-full ${activeIndex === i
                   ? "w-10 h-2 bg-red-600"
                   : "w-2 h-2 bg-gray-300 hover:bg-gray-400"
-              }`}
+                }`}
               onClick={() => {
                 const scrollAmount = i * (scrollRef.current?.clientWidth || 0);
                 scrollRef.current?.scrollTo({
