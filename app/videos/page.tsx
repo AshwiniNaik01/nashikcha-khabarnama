@@ -99,7 +99,6 @@ const VideosPage = () => {
 
   return (
     <div className="space-y-12 animate-in fade-in duration-700">
-      {/* Hero Section - Responsive Grid */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 mb-12 md:mb-20">
         <div className="lg:col-span-8 group relative cursor-pointer overflow-hidden bg-zinc-900 shadow-2xl rounded-2xl">
           <div className="relative aspect-video">
@@ -170,10 +169,11 @@ const VideosPage = () => {
                 key={item}
                 onClick={() => setSelectedCategory(item)}
                 suppressHydrationWarning
-                className={`text-[11px] md:text-sm font-bold uppercase tracking-widest transition-colors shrink-0 ${selectedCategory === item
-                  ? "text-red-600"
-                  : "text-zinc-500 dark:text-zinc-400 hover:text-red-600"
-                  }`}
+                className={`text-[11px] md:text-sm font-bold uppercase tracking-widest transition-colors shrink-0 ${
+                  selectedCategory === item
+                    ? "text-red-600"
+                    : "text-zinc-500 dark:text-zinc-400 hover:text-red-600"
+                }`}
               >
                 {item}
               </button>
@@ -187,9 +187,7 @@ const VideosPage = () => {
         <div className="flex items-center gap-3 md:gap-4 mb-8 md:mb-10">
           <div className="h-6 md:h-8 w-1.5 bg-red-600 rounded-full"></div>
           <h2 className="text-2xl md:text-3xl font-black text-zinc-900 dark:text-zinc-50 tracking-tighter">
-            {selectedCategory === "सर्व"
-              ? "ताज्या घडामोडी"
-              : selectedCategory}
+            {selectedCategory === "सर्व" ? "ताज्या घडामोडी" : selectedCategory}
           </h2>
         </div>
 
@@ -340,8 +338,6 @@ const VideosPage = () => {
         </div>
       </section>
 
-
-
       <style jsx global>{`
         .no-scrollbar::-webkit-scrollbar {
           display: none;
@@ -351,7 +347,7 @@ const VideosPage = () => {
           scrollbar-width: none;
         }
       `}</style>
-    </div >
+    </div>
   );
 };
 
