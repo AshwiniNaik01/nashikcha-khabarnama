@@ -22,7 +22,7 @@ export default function ArticleCard({
 }: ArticleCardProps) {
   return (
     <article
-      className={`group relative overflow-hidden bg-white text-black transition-all duration-500 flex flex-col h-full
+      className={`group relative overflow-hidden bg-white text-black transition-all duration-500 px-3 flex flex-col h-full
       ${
         featured
           ? "lg:grid lg:grid-cols-12 gap-6 lg:gap-10 border-b-4 border-red-600 pb-8 lg:pb-12 mb-8 lg:mb-12"
@@ -50,7 +50,7 @@ export default function ArticleCard({
         </Link>
         {category && (
           <div className="absolute top-0 left-0 z-10">
-            <span className="bg-[#E1261C] text-white px-2.5 py-1 text-[9px] sm:text-[10px] font-black uppercase tracking-tighter">
+            <span className="bg-[#E1261C] text-white px-2.3 py-1 text-[9px] sm:text-[10px] font-black uppercase tracking-tighter">
               {category}
             </span>
           </div>
@@ -131,7 +131,7 @@ export default function ArticleCard({
         <div className="mt-auto pt-4 border-t border-zinc-100 flex justify-center">
           <Link
             href={`/news/${slug}`}
-            className="group/link inline-flex items-center gap-3 text-[11px] sm:text-xs font-black text-zinc-900 uppercase tracking-tighter"
+            className="group/link inline-flex items-center gap-3  text-md font-black text-zinc-900 uppercase tracking-tighter"
           >
             <span className="relative py-1">
               सविस्तर वाचा
