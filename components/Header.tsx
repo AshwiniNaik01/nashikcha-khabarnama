@@ -19,7 +19,7 @@ export default function Header() {
     <div className="w-full font-marathi">
       {/* 1. TOP BAR - NEW Lokmat RED STYLE */}
       <div className="bg-gradient-to-r from-lokmat-red to-lokmat-maroon text-white text-[9px] xs:text-[10px] sm:text-xs md:text-sm">
-        <div className="container mx-auto flex justify-between items-center px-2 xs:px-3 sm:px-4 py-2 sm:py-3">
+        <div className="parity-container flex justify-between items-center py-2 sm:py-3 font-bold">
           {/* Left: Language + Time */}
           <div className="flex gap-2 xs:gap-3 sm:gap-4 items-center font-bold whitespace-nowrap overflow-hidden">
             <span className="cursor-pointer hover:underline text-white text-[9px] xs:text-[10px] sm:text-xs">
@@ -63,7 +63,7 @@ export default function Header() {
       {/* 2. MAIN HEADER - CLEAN WHITE STYLE */}
       {/* 2. MAIN HEADER - CLEAN WHITE STYLE */}
       <div className="relative bg-red-50 border-b border-gray-100 py-2 xs:py-3 sm:py-3">
-        <div className="container mx-auto px-2 xs:px-3 sm:px-4 flex flex-col md:flex-row items-center justify-center gap-2 xs:gap-3 sm:gap-4">
+        <div className="parity-container flex flex-col md:flex-row items-center justify-center gap-2 xs:gap-3 sm:gap-4">
           {/* Left Spacer for Desktop */}
           <div className="w-[100px] xs:w-[110px] md:w-[120px] hidden lg:block opacity-0">
             spacer

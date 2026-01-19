@@ -130,25 +130,23 @@ const PhotoGalleryPage = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen pb-20">
+    <div className="pb-20">
       {/* Header Section */}
-      <div className="bg-white border-b border-gray-200 pt-8 pb-8 mb-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center text-center max-w-2xl mx-auto space-y-4">
-            <div className="w-16 h-16 bg-lokmat-red/10 rounded-full flex items-center justify-center text-lokmat-red mb-2">
-              <Camera size={32} />
-            </div>
-            <h1 className="text-2xl lg:text-3xl font-black text-gray-900 leading-tight">
-              खबरनामा <span className="text-lokmat-red">फोटो गॅलरी</span>
-            </h1>
-            <p className="text-gray-500 font-medium">
-              नाशिक आणि परिसरातील महत्त्वाच्या घडामोडींचे, निसर्गाचे आणि संस्कृतीचे बोलके क्षणचित्रे..
-            </p>
+      <div className="bg-white border-b border-gray-100 py-8 mb-8">
+        <div className="flex flex-col items-center text-center max-w-2xl mx-auto space-y-4">
+          <div className="w-16 h-16 bg-lokmat-red/10 rounded-full flex items-center justify-center text-lokmat-red mb-2">
+            <Camera size={32} />
           </div>
+          <h1 className="text-2xl lg:text-3xl font-black text-gray-900 leading-tight">
+            खबरनामा <span className="text-lokmat-red">फोटो गॅलरी</span>
+          </h1>
+          <p className="text-gray-500 font-medium">
+            नाशिक आणि परिसरातील महत्त्वाच्या घडामोडींचे, निसर्गाचे आणि संस्कृतीचे बोलके क्षणचित्रे..
+          </p>
         </div>
       </div>
 
-      <div className="container mx-auto px-4">
+      <div>
         {/* Filter */}
         <div className="flex justify-center mb-8">
           <CategoryFilter

@@ -109,8 +109,8 @@ export default function LoksattaUnifiedUI() {
   ];
 
   return (
-    <div className="bg-white text-black min-h-screen font-serif">
-      <div className="max-w-7xl mx-auto px-4 py-6">
+    <div className="space-y-10">
+      <div className="py-2">
         <div className="group mb-8">
           <div className="flex items-center gap-4 mb-3">
             <span className="bg-gray-900 text-white px-3 py-1 text-sm font-bold uppercase tracking-widest">

@@ -47,7 +47,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white sticky top-0 z-50 shadow-md border-b-2 md:border-b-4 border-lokmat-maroon">
-      <div className="container mx-auto px-4">
+      <div className="parity-container">
         <div className="flex justify-between items-center h-14 md:h-16">
           {/* Logo Section - Responsive Sizing */}
           <Link href="/" className="flex items-center py-2 shrink-0">
@@ -68,8 +68,8 @@ export default function Navbar() {
                   <Link
                     href={item.href}
                     className={`px-3 xl:px-4 h-full flex items-center gap-1 transition-all duration-300 border-r border-gray-50 whitespace-nowrap ${active
-                        ? "bg-lokmat-maroon text-white"
-                        : "text-gray-800 hover:bg-lokmat-red hover:text-white"
+                      ? "bg-lokmat-maroon text-white"
+                      : "text-gray-800 hover:bg-lokmat-red hover:text-white"
                       }`}
                   >
                     {item.label}

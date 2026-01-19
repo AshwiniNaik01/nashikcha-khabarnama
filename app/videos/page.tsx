@@ -6,14 +6,17 @@ import {
   Calendar,
   Share2,
   ChevronRight,
-  Tv,
   Flame,
   Clock,
 } from "lucide-react";
 
+/**
+ * Videos Page
+ * - Optimized for "Display RatioParity" across Acer and Lenovo laptops.
+ * - Uses fluid container widths to maintain visual structure.
+ */
 const VideosPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("सर्व");
-  const [activeVideo, setActiveVideo] = useState(null);
 
   const videoData = [
     {
@@ -132,7 +135,6 @@ const VideosPage = () => {
           </div>
         </div>
 
-        {/* Ad Section - Responsive Adjustment */}
         <div className="lg:col-span-4 flex flex-col gap-6">
           <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-4">
             <h3 className="text-sm font-black uppercase tracking-widest text-red-600 italic">
@@ -143,27 +145,24 @@ const VideosPage = () => {
               className="text-zinc-400 cursor-pointer hover:text-red-600 transition-colors"
             />
           </div>
-          <div className="bg-zinc-100 dark:bg-zinc-900 aspect-video lg:aspect-square flex flex-col items-center justify-center border-2 border-dashed border-zinc-200 dark:border-zinc-800 p-6 group cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all rounded-xl">
+          <div className="bg-zinc-100 dark:bg-zinc-900 aspect-video lg:aspect-square flex flex-col items-center justify-center border-2 border-dashed border-zinc-200 dark:border-zinc-800 p-6 group cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all rounded-xl text-center">
             <p className="text-zinc-400 text-[10px] font-black tracking-[0.3em] uppercase mb-4">
               Advertisement
             </p>
-            <span className="text-zinc-400 italic text-center font-medium group-hover:text-zinc-600">
+            <span className="text-zinc-400 italic font-medium group-hover:text-zinc-600">
               नाशिक एक्सप्रेस <br /> विशेष जाहिरात जागा
             </span>
           </div>
         </div>
       </section>
 
-      {/* Sticky Nav - Responsive Scroll */}
-      <nav className="sticky top-4 z-50 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-xl md:rounded-2xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-lg mb-12 md:mb-16 overflow-hidden">
-        <div className="px-4 md:px-6 flex items-center h-14 md:h-16 gap-4 md:gap-8">
-          <Link
-            href="/videos"
-            className="text-red-600 font-black text-xl md:text-2xl tracking-tighter shrink-0 italic border-r pr-4 md:pr-6 border-zinc-200 dark:border-zinc-800"
-          >
+      {/* Navigation */}
+      <nav className="sticky top-4 z-50 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-xl md:rounded-2xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-lg overflow-hidden">
+        <div className="px-4 md:px-6 flex items-center h-14 md:h-16 gap-4 md:gap-8 overflow-x-auto no-scrollbar">
+          <span className="text-red-600 font-black text-xl md:text-2xl tracking-tighter italic border-r pr-4 md:pr-6 border-zinc-200 dark:border-zinc-800 shrink-0">
             व्हिडिओ
-          </Link>
-          <div className="flex gap-6 md:gap-8 overflow-x-auto no-scrollbar py-2">
+          </span>
+          <div className="flex gap-6 md:gap-8 py-2">
             {categories.map((item) => (
               <button
                 key={item}
@@ -182,11 +181,11 @@ const VideosPage = () => {
         </div>
       </nav>
 
-      {/* Dynamic Section */}
-      <section>
-        <div className="flex items-center gap-3 md:gap-4 mb-8 md:mb-10">
+      <section className="space-y-8">
+        <div className="flex items-center gap-3 md:gap-4">
           <div className="h-6 md:h-8 w-1.5 bg-red-600 rounded-full"></div>
           <h2 className="text-2xl md:text-3xl font-black text-zinc-900 dark:text-zinc-50 tracking-tighter">
+            {selectedCategory === "सर्व" ? "ताज्या घडामोडी" : selectedCategory}
             {selectedCategory === "सर्व" ? "ताज्या घडामोडी" : selectedCategory}
           </h2>
         </div>
@@ -204,30 +203,22 @@ const VideosPage = () => {
                   alt={post.title}
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white transform scale-75 group-hover:scale-100 transition-transform">
-                    <Play fill="white" size={20} className="ml-0.5" />
-                  </div>
-                </div>
-                <div className="absolute bottom-2 right-2 bg-black/70 text-white text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1">
-                  <Clock size={10} /> {post.duration}
-                </div>
-                <div className="absolute top-2 left-2 bg-red-600 text-white text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-tighter">
-                  {post.category}
+                  <Play fill="white" size={40} />
                 </div>
               </div>
               <div className="p-4 md:p-5 flex flex-col flex-grow">
-                <h3 className="font-bold text-base md:text-lg text-zinc-900 dark:text-zinc-100 leading-snug mb-4 line-clamp-2 hover:text-red-600 transition-colors cursor-pointer">
+                <h3 className="font-bold text-base md:text-lg text-zinc-900 dark:text-zinc-100 leading-snug mb-4 line-clamp-2">
                   {post.title}
                 </h3>
-                <div className="mt-auto flex items-center justify-between pt-4 border-t border-zinc-50 dark:border-zinc-800">
+                <div className="mt-auto flex items-center justify-between pt-4 border-t border-zinc-50">
                   <span className="text-zinc-400 text-[10px] md:text-[11px] font-bold flex items-center gap-1">
                     <Calendar size={12} /> {post.date}
                   </span>
                   <button
                     suppressHydrationWarning
-                    className="text-red-600 text-xs font-black flex items-center gap-1 group-hover:gap-2 transition-all uppercase"
+                    className="text-red-600 text-xs font-black uppercase"
                   >
-                    आता पहा <ChevronRight size={14} />
+                    पहा
                   </button>
                 </div>
               </div>

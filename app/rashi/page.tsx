@@ -7,11 +7,10 @@ export const metadata = {
 };
 const RashiPage = () => {
     return (
-        <main className="min-h-screen text-gray-900 overflow-hidden relative font-sans bg-[#faf9f6]">
-
+        <div className="text-gray-900 relative">
             {/* Zodiac Background Image */}
             <div
-                className="absolute inset-0 bg-center bg-no-repeat bg-contain opacity-[0.1] z-5"
+                className="absolute inset-0 bg-center bg-no-repeat bg-contain opacity-[0.05] -z-1"
                 style={{
                     backgroundImage:
                         "url('https://img.freepik.com/premium-psd/circle-golden-zodiac-signs-capricorn_684888-663.jpg?ga=GA1.1.1339275905.1751605421&w=740&q=80')",
@@ -19,15 +18,7 @@ const RashiPage = () => {
                 }}
             />
 
-
-            {/* Soft Gradient Overlay */}
-            {/* <div className="absolute inset-0 bg-gradient-to-b from-white via-[#fffaf0] to-[#f7f4ef] -z-10" /> */}
-
-            {/* Ambient Golden Glows */}
-            {/* <div className="absolute top-0 left-1/4 w-96 h-96 bg-yellow-300/20 rounded-full blur-[140px] -z-10" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-300/20 rounded-full blur-[140px] -z-10" /> */}
-
-            <div className="container mx-auto px-4 py-2 md:py-6 relative z-10">
+            <div className="py-2 md:py-6 relative z-10">
 
                 {/* Hero Section */}
                 <div className="text-center mb-6 relative">
@@ -65,7 +56,7 @@ const RashiPage = () => {
                     </p>
                 </div>
             </div>
-        </main>
+        </div>
     );
 };
 
