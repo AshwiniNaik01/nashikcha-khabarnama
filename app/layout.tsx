@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import './globals.css';
 import BreakingNews from '@/components/home/BreakingNews';
+import Advertisement from '@/components/news/Advertisement';
 
 /* ----------------------------------------
    Fonts
@@ -48,9 +49,22 @@ export default function RootLayout({
           "बाजार समितीत द्राक्षांची आवक वाढली, भाव स्थिर"
         ]} />
 
-        <main className="flex-1 container mx-auto px-4 py-6 max-w-6xl">
-          {children}
-        </main>
+        <div className="flex-1 relative flex justify-center">
+          {/* Left Advertisement Column */}
+          <aside className="hidden xl:flex flex-col w-40 p-4 sticky top-0 h-screen">
+            <Advertisement className="flex-1 w-full h-full" />
+          </aside>
+
+          {/* Main Content */}
+          <main className="flex-1 w-full max-w-6xl px-4 py-6">
+            {children}
+          </main>
+
+          {/* Right Advertisement Column */}
+          <aside className="hidden xl:flex flex-col w-40 p-4 sticky top-0 h-screen">
+            <Advertisement className="flex-1 w-full h-full" />
+          </aside>
+        </div>
 
         <Footer />
       </body>
