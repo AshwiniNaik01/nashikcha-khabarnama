@@ -7,7 +7,7 @@ export default function Advertisement({ className }: { className?: string }) {
         <p className="text-center text-xs text-gray-500 mb-1">ADVERTISEMENT</p>
         <img
           src="https://dummyimage.com/300x250/0aa/fff&text=Advertisement"
-          className="w-full h-50 object-cover"
+          className="w-full h-30 object-cover"
         />
       </div>
     </div>
