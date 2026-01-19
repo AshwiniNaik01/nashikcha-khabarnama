@@ -46,8 +46,8 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white sticky top-0 z-50 shadow-md border-b-2 md:border-b-4 border-lokmat-maroon">
-      <div className="parity-container">
+    <nav className="bg-white sticky top-0 z-50 shadow-md border-b-2 md:border-b-4 border-lokmat-maroon flex justify-between items-center h-14 md:h-16 px-4">
+      <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-14 md:h-16">
           {/* Logo Section - Responsive Sizing */}
           <Link href="/" className="flex items-center py-2 shrink-0">
@@ -106,7 +106,6 @@ export default function Navbar() {
                 onClick={() => setSearchOpen(!searchOpen)}
                 className="px-4 md:px-5 h-full text-gray-800 hover:bg-lokmat-red hover:text-white transition-all border-l border-gray-50"
                 aria-label="Search"
-                suppressHydrationWarning
               >
                 <FaSearch size={16} />
               </button>
