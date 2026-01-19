@@ -343,6 +343,7 @@ const PhotoCard: React.FC<PhotoCardProps> = ({
                     <button
                         type="button"
                         onClick={handleLike}
+                        suppressHydrationWarning
                         className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-3 text-[10px] font-black uppercase tracking-wider rounded-xl transition-all duration-300 ${isLiked
                             ? "bg-white text-lokmat-red shadow-lg active:scale-95"
                             : "bg-white/10 text-white backdrop-blur-md border border-white/20 hover:bg-white/20"
@@ -356,6 +357,7 @@ const PhotoCard: React.FC<PhotoCardProps> = ({
                     <button
                         type="button"
                         onClick={handleShare}
+                        suppressHydrationWarning
                         className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 text-[10px] font-black uppercase tracking-wider bg-lokmat-red text-white rounded-xl hover:bg-lokmat-maroon shadow-lg transition-all active:scale-95 border border-lokmat-red/10"
                     >
                         <Share2 size={14} />
@@ -366,6 +368,7 @@ const PhotoCard: React.FC<PhotoCardProps> = ({
                     <button
                         type="button"
                         onClick={handleHome}
+                        suppressHydrationWarning
                         className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 text-[10px] font-black uppercase tracking-wider bg-white/10 text-white backdrop-blur-md border border-white/20 rounded-xl hover:bg-white hover:text-black transition-all active:scale-95"
                     >
                         <Home size={14} />

@@ -67,11 +67,10 @@ export default function Navbar() {
                 >
                   <Link
                     href={item.href}
-                    className={`px-3 xl:px-4 h-full flex items-center gap-1 transition-all duration-300 border-r border-gray-50 whitespace-nowrap ${
-                      active
+                    className={`px-3 xl:px-4 h-full flex items-center gap-1 transition-all duration-300 border-r border-gray-50 whitespace-nowrap ${active
                         ? "bg-lokmat-maroon text-white"
                         : "text-gray-800 hover:bg-lokmat-red hover:text-white"
-                    }`}
+                      }`}
                   >
                     {item.label}
                     {item.subItems && (
@@ -107,6 +106,7 @@ export default function Navbar() {
                 onClick={() => setSearchOpen(!searchOpen)}
                 className="px-4 md:px-5 h-full text-gray-800 hover:bg-lokmat-red hover:text-white transition-all border-l border-gray-50"
                 aria-label="Search"
+                suppressHydrationWarning
               >
                 <FaSearch size={16} />
               </button>
@@ -142,9 +142,8 @@ export default function Navbar() {
 
       {/* Mobile Sidebar Menu - Better Scrolling and Visuals */}
       <div
-        className={`lg:hidden overflow-y-auto transition-all duration-300 ease-in-out bg-lokmat-maroon ${
-          isOpen ? "max-h-[85vh] opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`lg:hidden overflow-y-auto transition-all duration-300 ease-in-out bg-lokmat-maroon ${isOpen ? "max-h-[85vh] opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <ul className="container mx-auto px-4 py-6 flex flex-col gap-1">
           {navItems.map((item) => {
@@ -156,9 +155,8 @@ export default function Navbar() {
               >
                 <Link
                   href={item.href}
-                  className={`py-3 px-4 font-bold uppercase text-xl tracking-wider rounded-md transition-all ${
-                    active ? "bg-lokmat-red text-white" : "text-gray-100"
-                  }`}
+                  className={`py-3 px-4 font-bold uppercase text-xl tracking-wider rounded-md transition-all ${active ? "bg-lokmat-red text-white" : "text-gray-100"
+                    }`}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}

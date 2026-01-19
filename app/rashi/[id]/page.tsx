@@ -58,6 +58,7 @@ export default function RashiDetailPage({ params }: PageProps) {
                     <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                         <button
                             onClick={() => router.back()}
+                            suppressHydrationWarning
                             className="flex items-center gap-2 text-gray-800 font-bold hover:text-red-600 transition-colors"
                         >
                             <ArrowLeft size={20} />
@@ -67,13 +68,16 @@ export default function RashiDetailPage({ params }: PageProps) {
                             <span className="text-2xl">{rashi.icon}</span>
                             <h1 className="text-xl font-black text-gray-900 font-serif">{rashi.name} - संपूर्ण भविष्य</h1>
                         </div>
-                        <button className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
+                        <button
+                            suppressHydrationWarning
+                            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                        >
                             <Share2 size={20} />
                         </button>
                     </div>
                 </div>
 
-                <main className="container mx-auto px-4 py-8 lg:py-12">
+                <div className="container mx-auto px-4 py-8 lg:py-12">
                     <div className="max-w-5xl mx-auto space-y-12">
 
                         {/* Hero Section */}
@@ -197,7 +201,7 @@ export default function RashiDetailPage({ params }: PageProps) {
                         </div> */}
 
                     </div>
-                </main>
+                </div>
 
                 {/* Footer info */}
                 {/* <footer className="py-12 text-center text-gray-400 text-sm border-t border-gray-100 container mx-auto px-4">

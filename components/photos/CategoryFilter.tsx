@@ -50,6 +50,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({ categories, activeCateg
                 <button
                     key={category}
                     onClick={() => onSelect(category)}
+                    suppressHydrationWarning
                     className={`relative px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 group ${activeCategory === category
                         ? 'text-white shadow-lg scale-105'
                         : 'text-gray-700  border border-gray-300 hover:border-transparent'

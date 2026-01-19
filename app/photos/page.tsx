@@ -1,4 +1,3 @@
-import LayoutWrapper from '@/components/LayoutWrapper';
 import PhotoGalleryPage from '@/components/photos/PhotoGalleryPage';
 
 
@@ -9,8 +8,6 @@ export const metadata = {
 
 export default function PhotosPage() {
   return (
-    <LayoutWrapper>
-      <PhotoGalleryPage />
-    </LayoutWrapper>
+    <PhotoGalleryPage />
   );
 }
