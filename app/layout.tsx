@@ -59,15 +59,15 @@ export default function RootLayout({
         />
 
         <div className="site-layout-wrapper">
-          {/* Left Gutter - Sticky Advertisements (Only on Very Wide Screens) */}
-          <aside className="hidden min-[1600px]:flex flex-col w-44 p-4 sticky top-0 h-screen border-r border-gray-100/50">
+          {/* Left Gutter - Sticky Advertisements (Now active on most laptops) */}
+          <aside className="hidden xl:flex flex-col w-24 p-2 sticky top-0 h-screen border-r border-gray-100/50">
             <Add className="flex-1 w-full h-full grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-[1.2s]" />
           </aside>
 
           {/* 
               Global Content Container 
-              - Uses the Universal Display Parity Engine (.site-main-content)
-              - Ensures consistent width and spacing regardless of laptop display scaling
+              - Optimized for "5-6xl" width
+              - Centered between two advertisement sidebars
           */}
           <main className="site-main-content">
             <div className="parity-container">
@@ -75,8 +75,8 @@ export default function RootLayout({
             </div>
           </main>
 
-          {/* Right Gutter - Sticky Advertisements (Only on Very Wide Screens) */}
-          <aside className="hidden min-[1600px]:flex flex-col w-44 p-4 sticky top-0 h-screen border-l border-gray-100/50">
+          {/* Right Gutter - Sticky Advertisements (Now active on most laptops) */}
+          <aside className="hidden xl:flex flex-col w-24 p-2 sticky top-0 h-screen border-l border-gray-100/50">
             <Add className="flex-1 w-full h-full grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-[1.2s]" />
           </aside>
         </div>
