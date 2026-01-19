@@ -76,7 +76,7 @@ export default function RootLayout({
           </main>
 
           {/* Right Gutter - Sticky Advertisements (Now active on most laptops) */}
-          <aside className="hidden xl:flex flex-col w-24 p-2 sticky top-0 h-screen border-l border-gray-100/50">
+          <aside className="hidden xl:flex flex-col w-24 p-4 sticky top-0 h-screen border-l border-gray-100/50">
             <Add className="flex-1 w-full h-full grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-[1.2s]" />
           </aside>
         </div>

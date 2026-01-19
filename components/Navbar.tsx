@@ -46,7 +46,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white sticky top-0 z-50 shadow-md border-b-2 md:border-b-4 border-lokmat-maroon flex justify-between items-center h-14 md:h-16 px-4">
+    <nav className="bg-white sticky top-0 z-[60] shadow-md border-b-2 md:border-b-4 border-lokmat-maroon flex justify-between items-center h-14 md:h-16 px-4">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-14 md:h-16">
           {/* Logo Section - Responsive Sizing */}
@@ -106,6 +106,7 @@ export default function Navbar() {
                 onClick={() => setSearchOpen(!searchOpen)}
                 className="px-4 md:px-5 h-full text-gray-800 hover:bg-lokmat-red hover:text-white transition-all border-l border-gray-50"
                 aria-label="Search"
+                suppressHydrationWarning
               >
                 <FaSearch size={16} />
               </button>
@@ -120,7 +121,7 @@ export default function Navbar() {
                       className="flex-1 px-3 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm focus:outline-none focus:border-lokmat-red"
                       autoFocus
                     />
-                    <button className="bg-lokmat-red text-white px-3 py-2 rounded-md text-sm font-bold">
+                    <button className="bg-lokmat-red text-white px-3 py-2 rounded-md text-sm font-bold" suppressHydrationWarning>
                       शोधा
                     </button>
                   </div>
@@ -132,6 +133,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden px-4 h-full text-gray-800 hover:bg-lokmat-red hover:text-white transition-all border-l border-gray-50"
+              suppressHydrationWarning
             >
               {isOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
             </button>
