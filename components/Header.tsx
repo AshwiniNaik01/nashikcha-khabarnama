@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import Navbar from "./Navbar";
+import Advertisement from "./news/Advertisement";
 
 export default function Header() {
   const [time, setTime] = useState<Date | null>(null);
@@ -15,64 +16,73 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="w-full">
-      {/* 1. TOP BAR */}
-      <div className="bg-[var(--color-bg-primary)] text-sm border-b border-[var(--color-border)]">
-        <div className="container mx-auto flex justify-between items-center px-4 py-2">
+    <div className="w-full font-marathi relative z-[60]">
+      {/* 1. TOP BAR - NEW Lokmat RED STYLE */}
+      <div className="bg-gradient-to-r from-lokmat-red to-lokmat-maroon text-white z-50 text-[9px] xs:text-[10px] sm:text-xs md:text-sm">
+        <div className="parity-container flex justify-between items-center py-2 sm:py-3 font-bold">
           {/* Left: Language + Time */}
-          <div className="flex gap-4 items-center text-white">
-            <span className="cursor-pointer hover:text-primary-soft">
+          <div className="flex gap-2 xs:gap-3 sm:gap-4 items-center font-bold whitespace-nowrap overflow-hidden">
+            <span className="cursor-pointer hover:underline text-white text-[9px] xs:text-[10px] sm:text-xs">
               मराठी
             </span>
-            {time && <span>{time.toLocaleTimeString()}</span>}
+            {time && (
+              <span className="hidden xs:inline-block border-l border-white/20 pl-2 xs:pl-3 text-[8px] xs:text-[9px] sm:text-[10px]">
+                {time.toLocaleTimeString()}
+              </span>
+            )}
+            {time && (
+              <span className="hidden sm:inline-block border-l border-white/20 pl-2 xs:pl-3 sm:pl-4 uppercase text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs">
+                {time.toDateString()}
+              </span>
+            )}
           </div>
 
-          {/* Right: Date + Social Icons */}
-          <div className="flex gap-3 items-center text-white">
-            {time && <span>{time.toDateString()}</span>}
-
+          {/* Right: Social Icons */}
+          <div className="flex gap-2 xs:gap-3 items-center flex-shrink-0">
             <a
               href="https://www.facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 rounded-full bg-white text-primary hover:opacity-80 transition-opacity"
+              className="flex items-center justify-center w-4 xs:w-5 h-4 xs:h-5 rounded-sm bg-white text-lokmat-red hover:bg-gray-100 transition-all hover:scale-110 shadow-sm"
             >
-              <FaFacebookF className="text-xs" />
+              <FaFacebookF className="text-[8px] xs:text-[10px]" />
             </a>
 
             <a
               href="https://www.linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-6 h-6 rounded-full bg-white text-[var(--color-primary)] hover:opacity-80 transition-opacity"
+              className="flex items-center justify-center w-4 xs:w-5 h-4 xs:h-5 rounded-sm bg-white text-[#0077B5] hover:bg-gray-100 transition-all hover:scale-110 shadow-sm"
             >
-              <FaLinkedinIn className="text-xs" />
+              <FaLinkedinIn className="text-[8px] xs:text-[10px]" />
             </a>
           </div>
         </div>
       </div>
 
-      {/* 2. MAIN HEADER */}
-      <div className="relative bg-sky-100 border-b border-[var(--color-border)] py-4">
-        <div className="container mx-auto px-4 flex justify-between items-center relative">
-          {/* Left placeholder */}
-          <div className="w-1/3"></div>
-
-          {/* Logo + Motivating Text */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-            <Link href="/">
-              <img src="/logo.png" alt="Newsup Logo" className="h-12" />
-            </Link>
-            <p className="mt-2 text-black text-md font-semibold text-center">
-              माहिती ठेवा. प्रेरित व्हा. ✨
-            </p>
+      {/* 2. MAIN HEADER - CLEAN WHITE STYLE */}
+      {/* 2. MAIN HEADER - CLEAN WHITE STYLE */}
+      <div className="relative bg-red-50 border-b border-gray-100 py-2 xs:py-3 sm:py-3">
+        <div className="parity-container flex flex-col md:flex-row items-center justify-center gap-2 xs:gap-3 sm:gap-4">
+          {/* Left Spacer for Desktop */}
+          <div className="w-[100px] xs:w-[110px] md:w-[120px] hidden lg:block opacity-0">
+            spacer
           </div>
 
-          {/* Advertisement */}
-          <div className="hidden md:flex w-1/3 justify-end">
-            <div className="bg-[var(--color-bg-muted)] border border-[var(--color-border)] h-20 w-[420px] flex items-center justify-center text-sm text-[var(--color-text-muted)]">
-              Advertisement
+          {/* Center: Advertisement on large screens, logo on all screens */}
+          <div className="flex-1 flex flex-col items-center justify-center">
+            {/* Logo Section */}
+            <div className="mb-1 lg:mb-2">{/* Add your logo/title here */}</div>
+
+            {/* Advertisement: centered on large screens */}
+            <div className="w-full max-w-xs lg:max-w-xl">
+              <Advertisement className="w-full" />
             </div>
+          </div>
+
+          {/* Right Spacer for Desktop */}
+          <div className="w-[100px] xs:w-[110px] md:w-[120px] hidden lg:block opacity-0">
+            spacer
           </div>
         </div>
       </div>
