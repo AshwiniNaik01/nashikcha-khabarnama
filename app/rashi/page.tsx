@@ -61,7 +61,7 @@ const RashiPage = () => {
 
         {/* Footer Message */}
         <div className="mt-20 text-center opacity-50">
-          <p className="text-gray-500 text-xs font-bold uppercase tracking-widest max-w-md mx-auto">
+          <p className="text-black text-xs font-bold uppercase tracking-widest max-w-md mx-auto">
             टीप: वरील राशीभविष्य हे सामान्य ग्रहमानावर आधारित आहे. अचूक मार्गदर्शनासाठी तज्ज्ञांचा सल्ला घ्या.
           </p>
         </div>
