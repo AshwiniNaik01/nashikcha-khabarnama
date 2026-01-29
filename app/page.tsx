@@ -91,18 +91,18 @@ export default function HomePage() {
               <HeroGrid articles={articles} />
             </div>
 
-            {/* Nashik District Category Block */}
+            {/* Maharashtra Category Block */}
             <CategoryBlock
-              title="नाशिक जिल्हा"
-              articles={articles.filter(a => a.category === "नाशिक" || a.category === "Nashik").slice(0, 4)}
-              href="/category/nashik"
+              title="महाराष्ट्र"
+              articles={articles.filter(a => a.category === "महाराष्ट्र").slice(0, 4)}
+              href="/category/maharashtra"
             />
           </div>
 
           {/* RIGHT: Sidebar Widgets */}
           <aside className="lg:col-span-1 space-y-6 lg:sticky lg:top-24 h-fit">
             <LiveNewsWidget />
-            <WeatherWidget />
+            {/* <WeatherWidget /> */}
             <Sidebar trendingItems={trendingItems} />
           </aside>
         </div>
@@ -119,7 +119,7 @@ export default function HomePage() {
             )}
 
             {/* NEW: Cinematic Video Gallery */}
-            <VideoGallery />
+            {/* <VideoGallery /> */}
           </div>
 
           {articles.filter(a => a.category === "राजकारण").length > 0 && (
@@ -136,7 +136,7 @@ export default function HomePage() {
             )}
 
             {/* NEW: Asymmetric Photo Gallery */}
-            <PhotoGallery />
+            {/* <PhotoGallery /> */}
           </div>
 
           {articles.filter(a => a.category === "क्राईम").length > 0 && (
