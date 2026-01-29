@@ -24,8 +24,20 @@ export interface GalleryResponse {
 
 // गॅलरी डेटा मिळवण्यासाठी फंक्शन
 export const getAllGalleryItems = async (): Promise<GalleryResponse> => {
-    const res = await instance.get("/api/v1/gallery");
-    return res.data;
+    const tryEndpoints = ["/api/v1/gallery", "/api/v1/gallery/all"];
+
+    for (const endpoint of tryEndpoints) {
+        try {
+            const res = await instance.get(endpoint);
+            if (res.data && res.data.success) return res.data;
+        } catch (error) {
+            if (endpoint === tryEndpoints[tryEndpoints.length - 1]) {
+                console.error("Gallery fetch failed:", error);
+            }
+        }
+    }
+
+    return { success: false, data: [], message: "Failed to fetch gallery" };
 };
 
 // इमेजचा पूर्ण पाथ मिळवण्यासाठी हेल्पर

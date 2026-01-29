@@ -46,13 +46,7 @@ export default function RootLayout({
       >
         <Header />
         <Navbar />
-        <BreakingNews
-          newsItems={[
-            "नाशिकला थंडीचा कडाका वाढला: तापमान ६.२°C",
-            "सिंहस्थ कुंभमेळ्यासाठी प्रशासनाची जय्यत तयारी सुरू",
-            "बाजार समितीत द्राक्षांची आवक वाढली, भाव स्थिर",
-          ]}
-        />
+        <BreakingNews />
         <div className="site-layout-wrapper">
           {/* Left Gutter - Sticky Advertisements (Now active on most laptops) */}
           <aside className="hidden xl:flex flex-col w-24 p-2 sticky top-0 h-screen border-r border-gray-100/50">

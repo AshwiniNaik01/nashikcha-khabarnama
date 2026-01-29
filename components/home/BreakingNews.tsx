@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllBreakingNews, ApiBreakingNews } from "@/components/services/breakingNewsService";
 import { Loader2 } from "lucide-react";
+import Link from "next/link";
 
 const BreakingNews = () => {
   const [newsList, setNewsList] = useState<ApiBreakingNews[]>([]);
@@ -35,6 +36,10 @@ const BreakingNews = () => {
 
   if (newsList.length === 0) return null;
 
+  const stripHtml = (html: string) => {
+    return html.replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim();
+  };
+
   return (
     <div className="relative z-10 bg-red-50 border-y border-red-100 overflow-hidden xs:py-1.5 sm:py-2 flex items-center shadow-sm mx-2 xs:mx-3 sm:mx-4 md:mx-6 rounded-md">
       {/* Label */}
@@ -46,12 +51,12 @@ const BreakingNews = () => {
       <div className="flex-1 whitespace-nowrap overflow-hidden relative">
         <div className="animate-marquee inline-block pl-3 xs:pl-4 sm:pl-6 md:pl-8 text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-bold text-gray-900">
           {newsList.map((item) => (
-            <span key={item._id} className="inline-flex items-center">
+            <Link key={item._id} href={`/news/${item._id}`} className="inline-flex items-center hover:text-red-700 transition-colors">
               <span className="mx-2 xs:mx-3 sm:mx-4 text-red-600 text-[6px] xs:text-[7px] sm:text-[8px]">
                 ●
               </span>
-              <span className="inline">{item.headline}</span>
-            </span>
+              <span className="inline">{stripHtml(item.headline)}</span>
+            </Link>
           ))}
         </div>
       </div>

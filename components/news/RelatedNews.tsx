@@ -1,6 +1,8 @@
 import React from "react";
+import Link from "next/link";
 
 interface NewsItem {
+  id: string;
   title: string;
   img: string;
 }
@@ -19,8 +21,9 @@ export default function RelatedNews({
         <div className="flex-1 border-t-2 border-gray-900" />
       </div>
       {news.map((item, i) => (
-        <div
+        <Link
           key={i}
+          href={`/news/${item.id}`}
           className="flex gap-4 border-b border-gray-100 pb-4 last:border-0 cursor-pointer group"
         >
           <p className="text-sm font-bold flex-1 leading-snug group-hover:text-red-600">
@@ -29,7 +32,7 @@ export default function RelatedNews({
           <div className="w-24 h-16 shrink-0 overflow-hidden">
             <img src={item.img} className="w-full h-full object-cover" alt="" />
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

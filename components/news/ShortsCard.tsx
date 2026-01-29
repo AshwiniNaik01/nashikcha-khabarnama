@@ -1,7 +1,9 @@
 import React from "react";
 import { Play, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 interface ShortsProps {
+  id?: string;
   title?: string;
   category?: string;
   time?: string;
@@ -11,13 +13,33 @@ interface ShortsProps {
 }
 
 export default function ShortsCard({
+  id,
   title = "“खूपच भयंकर...”, अभिनेत्रीने सांगितला कास्टिंग काउचचा धक्कादायक अनुभव; म्हणाली, “त्याला...”",
   category = "मनोरंजन",
   time = "15 hr ago",
   description = "टीव्ही अभिनेत्री रश्मी देसाईने तिच्या कास्टिंग काउचच्या अनुभवाबद्दल उघडपणे बोलले आहे. १६ वर्षांची असताना तिला ऑडिशनसाठी बोलावण्यात आले होते...",
-  videoSrc = "https://www.w3schools.com/html/mov_bbb.mp4", // YouTube थेट व्हिडिओ टॅगमध्ये चालत नाही, MP4 लिंक वापरावी लागते
+  videoSrc = "https://www.w3schools.com/html/mov_bbb.mp4",
   posterImg = "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
 }: ShortsProps) {
+  const content = (
+    <>
+      <h4 className="text-xl font-bold leading-tight mb-3 hover:text-red-600 transition-colors">
+        {title}
+      </h4>
+
+      <div className="flex items-center gap-2 mb-6">
+        <span className="text-red-600 font-bold text-xs font-sans uppercase">
+          {category}
+        </span>
+        <span className="text-gray-400 text-xs font-sans">{time}</span>
+      </div>
+
+      <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed mb-6 font-sans px-1">
+        {description}
+      </p>
+    </>
+  );
+
   return (
     <div className="pt-2">
       <div className="border-[12px] border-black rounded-[50px] overflow-hidden bg-white shadow-2xl mx-auto w-full">
@@ -52,20 +74,13 @@ export default function ShortsCard({
           </div>
 
           {/* Content */}
-          <h4 className="text-xl font-bold leading-tight mb-3 hover:text-red-600 cursor-pointer transition-colors">
-            {title}
-          </h4>
-
-          <div className="flex items-center gap-2 mb-6">
-            <span className="text-red-600 font-bold text-xs font-sans uppercase">
-              {category}
-            </span>
-            <span className="text-gray-400 text-xs font-sans">{time}</span>
-          </div>
-
-          <p className="text-sm text-gray-500 line-clamp-3 leading-relaxed mb-6 font-sans px-1">
-            {description}
-          </p>
+          {id ? (
+            <Link href={`/news/${id}`}>
+              {content}
+            </Link>
+          ) : (
+            content
+          )}
 
           {/* Footer Button */}
           <button suppressHydrationWarning className="w-full border-t border-gray-200 pt-5 text-red-600 font-bold text-lg flex items-center justify-center gap-1 hover:underline group transition-all">

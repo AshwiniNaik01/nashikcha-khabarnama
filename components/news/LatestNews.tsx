@@ -1,9 +1,11 @@
 import React from "react";
+import Link from "next/link";
 
 interface LatestNewsItem {
+  id: string;
   title: string;
   img: string;
-  time?: string; // वेळ दाखवण्यासाठी ऑप्शनल फील्ड
+  time?: string;
 }
 
 export default function LatestNews({ news }: { news: LatestNewsItem[] }) {
@@ -20,8 +22,9 @@ export default function LatestNews({ news }: { news: LatestNewsItem[] }) {
       {/* News List */}
       <div className="divide-y divide-gray-200">
         {news.map((item, i) => (
-          <div
+          <Link
             key={i}
+            href={`/news/${item.id}`}
             className="flex gap-4 py-4 first:pt-0 last:pb-0 cursor-pointer group"
           >
             <div className="flex-1">
@@ -43,7 +46,7 @@ export default function LatestNews({ news }: { news: LatestNewsItem[] }) {
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
