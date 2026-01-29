@@ -1,133 +1,82 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
 import ArticleCard from "@/components/ArticleCard";
+import { getAllNews, NEWS_IMAGE_BASE_URL } from "@/components/services/newsService";
+import { getCategoryLabel } from "@/components/constants/categories";
+import { Loader2 } from "lucide-react";
 
-interface Props {
-  params: Promise<{ category: string }>;
-}
+export default function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
+  const [articles, setArticles] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [categoryName, setCategoryName] = useState("");
 
+  useEffect(() => {
+    const loadContent = async () => {
+      const resolvedParams = await params;
+      const categoryKey = resolvedParams.category;
+      const label = getCategoryLabel(categoryKey);
+      setCategoryName(label);
 
+      try {
+        setLoading(true);
+        // This will call the API directly from the browser (Client-side)
+        // It uses your getAllNews which converts the label to an English slug
+        const newsData = await getAllNews(label);
 
-export default async function CategoryPage({ params }: Props) {
+        const mapped = newsData
+          .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+          .map((news: any) => ({
+            title: news.title,
+            excerpt: news.shortDescription || (news.content ? news.content.substring(0, 120) + "..." : ""),
+            image: news.image?.cdnUrl || "https://via.placeholder.com/800x600",
+            slug: news._id,
+            date: new Date(news.createdAt).toLocaleDateString('mr-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
+            category: getCategoryLabel(news.category)
+          }));
 
+        setArticles(mapped);
+      } catch (error) {
+        console.warn("Handled category news fetch issue:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  // Await params (IMPORTANT FIX)
-  const resolvedParams = await params;
-  const categoryKey = resolvedParams.category;
+    loadContent();
+  }, [params]);
 
-  const categoryMap: Record<string, string> = {
-    national: "देश-विदेश",
-    maharashtra: "महाराष्ट्र",
-    politics: "राजकारण",
-    "nashik-city": "नाशिक शहर",
-    "nashik-rural": "नाशिक ग्रामीण",
-    crime: "क्राईम",
-    agriculture: "शेती",
-    horoscope: "राशीभविष्य",
-    business: "अर्थकारण",
-    sports: "क्रीडा",
-    "panchayat-raj": "पंचायत राज",
-  };
-
-  // Get Marathi category name
-  const categoryName = categoryMap[categoryKey] || categoryKey;
-  const sampleArticles = [
-    {
-      title: "नाशिकमध्ये राम मंदिर शोभायात्रेची जय्यत तयारी",
-      excerpt: "शहरातील प्रमुख चौकांमध्ये सजावट, विद्युतरोषणाई आणि सांस्कृतिक कार्यक्रमांचे आयोजन शहरातील प्रमुख चौकांमध्ये सजावट, विद्युतरोषणाई आणि सांस्कृतिक कार्यक्रमांचे आयोजन शहरातील प्रमुख चौकांमध्ये सजावट, विद्युतरोषणाई आणि सांस्कृतिक कार्यक्रमांचे आयोजन...",
-      image: "https://images.unsplash.com/photo-1606220838315-056192d5e927?w=800",
-      slug: "nashik-ram-mandir-preparation",
-      date: "13-11-2026"
-
-    },
-    {
-      title: "त्र्यंबकेश्वर येथे भाविकांची वाढलेली गर्दी",
-      excerpt: "श्री त्र्यंबकेश्वर मंदिरात सकाळपासूनच भाविकांचा मोठ्या प्रमाणात ओघ सुरू...",
-      image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800",
-      slug: "trimbakeshwar-bhavik-crowd",
-      date: "13-11-2026"
-
-    },
-    {
-      title: "द्राक्ष निर्यातीमध्ये विक्रमी वाढ; शेतकरी आनंदित",
-      excerpt: "या हंगामात निर्यातीत तब्बल ३०% वाढ नोंदवली जाण्याची शक्यता...",
-      image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=800",
-      slug: "grapes-export-record-growth",
-      date: "13-11-2026"
-
-    },
-    {
-      title: "नाशिक शहरात नवीन मेट्रो प्रकल्पाला गती",
-      excerpt: "भूखंड अधिग्रहण प्रक्रिया पूर्ण; पुढील टप्प्याला प्रशासनाची मान्यता...",
-      image: "https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=800",
-      slug: "nashik-metro-project-update",
-      date: "13-1l-2026"
-    },
-    {
-      title: "शहरातील ट्रॅफिक व्यवस्थेत मोठे बदल",
-      excerpt: "महत्त्वाच्या चौकांमध्ये नवीन सिग्नल प्रणाली बसविण्यात आली आहे...",
-      image: "https://images.unsplash.com/photo-1534080564583-6be75777b70a?w=800",
-      slug: "traffic-update-nashik",
-      date: "13-11-2026"
-
-    },
-    {
-      title: "इगतपुरीमध्ये पर्यटनाला वाढलेले यंदा विशेष आकर्षण",
-      excerpt: "धबधबे आणि निसर्गसौंदर्य पाहण्यासाठी पर्यटकांची मोठी गर्दी...",
-      image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800",
-      slug: "igatpuri-tourism-rise",
-      date: "13-11-2026"
-
-
-    },
-    {
-      title: "शालेय विद्यार्थ्यांसाठी नवीन सुरक्षा नियम लागू",
-      excerpt: "शाळांमध्ये बस तपासणी, CCTV मोनिटरिंग आणि गेट सुरक्षा वाढविण्यावर लक्ष केंद्रीत...",
-      image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=800",
-      slug: "school-safety-guidelines",
-      date: "13-11-2026"
-
-
-    },
-    {
-      title: "शेतकऱ्यांसाठी विशेष कर्ज योजना जाहीर",
-      excerpt: "कमी व्याजदरात कृषी कर्ज उपलब्ध; अर्ज प्रक्रिया सुरू...",
-      image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800",
-      slug: "farmer-loan-scheme",
-      date: "13-1l-2026"
-
-    },
-    {
-      title: "नाशिकमध्ये IT पार्क उभारणीला गती",
-      excerpt: "नवीन रोजगार निर्मिती आणि स्टार्टअप संस्कृतीला चालना मिळणार...",
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800",
-      slug: "nashik-it-park-development",
-      date: "13-11-2026"
-
-    }
-  ];
-
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4">
+        <Loader2 className="w-12 h-12 text-lokmat-red animate-spin" />
+        <p className="text-gray-500 font-medium">बातम्या लोड होत आहेत...</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
-
+    <div className="space-y-8 animate-in fade-in duration-500 font-marathi">
       {/* Header */}
-      <div className="border-b-4 border-[var(--color-primary)] pb-2 mb-8">
+      <div className="border-b-4 border-lokmat-red pb-2 mb-8">
         <h1 className="text-3xl font-black tracking-tight text-gray-900">
-          {categoryName} <span className="text-[var(--color-primary)]">न्युज</span>
-
-
-
+          {categoryName} <span className="text-lokmat-red">न्युज</span>
         </h1>
       </div>
 
       {/* Articles Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {sampleArticles.map((article) => (
-          <ArticleCard key={article.slug} {...article} />
-        ))}
-      </div>
+      {articles.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {articles.map((article) => (
+            <ArticleCard key={article.slug} {...article} />
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center py-20 text-gray-500">
+          <p className="text-xl font-bold">या श्रेणीतील बातम्या उपलब्ध नाहीत.</p>
+          <p className="mt-2 text-sm italic">श्रेणी: {categoryName}</p>
+        </div>
+      )}
     </div>
   );
 }
-
-
-

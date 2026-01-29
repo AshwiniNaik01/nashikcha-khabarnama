@@ -1,54 +1,42 @@
 "use client";
 
-import React, { useState } from "react";
-import { Play, ChevronRight, Video } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Play, ChevronRight, Video, Loader2 } from "lucide-react";
 import Link from "next/link";
-
-interface VideoItem {
-  id: string;
-  title: string;
-  thumbnail: string;
-  duration: string;
-  category: string;
-}
-
-const videos: VideoItem[] = [
-  {
-    id: "v1",
-    title: "नाशिकमधील रामकुंडावर दीपोत्सव: पाहा डोळ्यांचे पारणे फेडणारे दृश्य",
-    thumbnail:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800",
-    duration: "०३:४५",
-    category: "विशेष",
-  },
-  {
-    id: "v2",
-    title: "द्राक्ष पंढरीतील निर्यात कशी चालते? विशेष ग्राऊंड रिपोर्ट",
-    thumbnail:
-      "https://images.pexels.com/photos/708777/pexels-photo-708777.jpeg",
-    duration: "०५:२०",
-    category: "शेती",
-  },
-  {
-    id: "v3",
-    title: "नाशिक-पुणे हायस्पीड रेल्वे: कसा असेल तुमचा प्रवास?",
-    thumbnail:
-      "https://static.vecteezy.com/system/resources/thumbnails/070/593/008/small/winter-night-in-urban-park-with-snow-and-soft-glow-of-lights-photo.jpeg",
-    duration: "०२:१५",
-    category: "विकास",
-  },
-  {
-    id: "v4",
-    title: "इगतपुरीत बर्फाची चादर? थंडीचा कडाका वाढला",
-    thumbnail:
-      "https://images.pexels.com/photos/730256/pexels-photo-730256.jpeg",
-    duration: "०१:३०",
-    category: "नाशिक",
-  },
-];
+import { getAllNews, News, NEWS_IMAGE_BASE_URL } from "@/components/services/newsService";
 
 export default function VideoGallery() {
-  const [activeVideo, setActiveVideo] = useState(videos[0]);
+  const [videos, setVideos] = useState<News[]>([]);
+  const [activeVideo, setActiveVideo] = useState<News | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        // Fetch news specifically from 'व्हिडीओ' category
+        const videoNews = await getAllNews("व्हिडीओ");
+        const sorted = videoNews.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        setVideos(sorted);
+        if (sorted.length > 0) setActiveVideo(sorted[0]);
+      } catch (error) {
+        console.warn("Handled videos fetch issue:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVideos();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="bg-neutral-900 rounded-xl h-64 flex items-center justify-center my-12 border border-white/5">
+        <Loader2 className="text-lokmat-red animate-spin" size={32} />
+      </div>
+    );
+  }
+
+  if (videos.length === 0) return null;
 
   return (
     <section className="bg-gradient-to-b from-neutral-900 to-neutral-600 rounded-xl overflow-hidden shadow-2xl border border-white/5 my-12">
@@ -82,62 +70,57 @@ export default function VideoGallery() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Featured Video */}
-          <div className="lg:col-span-2 group cursor-pointer relative">
-            <div className="relative aspect-video rounded-xl overflow-hidden shadow-inner border-4 border-lokmat-maroon">
-              <img
-                src={activeVideo.thumbnail}
-                alt={activeVideo.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+          {activeVideo && (
+            <div className="lg:col-span-2 group cursor-pointer relative">
+              <Link href={`/news/${activeVideo._id}`}>
+                <div className="relative aspect-video rounded-xl overflow-hidden shadow-inner border-4 border-lokmat-maroon">
+                  <img
+                    src={activeVideo.image?.cdnUrl || "https://via.placeholder.com/800x450"}
+                    alt={activeVideo.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
 
-              {/* Play Button Overlay */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 bg-lokmat-red rounded-full flex items-center justify-center text-white shadow-2xl transform transition-all duration-500 group-hover:scale-125 group-hover:bg-white group-hover:text-lokmat-red">
-                  <Play size={32} fill="currentColor" />
-                </div>
-              </div>
+                  {/* Play Button Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 md:w-20 md:h-20 bg-lokmat-red rounded-full flex items-center justify-center text-white shadow-2xl transform transition-all duration-500 group-hover:scale-125 group-hover:bg-white group-hover:text-lokmat-red">
+                      <Play size={32} fill="currentColor" />
+                    </div>
+                  </div>
 
-              {/* Info Overlay */}
-              <div className="absolute bottom-6 left-6 right-6">
-                <span className="bg-lokmat-red text-white text-[10px] font-black px-3 py-1 rounded uppercase tracking-widest mb-3 inline-block">
-                  {activeVideo.category}
-                </span>
-                <h3 className="text-xl md:text-2xl font-black text-white leading-tight line-clamp-2">
-                  {activeVideo.title}
-                </h3>
-                <div className="flex items-center gap-4 mt-3 text-white/50 text-xs font-bold">
-                  <span>समय: {activeVideo.duration}</span>
-                  <span>•</span>
-                  <span>HD Quality</span>
+                  {/* Info Overlay */}
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <span className="bg-lokmat-red text-white text-[10px] font-black px-3 py-1 rounded uppercase tracking-widest mb-3 inline-block">
+                      {activeVideo.category}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-black text-white leading-tight line-clamp-2">
+                      {activeVideo.title}
+                    </h3>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
-          </div>
+          )}
 
           {/* Playlist items */}
           <div className="space-y-4 max-h-[450px] overflow-y-auto pr-2 custom-scrollbar">
             {videos.map((video) => (
               <div
-                key={video.id}
+                key={video._id}
                 onClick={() => setActiveVideo(video)}
-                className={`flex gap-4 p-3 rounded-xl transition-all duration-300 cursor-pointer border ${
-                  activeVideo.id === video.id
-                    ? "bg-white/10 border-white/20"
-                    : "hover:bg-white/5 border-transparent"
-                }`}
+                className={`flex gap-4 p-3 rounded-xl transition-all duration-300 cursor-pointer border ${activeVideo?._id === video._id
+                  ? "bg-white/10 border-white/20"
+                  : "hover:bg-white/5 border-transparent"
+                  }`}
               >
                 <div className="relative w-32 aspect-video rounded-lg overflow-hidden flex-shrink-0 border-4 border-lokmat-maroon">
                   <img
-                    src={video.thumbnail}
+                    src={video.image?.cdnUrl || "https://via.placeholder.com/400x225"}
                     className="w-full h-full object-cover opacity-80"
                     alt=""
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Play size={14} className="text-white fill-white/50" />
-                  </div>
-                  <div className="absolute bottom-1 right-1 bg-black/80 text-[8px] text-white px-1 rounded">
-                    {video.duration}
                   </div>
                 </div>
                 <div className="flex-1 min-w-0">

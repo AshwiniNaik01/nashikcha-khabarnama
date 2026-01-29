@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import Link from "next/link";
 import {
   ChevronLeft,
   ChevronRight,
@@ -14,74 +15,90 @@ export default function GridNewsScroller() {
 
   const allItems = [
     {
+      id: "1",
       category: "निवडणूक",
       title:
         "नागपुरात काँग्रेस उमेदवाराचं कार्यालय जाळलं; भाजपकडे संशयाचं बोट; आरोप-प्रत्यारोपांनी राजकारण तापलं!",
     },
     {
+      id: "2",
       category: "राजकारण",
       title:
         "छत्रपती संभाजीनगरमध्ये भाजपच्या अतुल सावेंच्या वडिलांचे नाव मतदार यादीत, आयोगाचा भोंगळ कारभार...",
     },
     {
+      id: "3",
       category: "निवडणूक",
       title:
         "मुंबईत ठाकरेंचा 'भगवा गार्ड' पोलिसांना नडला, दुबार मतदारांना हेरण्यासाठी केंद्राबाहेर उभा!",
     },
     {
+      id: "4",
       category: "करमणूक",
       title: "तमन्ना भाटिया ते अक्षय कुमार; सेलिब्रिटींनी बजावला मतदानाचा हक्क",
     },
     {
+      id: "5",
       category: "पुणे",
       title: "मला राजकारण कळत नाही; भाजपचे आमदार सुभाष देशमुख नाराज?",
     },
     {
+      id: "6",
       category: "राजकारण",
       title: "मोठी बातमी: मुंबईत मतदारांच्या बोटावरील शाई पुसली",
     },
     {
+      id: "7",
       category: "भविष्य",
       title: "जानेवारीचा तिसरा आठवडा भाग्याचा की टेन्शनचा?",
     },
-    { category: "निवडणूक", title: "मुंबई जिंकणं मराठी माणसाची पहिली लढाई" },
+    { id: "8", category: "निवडणूक", title: "मुंबई जिंकणं मराठी माणसाची पहिली लढाई" },
     {
+      id: "9",
       category: "नाशिक",
       title: "प्रभाग १२ मध्ये राष्ट्रवादी काँग्रेसची गोंधळात भर",
     },
     {
+      id: "10",
       category: "निवडणूक",
       title:
         "नागपुरात काँग्रेस उमेदवाराचं कार्यालय जाळलं; भाजपकडे संशयाचं बोट; आरोप-प्रत्यारोपांनी राजकारण तापलं!",
     },
     {
+      id: "11",
       category: "राजकारण",
       title:
         "छत्रपती संभाजीनगरमध्ये भाजपच्या अतुल सावेंच्या वडिलांचे नाव मतदार यादीत, आयोगाचा भोंगळ कारभार...",
     },
     {
+      id: "12",
       category: "निवडणूक",
       title:
         "मुंबईत ठाकरेंचा 'भगवा गार्ड' पोलिसांना नडला, दुबार मतदारांना हेरण्यासाठी केंद्राबाहेर उभा!",
     },
     {
+      id: "13",
       category: "करमणूक",
       title: "तमन्ना भाटिया ते अक्षय कुमार; सेलिब्रिटींनी बजावला मतदानाचा हक्क",
     },
     {
+      id: "14",
       category: "पुणे",
       title: "मला राजकारण कळत नाही; भाजपचे आमदार सुभाष देशमुख नाराज?",
     },
     {
+      id: "15",
       category: "राजकारण",
       title: "मोठी बातमी: मुंबईत मतदारांच्या बोटावरील शाई पुसली",
     },
     {
+      id: "16",
       category: "भविष्य",
       title: "जानेवारीचा तिसरा आठवडा भाग्याचा की टेन्शनचा?",
     },
-    { category: "निवडणूक", title: "मुंबई जिंकणं मराठी माणसाची पहिली लढाई" },
+    { id: "17", category: "निवडणूक", title: "मुंबई जिंकणं मराठी माणसाची पहिली लढाई" },
     {
+      id: "18",
       category: "नाशिक",
       title: "प्रभाग १२ मध्ये राष्ट्रवादी काँग्रेसची गोंधळात भर",
     },
@@ -152,8 +169,9 @@ export default function GridNewsScroller() {
               className="min-w-full grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-10 snap-start px-1"
             >
               {slide.map((item, i) => (
-                <div
+                <Link
                   key={i}
+                  href={`/news/${item.id}`}
                   className="group/card relative flex flex-col cursor-pointer border-b border-gray-50 pb-4 hover:border-red-200 transition-all"
                 >
                   <div className="flex items-center gap-2 mb-2">
@@ -173,7 +191,7 @@ export default function GridNewsScroller() {
                     </span>
                     <ArrowUpRight size={14} className="ml-1" />
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           ))}
@@ -186,8 +204,8 @@ export default function GridNewsScroller() {
               key={i}
               suppressHydrationWarning
               className={`transition-all duration-500 rounded-full ${activeIndex === i
-                  ? "w-10 h-2 bg-red-600"
-                  : "w-2 h-2 bg-gray-300 hover:bg-gray-400"
+                ? "w-10 h-2 bg-red-600"
+                : "w-2 h-2 bg-gray-300 hover:bg-gray-400"
                 }`}
               onClick={() => {
                 const scrollAmount = i * (scrollRef.current?.clientWidth || 0);

@@ -115,11 +115,11 @@ export default function ArticleCard({
         <p
           className={`text-zinc-500 leading-relaxed mb-4 
           ${featured
-              ? "text-sm sm:text-base lg:text-lg line-clamp-2 lg:line-clamp-4"
+              ? "text-base sm:text-base lg:text-lg line-clamp-2 lg:line-clamp-4"
               : "text-xs sm:text-sm line-clamp-2"
             }`}
         >
-          {excerpt}
+          {excerpt.replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim()}
         </p>
 
         {/* CTA Section */}

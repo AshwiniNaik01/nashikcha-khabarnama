@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 interface Article {
   title: string;
@@ -23,33 +24,36 @@ const HeroGrid: React.FC<HeroGridProps> = ({ articles }) => {
     <section className="grid grid-cols-1 lg:grid-cols-4 gap-6">
       {/* Main News Card */}
       <div className="lg:col-span-2">
-        {/* Image card */}
-        <div className="relative group overflow-hidden rounded-sm shadow-xl aspect-[16/10]">
-          <img
-            src={mainArticle.image}
-            alt={mainArticle.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
+        <Link href={`/news/${mainArticle.slug}`} className="block">
+          {/* Image card */}
+          <div className="relative group overflow-hidden rounded-sm shadow-xl aspect-[16/10]">
+            <img
+              src={mainArticle.image}
+              alt={mainArticle.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
 
-          {/* Gradient overlay (category only) */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-6">
-            <span className="bg-lokmat-red text-white text-[10px] uppercase font-black px-2 py-0.5 w-fit tracking-wider shadow-sm">
-              {mainArticle.category}
-            </span>
+            {/* Gradient overlay (category only) */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-6">
+              <span className="bg-lokmat-red text-white text-[10px] uppercase font-black px-2 py-0.5 w-fit tracking-wider shadow-sm">
+                {mainArticle.category}
+              </span>
+            </div>
           </div>
-        </div>
 
-        {/* Title BELOW image */}
-        <h1 className="mt-6 text-gray-900 text-2xl md:text-3xl font-black leading-tight line-clamp-2 hover:text-lokmat-red cursor-pointer transition-colors">
-          {mainArticle.title}
-        </h1>
+          {/* Title BELOW image */}
+          <h1 className="mt-6 text-gray-900 text-2xl md:text-3xl font-black leading-tight line-clamp-2 hover:text-lokmat-red cursor-pointer transition-all">
+            {mainArticle.title}
+          </h1>
+        </Link>
       </div>
 
       {/* Side News Stack */}
       <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
         {sideArticles.map((article, i) => (
-          <div
+          <Link
             key={i}
+            href={`/news/${article.slug}`}
             className="flex flex-col gap-3 group cursor-pointer border-b border-gray-100 pb-3"
           >
             <div className="relative overflow-hidden aspect-[16/9] rounded-sm">
@@ -67,7 +71,7 @@ const HeroGrid: React.FC<HeroGridProps> = ({ articles }) => {
                 {article.title}
               </h3>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
