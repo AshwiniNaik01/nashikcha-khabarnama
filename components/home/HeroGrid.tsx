@@ -26,7 +26,7 @@ const HeroGrid: React.FC<HeroGridProps> = ({ articles }) => {
       <div className="lg:col-span-2">
         <Link href={`/news/${mainArticle.slug}`} className="block">
           {/* Image card */}
-          <div className="relative group overflow-hidden rounded-sm shadow-xl aspect-[16/10]">
+          <div className="relative group overflow-hidden rounded-sm shadow-xl aspect-[16/10] mb-4">
             <img
               src={mainArticle.image}
               alt={mainArticle.title}
@@ -42,7 +42,7 @@ const HeroGrid: React.FC<HeroGridProps> = ({ articles }) => {
           </div>
 
           {/* Title BELOW image */}
-          <h1 className="mt-6 text-gray-900 text-2xl md:text-3xl font-black leading-tight line-clamp-2 hover:text-lokmat-red cursor-pointer transition-all">
+          <h1 className="mt-12 text-gray-900 text-2xl md:text-3xl font-black leading-tight line-clamp-2 hover:text-lokmat-red cursor-pointer transition-all">
             {mainArticle.title}
           </h1>
         </Link>
