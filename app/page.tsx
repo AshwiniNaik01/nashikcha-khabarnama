@@ -102,7 +102,7 @@ export default function HomePage() {
           {/* RIGHT: Sidebar Widgets */}
           <aside className="lg:col-span-1 space-y-6 lg:sticky lg:top-24 h-fit">
             <LiveNewsWidget />
-            {/* <WeatherWidget /> */}
+            <WeatherWidget />
             <Sidebar trendingItems={trendingItems} />
           </aside>
         </div>
