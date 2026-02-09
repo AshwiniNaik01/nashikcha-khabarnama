@@ -122,7 +122,7 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ quotes }) => {
       <div className="mb-10 text-center">
         <h2 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight flex items-center justify-center gap-4">
           <div className="h-[2px] w-12 bg-red-600 hidden md:block" />
-          खास नासिकचा विचार
+          खास नाशिकचा विचार
           <div className="h-[2px] w-12 bg-red-600 hidden md:block" />
         </h2>
       </div>

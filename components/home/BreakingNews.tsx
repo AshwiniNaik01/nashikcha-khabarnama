@@ -81,14 +81,15 @@ import {
 function useTypewriter(
   texts: string[],
   speed: number = 80,
-  pause: number = 1500
+  pause: number = 1500,
+  isPaused: boolean = false
 ) {
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    if (!texts.length) return;
+    if (!texts.length || isPaused) return;
 
     if (!deleting && subIndex === texts[index].length) {
       const t = setTimeout(() => setDeleting(true), pause);
@@ -106,7 +107,7 @@ function useTypewriter(
     }, deleting ? speed / 2 : speed);
 
     return () => clearTimeout(t);
-  }, [texts, index, subIndex, deleting, speed, pause]);
+  }, [texts, index, subIndex, deleting, speed, pause, isPaused]);
 
   return {
     text: texts[index]?.substring(0, subIndex) || "",
@@ -118,6 +119,7 @@ function useTypewriter(
 const BreakingNews = () => {
   const [newsList, setNewsList] = useState<ApiBreakingNews[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const fetchBreakingNews = async () => {
@@ -150,7 +152,7 @@ const BreakingNews = () => {
 
   // ✅ ALWAYS call the hook
   const { text: currentText, index: currentIndex } =
-    useTypewriter(headlines);
+    useTypewriter(headlines, 80, 1500, isHovered);
 
   // ⬇️ Now conditional returns are SAFE
   if (loading) {
@@ -166,10 +168,14 @@ const BreakingNews = () => {
   const currentNews = newsList[currentIndex];
 
   return (
-    <div className="relative z-10 bg-red-50 border-y border-red-100 overflow-hidden xs:py-1.5 sm:py-2 flex items-center shadow-sm mx-2 xs:mx-3 sm:mx-4 md:mx-6 rounded-md">
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative z-10 bg-red-50 border-y border-red-100 overflow-hidden xs:py-1.5 sm:py-2 flex items-center shadow-sm mx-2 xs:mx-3 sm:mx-4 md:mx-6 rounded-md group cursor-pointer"
+    >
 
       {/* Label */}
-      <div className="bg-red-600 text-white text-[10px] xs:text-[11px] sm:text-xs md:text-sm font-black px-2 xs:px-3 sm:px-4 py-0.5 xs:py-1 flex-shrink-0 uppercase italic tracking-tighter shadow-md z-10 whitespace-nowrap">
+      <div className="bg-red-600 text-white text-[10px] xs:text-[11px] sm:text-xs md:text-sm font-black px-2 xs:px-3 sm:px-4 py-0.5 xs:py-1 flex-shrink-0 uppercase italic tracking-tighter shadow-md z-10 whitespace-nowrap group-hover:bg-red-700 transition-colors">
         ब्रेकिंग न्यूज
       </div>
 
@@ -180,7 +186,7 @@ const BreakingNews = () => {
           className="text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-bold text-gray-900 hover:text-red-700 transition-colors"
         >
           {currentText}
-          <span className="ml-1 text-red-600 animate-pulse">|</span>
+          <span className={`ml-1 text-red-600 ${isHovered ? 'opacity-100' : 'animate-pulse'}`}>|</span>
         </Link>
       </div>
     </div>

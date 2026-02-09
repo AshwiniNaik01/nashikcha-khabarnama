@@ -35,14 +35,14 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed font-medium max-w-xs">
-              नासिक जिल्ह्यातील विश्वसनीय बातमीदारीचे अग्रगण्य नाव. आम्ही
+              नाशिक जिल्ह्यातील विश्वसनीय बातमीदारीचे अग्रगण्य नाव. आम्ही
               आपल्यासाठी चोवीस तास ताज्या घडामोडी आणि सखोल विश्लेषण घेऊन येतो.
             </p>
             <div className="space-y-4">
               <div className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors justify-center sm:justify-start">
                 <FaMapMarkerAlt className="text-lokmat-red shrink-0" />
                 <span className="text-xs font-bold uppercase tracking-wider">
-                  नासिक, महाराष्ट्र
+                  नाशिक, महाराष्ट्र
                 </span>
               </div>
               <div className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors justify-center sm:justify-start">
@@ -145,7 +145,7 @@ export default function Footer() {
             <div className="flex justify-center sm:justify-start gap-4 pt-2">
               {[
                 { icon: <FaFacebookF />, color: "hover:bg-[#1877F2]" },
-                { icon: <FaTwitter />, color: "hover:bg-[#1DA1F2]" },
+                // { icon: <FaTwitter />, color: "hover:bg-[#1DA1F2]" },
                 {
                   icon: <FaInstagram />,
                   color:
@@ -186,7 +186,7 @@ export default function Footer() {
             <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest flex items-center gap-2">
               Powered by{" "}
               <span className="text-gray-400 border-b border-gray-700 pb-0.5">
-                SmartMedia Tech
+                Uttirna
               </span>
             </p>
           </div>
