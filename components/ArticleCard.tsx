@@ -1,10 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import { HiChevronRight } from "react-icons/hi2";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 type ArticleCardProps = {
   title: string;
   excerpt: string;
   image: string;
+  id: string;
   slug: string;
   category?: string;
   date?: string;
@@ -15,6 +18,7 @@ export default function ArticleCard({
   title,
   excerpt,
   image,
+  id,
   slug,
   category,
   date,
@@ -22,134 +26,83 @@ export default function ArticleCard({
 }: ArticleCardProps) {
   return (
     <article
-      className={`group relative overflow-hidden bg-white text-black transition-all duration-500 px-3 flex flex-col h-full
-      ${featured
-          ? "lg:grid lg:grid-cols-12 gap-6 lg:gap-10 border-b-4 border-red-600 pb-8 lg:pb-12 mb-8 lg:mb-12"
-          : "border-b border-zinc-200 pb-6"
+      className={`group relative flex flex-col h-full bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 ${featured ? "lg:flex-row lg:gap-8 p-4 lg:p-6" : "p-3"
         }`}
     >
       {/* Image Section */}
       <div
-        className={`relative overflow-hidden cursor-pointer shrink-0 w-full
-        ${featured
-            ? "lg:col-span-7 aspect-video mb-4 lg:mb-0"
-            : "aspect-[16/10] mb-4"
+        className={`relative overflow-hidden shrink-0 rounded-lg transition-all duration-500 ${featured
+          ? "lg:w-[60%] aspect-[16/9]"
+          : "aspect-[16/10] mb-4"
           }`}
       >
-        <Link href={`/news/${slug}`} className="block w-full h-full">
+        <Link href={`/news/${id}/${slug}`} className="block w-full h-full relative z-0">
           <Image
             src={image}
             alt={title}
             fill
             priority={featured}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
           />
+          {/* Subtle Inner Shadow for Depth */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
         </Link>
+
         {category && (
-          <div className="absolute top-0 left-0 z-10">
-            <span className="bg-[#E1261C] text-white px-2.3 py-1 text-[9px] sm:text-[10px] font-black uppercase tracking-tighter">
+          <div className="absolute top-3 left-3 z-10">
+            <span className="bg-lokmat-red text-white px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg backdrop-blur-sm">
               {category}
             </span>
           </div>
         )}
       </div>
 
-      {/* Content */}
-      <div
-        className={`flex flex-col flex-grow ${featured ? "lg:col-span-5 py-0 lg:py-2" : "w-full"
-          }`}
-      >
-        {/* Meta Section */}
+      {/* Content Section */}
+      <div className={`flex flex-col flex-grow ${featured ? "justify-center py-4 lg:py-0" : ""}`}>
+        {/* Date & Meta */}
         {date && (
-          <div className="flex items-center space-x-1.5 mb-2">
-            <svg
-              className="w-3 h-3 text-[#E1261C]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-            <time className="text-[9px] sm:text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
+          <div className="flex items-center gap-2 mb-3 text-gray-400">
+            <FaRegCalendarAlt className="w-3 h-3 text-lokmat-red/70" />
+            <time className="text-[10px] font-bold uppercase tracking-widest">
               {date}
             </time>
           </div>
         )}
 
+        {/* Title */}
         <h2
-          className={`font-bold text-zinc-900 transition-colors duration-300 group-hover:text-[#E1261C] 
-    /* 1. Line Height वाढवली (वेलांटीसाठी अत्यंत आवश्यक) */
-    leading-[1.5] sm:leading-[1.4] 
-    
-    /* 2. Vertical Padding (अतिरिक्त जागा जेणेकरून मात्रा कट होणार नाहीत) */
-    py-1
-    
-    /* 3. Font Size Scaling */
-    ${featured
-              ? "text-xl sm:text-2xl md:text-3xl lg:text-5xl mb-3"
-              : "text-base sm:text-lg lg:text-xl mb-2 line-clamp-2"
-            } 
-    
-    /* 4. Rendering Fix */
-    antialiased`}
+          className={`font-black text-gray-900 group-hover:text-lokmat-red transition-colors duration-300 leading-tight mb-3 ${featured ? "text-2xl sm:text-3xl lg:text-4xl" : "text-lg lg:text-xl line-clamp-2"
+            }`}
           style={{
-            // काही ब्राउझरमध्ये वेलांटी कापली जाऊ नये म्हणून overflow सुरक्षित ठेवणे
-            paddingTop: "0.2em",
-            paddingBottom: "0.2em",
-            lineHeight: "1.5",
+            lineHeight: "1.4",
+            paddingTop: "0.1em",
+            paddingBottom: "0.1em",
           }}
         >
-          <Link href={`/news/${slug}`} className="block">
+          <Link href={`/news/${id}/${slug}`} className="block">
             {title}
           </Link>
         </h2>
 
         {/* Excerpt */}
         <p
-          className={`text-zinc-500 leading-relaxed mb-4 
-          ${featured
-              ? "text-base sm:text-base lg:text-lg line-clamp-2 lg:line-clamp-4"
-              : "text-xs sm:text-sm line-clamp-2"
+          className={`text-gray-500 leading-relaxed font-medium mb-5 ${featured ? "text-base lg:text-lg line-clamp-3" : "text-sm line-clamp-2"
             }`}
         >
           {excerpt.replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim()}
         </p>
 
-        {/* CTA Section */}
-        <div className="mt-auto pt-1 border-t border-zinc-100 flex justify-center">
+        {/* Action Button */}
+        <div className="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
           <Link
-            href={`/news/${slug}`}
-            className="group/link inline-flex items-center gap-3  text-md font-black text-zinc-900 uppercase tracking-tighter"
+            href={`/news/${id}/${slug}`}
+            className="inline-flex items-center gap-2 text-lokmat-red font-black text-xs uppercase tracking-widest group/btn"
           >
-            <span className="relative py-1">
-              सविस्तर वाचा
-              {/* Animated Underline */}
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#E1261C] scale-x-0 group-hover/link:scale-x-100 transition-transform duration-300 origin-center" />
-            </span>
-
-            {/* Arrow Icon */}
-            <span className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-zinc-50 border border-zinc-100 group-hover/link:bg-[#E1261C] group-hover/link:text-white group-hover/link:border-[#E1261C] transition-all duration-300 shadow-sm">
-              <svg
-                className="w-3.5 h-3.5 transform group-hover/link:translate-x-0.5 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </span>
+            <span>सविस्तर वाचा</span>
+            <div className="w-6 h-6 rounded-full bg-lokmat-red/5 flex items-center justify-center group-hover/btn:bg-lokmat-red group-hover/btn:text-white transition-all duration-300">
+              <HiChevronRight className="w-4 h-4 transform group-hover/btn:translate-x-0.5 transition-transform" />
+            </div>
           </Link>
         </div>
       </div>

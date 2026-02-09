@@ -314,7 +314,7 @@ export default function RashiDetailPage({ params }: PageProps) {
                 तुमच्या कुंडलीबद्दल अधिक जाणून घ्या
               </h2>
               <p className="text-red-700/80 max-w-2xl mx-auto font-medium">
-                नाशिकच्या खबरनाम्यावर मिळवा दररोजचे अचूक राशीभविष्य. तज्ज्ञांच्या मार्गदर्शनाखाली तयार केलेले हे भविष्य तुमच्या प्रगतीसाठी उपयुक्त ठरेल.
+                नासिकच्या खबरनाम्यावर मिळवा दररोजचे अचूक राशीभविष्य. तज्ज्ञांच्या मार्गदर्शनाखाली तयार केलेले हे भविष्य तुमच्या प्रगतीसाठी उपयुक्त ठरेल.
               </p>
               <div className="pt-4">
                 <button className="bg-red-600 text-white px-10 py-4 rounded-full font-black uppercase tracking-widest shadow-xl hover:bg-red-700 transition-all hover:scale-105 active:scale-95">
@@ -326,7 +326,7 @@ export default function RashiDetailPage({ params }: PageProps) {
         </main>
 
         <footer className="py-12 text-center text-gray-400 text-xs border-t border-gray-100 bg-white/5 backdrop-blur">
-          <p>© 2026 नाशिकचा खबरनामा. सर्व हक्क राखीव.</p>
+          <p>© 2026 नासिकचा खबरनामा. सर्व हक्क राखीव.</p>
           <p className="mt-2 opacity-60">
             टीप: हे भविष्य ग्रहांच्या स्थितीवर आधारित असून केवळ सामान्य मार्गदर्शनासाठी आहे.
           </p>

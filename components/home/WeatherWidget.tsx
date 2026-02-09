@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { Thermometer, Cloud, Wind, Sunrise, Clock } from 'lucide-react';
 
 const WeatherWidget = () => {
-    const [location] = useState('नाशिक');
+    const [location] = useState('नासिक');
 
     const weatherData = {
         current: {

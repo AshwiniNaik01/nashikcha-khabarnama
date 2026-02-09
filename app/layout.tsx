@@ -1,6 +1,6 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Noto_Sans_Devanagari } from "next/font/google";
+import { Tiro_Devanagari_Marathi } from "next/font/google";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -8,11 +8,14 @@ import "./globals.css";
 import BreakingNews from "@/components/home/BreakingNews";
 import Add from "@/components/home/Add";
 /* ----------------------------------------
-   Fonts
+   Fonts - Tiro Devanagari Marathi
+   Specifically designed for Marathi language
+   Provides excellent rendering of Maharashtra
+   and all Marathi words
 ----------------------------------------- */
-const notoSansDevanagari = Noto_Sans_Devanagari({
+const tiroDevanagariMarathi = Tiro_Devanagari_Marathi({
   subsets: ["devanagari"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400"],
   display: "swap",
   variable: "--font-marathi",
 });
@@ -24,7 +27,11 @@ export const metadata: Metadata = {
     default: "Nashikcha Khabarnama",
     template: "%s | Nashikcha Khabarnama",
   },
-  description: "Next.js + TypeScript + Tailwind news website",
+  description:
+    "नाशिक व महाराष्ट्रातील ताज्या बातम्या, राजकारण, गुन्हे, क्रीडा, मनोरंजन आणि स्थानिक घडामोडी वाचा – Nashikcha Khabarnama.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 /* ----------------------------------------
    Root Layout
@@ -37,7 +44,7 @@ export default function RootLayout({
   return (
     <html
       lang="mr"
-      className={notoSansDevanagari.variable}
+      className={tiroDevanagariMarathi.variable}
       suppressHydrationWarning
     >
       <body
@@ -46,7 +53,7 @@ export default function RootLayout({
       >
         <Header />
         <Navbar />
-        <BreakingNews />
+
         <div className="site-layout-wrapper">
           {/* Left Gutter - Sticky Advertisements (Now active on most laptops) */}
           <aside className="hidden xl:flex flex-col w-24 p-2 sticky top-0 h-screen border-r border-gray-100/50">

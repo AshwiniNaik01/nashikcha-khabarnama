@@ -15,6 +15,22 @@ export interface NewsImage {
   size: number;
 }
 
+export interface QuoteImage {
+  folderName: string;
+  fileName: string;
+  fullImgName: string;
+  fileExtension: string;
+  fullS3URL: string;
+  cdnUrl: string;
+  size: number;
+}
+
+export interface Quote {
+  text: string;
+  name: string;
+  quoteImage?: QuoteImage;
+}
+
 export interface News {
   _id: string;
   title: string;
@@ -24,8 +40,10 @@ export interface News {
   shortDescription?: string;
   content: string;
   image?: NewsImage;
+  quotes?: Quote[];
   createdAt: string;
 }
+
 
 /* ---------------- API CALLS ---------------- */
 

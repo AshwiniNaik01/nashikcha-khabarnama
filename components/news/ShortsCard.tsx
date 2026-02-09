@@ -4,6 +4,7 @@ import Link from "next/link";
 
 interface ShortsProps {
   id?: string;
+  slug?: string; // Added slug
   title?: string;
   category?: string;
   time?: string;
@@ -14,6 +15,7 @@ interface ShortsProps {
 
 export default function ShortsCard({
   id,
+  slug,
   title = "“खूपच भयंकर...”, अभिनेत्रीने सांगितला कास्टिंग काउचचा धक्कादायक अनुभव; म्हणाली, “त्याला...”",
   category = "मनोरंजन",
   time = "15 hr ago",
@@ -47,7 +49,7 @@ export default function ShortsCard({
           {/* Header */}
           <div className="flex items-center gap-2 mb-5">
             <span className="text-red-600 text-2xl font-black font-sans tracking-tighter">
-              नाशिकचा खबरनामा
+              नासिकचा खबरनामा
             </span>
             <span className="text-2xl italic font-light font-sans tracking-tighter">
               Videos
@@ -75,7 +77,7 @@ export default function ShortsCard({
 
           {/* Content */}
           {id ? (
-            <Link href={`/news/${id}`}>
+            <Link href={`/news/${id}/${slug || id}`}>
               {content}
             </Link>
           ) : (

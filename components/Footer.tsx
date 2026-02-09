@@ -35,14 +35,14 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed font-medium max-w-xs">
-              नाशिक जिल्ह्यातील विश्वसनीय बातमीदारीचे अग्रगण्य नाव. आम्ही
+              नासिक जिल्ह्यातील विश्वसनीय बातमीदारीचे अग्रगण्य नाव. आम्ही
               आपल्यासाठी चोवीस तास ताज्या घडामोडी आणि सखोल विश्लेषण घेऊन येतो.
             </p>
             <div className="space-y-4">
               <div className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors justify-center sm:justify-start">
                 <FaMapMarkerAlt className="text-lokmat-red shrink-0" />
                 <span className="text-xs font-bold uppercase tracking-wider">
-                  नाशिक, महाराष्ट्र
+                  नासिक, महाराष्ट्र
                 </span>
               </div>
               <div className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors justify-center sm:justify-start">
@@ -169,7 +169,7 @@ export default function Footer() {
         <div className="mt-16 md:mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col items-center md:items-start gap-1">
             <p className="text-[11px] text-gray-500 font-black uppercase tracking-[0.2em]">
-              © २०२६ नाशिकचा खबरनामा
+              © २०२६ नासिकचा खबरनामा
             </p>
             <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest">
               सर्व हक्क सुरक्षित

@@ -2,7 +2,7 @@ import React from "react";
 import RashiGrid from "@/components/rashi/RashiGrid";
 
 export const metadata = {
-    title: "राशीभविष्य | नाशिकचा खबरनामा",
+    title: "राशीभविष्य | नासिकचा खबरनामा",
     description:
         "तुमचे आजचे राशीभविष्य जाणून घ्या. मेष ते मीन सर्व १२ राशींचे अचूक भविष्य.",
 };

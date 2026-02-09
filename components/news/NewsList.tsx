@@ -60,7 +60,7 @@ export default function NewsList({ news }: Props) {
           className="flex flex-col md:flex-row gap-6 border-b border-dashed border-gray-300 pb-10 group cursor-pointer"
         >
           <div className="flex-1 order-2 md:order-1">
-            <Link href={`/news/${item._id}`}>
+            <Link href={`/news/${item._id}/${item.slug}`}>
               <h3 className="text-2xl font-bold mb-2 group-hover:text-red-600 transition-colors leading-snug">
                 {item.title}
               </h3>
@@ -82,19 +82,19 @@ export default function NewsList({ news }: Props) {
               </span>
             </div>
 
-            <Link href={`/news/${item._id}`}>
+            <Link href={`/news/${item._id}/${item.slug}`}>
               <p className="text-gray-600 text-lg leading-relaxed line-clamp-2">
                 {item.shortDescription?.replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim()}
               </p>
             </Link>
           </div>
 
-          <Link href={`/news/${item._id}`} className="w-full md:w-64 h-40 order-1 md:order-2 shrink-0 overflow-hidden rounded-sm">
+          <Link href={`/news/${item._id}/${item.slug}`} className="w-full md:w-64 h-40 order-1 md:order-2 shrink-0 overflow-hidden rounded-sm">
             <img
               src={
-                item.image?.cdnUrl || "https://images.unsplash.com/photo-1542291026-7eec264c27ff"
+                item.image?.cdnUrl || "https://img.freepik.com/free-psd/3d-rendering-ui-icon_23-2149182289.jpg?t=st=1770375637~exp=1770379237~hmac=26e2df5a765bcce5a35efd84e1a2942bd17fbecc876c17ad88830c3885149494&w=1480://images.unsplash.com/photo-1542291026-7eec264c27ff"
               }
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              className="w-full h-full object-fit group-hover:scale-110 transition-transform duration-700"
               alt={item.title}
             />
           </Link>
