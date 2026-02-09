@@ -96,7 +96,7 @@ const VideosPage = () => {
           </div>
           <div className="bg-gray-100 aspect-video lg:aspect-square flex flex-col items-center justify-center border-2 border-dashed border-zinc-200 p-6 group cursor-pointer transition-all rounded-xl text-center">
             <p className="text-zinc-400 text-[10px] font-black tracking-[0.3em] uppercase mb-4">Advertisement</p>
-            <span className="text-zinc-400 italic font-medium group-hover:text-zinc-600">नासिक एक्सप्रेस <br /> विशेष जाहिरात जागा</span>
+            <span className="text-zinc-400 italic font-medium group-hover:text-zinc-600">नाशिक एक्सप्रेस <br /> विशेष जाहिरात जागा</span>
           </div>
         </div>
       </section>

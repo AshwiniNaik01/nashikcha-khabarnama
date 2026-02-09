@@ -55,7 +55,7 @@ export default function GridNewsScroller() {
     { id: "8", category: "निवडणूक", title: "मुंबई जिंकणं मराठी माणसाची पहिली लढाई" },
     {
       id: "9",
-      category: "नासिक",
+      category: "नाशिक",
       title: "प्रभाग १२ मध्ये राष्ट्रवादी काँग्रेसची गोंधळात भर",
     },
     {
@@ -99,7 +99,7 @@ export default function GridNewsScroller() {
     { id: "17", category: "निवडणूक", title: "मुंबई जिंकणं मराठी माणसाची पहिली लढाई" },
     {
       id: "18",
-      category: "नासिक",
+      category: "नाशिक",
       title: "प्रभाग १२ मध्ये राष्ट्रवादी काँग्रेसची गोंधळात भर",
     },
   ];

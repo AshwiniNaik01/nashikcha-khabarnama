@@ -134,13 +134,13 @@ export default function HomePage() {
             <NewsSlider articles={articles.filter(a => a.category === "राजकारण")} title="राजकारण" />
           )}
 
-          {articles.filter(a => a.category === "नासिक शहर").length > 0 && (
-            <NewsSlider articles={articles.filter(a => a.category === "नासिक शहर")} title="नासिक शहर" />
+          {articles.filter(a => a.category === "नाशिक शहर").length > 0 && (
+            <NewsSlider articles={articles.filter(a => a.category === "नाशिक शहर")} title="नाशिक शहर" />
           )}
 
           <div className="space-y-12">
-            {articles.filter(a => a.category === "नासिक ग्रामीण").length > 0 && (
-              <NewsSlider articles={articles.filter(a => a.category === "नासिक ग्रामीण")} title="नासिक ग्रामीण" />
+            {articles.filter(a => a.category === "नाशिक ग्रामीण").length > 0 && (
+              <NewsSlider articles={articles.filter(a => a.category === "नाशिक ग्रामीण")} title="नाशिक ग्रामीण" />
             )}
 
             {/* NEW: Asymmetric Photo Gallery */}

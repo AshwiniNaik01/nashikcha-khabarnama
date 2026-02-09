@@ -151,7 +151,6 @@ a {
   width: 100%;
   flex: 1;
   position: relative;
-  overflow-x: hidden;
   background-color: #f8fafc;
   /* Subtle gray background for gutters */
 }
