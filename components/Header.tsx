@@ -72,12 +72,16 @@ export default function Header() {
           {/* Center: Advertisement on large screens, logo on all screens */}
           <div className="flex-1 flex flex-col items-center justify-center">
             {/* Logo Section */}
-            <div className="mb-1 lg:mb-2">{/* Add your logo/title here */}</div>
+            <div className="mb-1 lg:mb-2 flex items-center gap-2">
+              <img src="/logo.png" alt="Lokmat Logo" className="h-10 lg:h-12" />
+              {/* <span className="text-xl font-bold tracking-wide">लोकमत</span> */}
+            </div>
+
 
             {/* Advertisement: centered on large screens */}
-            <div className="w-full max-w-xs lg:max-w-xl">
+            {/* <div className="w-full max-w-xs lg:max-w-xl">
               <Advertisement className="w-full" />
-            </div>
+            </div> */}
           </div>
 
           {/* Right Spacer for Desktop */}

@@ -5,6 +5,7 @@ interface Article {
   title: string;
   excerpt: string;
   image: string;
+  id: string;
   slug: string;
   category: string;
   date: string;
@@ -24,7 +25,7 @@ const HeroGrid: React.FC<HeroGridProps> = ({ articles }) => {
     <section className="grid grid-cols-1 lg:grid-cols-4 gap-6">
       {/* Main News Card */}
       <div className="lg:col-span-2">
-        <Link href={`/news/${mainArticle.slug}`} className="block">
+        <Link href={`/news/${mainArticle.id}/${mainArticle.slug}`} className="block">
           {/* Image card */}
           <div className="relative group overflow-hidden rounded-sm shadow-xl aspect-[16/10] mb-4">
             <img
@@ -42,7 +43,7 @@ const HeroGrid: React.FC<HeroGridProps> = ({ articles }) => {
           </div>
 
           {/* Title BELOW image */}
-          <h1 className="mt-12 text-gray-900 text-2xl md:text-3xl font-black leading-tight line-clamp-2 hover:text-lokmat-red cursor-pointer transition-all">
+          <h1 className="mt-12 text-gray-900 text-xl md:text-2xl font-black leading-tight line-clamp-2 hover:text-lokmat-red cursor-pointer transition-all">
             {mainArticle.title}
           </h1>
         </Link>
@@ -53,7 +54,7 @@ const HeroGrid: React.FC<HeroGridProps> = ({ articles }) => {
         {sideArticles.map((article, i) => (
           <Link
             key={i}
-            href={`/news/${article.slug}`}
+            href={`/news/${article.id}/${article.slug}`}
             className="flex flex-col gap-3 group cursor-pointer border-b border-gray-100 pb-3"
           >
             <div className="relative overflow-hidden aspect-[16/9] rounded-sm">

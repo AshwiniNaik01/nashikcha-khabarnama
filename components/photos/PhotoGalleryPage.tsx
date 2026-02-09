@@ -38,7 +38,7 @@
 //     views: 12500,
 //     likes: 845,
 //     date: '१३ जानेवारी २०२६',
-//     location: 'रामकुंड, नाशिक',
+//     location: 'रामकुंड, नासिक',
 //     photographer: 'राजेश पाटील',
 //     tags: ['उत्सव', 'राम मंदिर', 'दिव्य', 'भक्ती'],
 //     isFeatured: true,
@@ -48,13 +48,13 @@
 //     id: '2',
 //     url: 'https://images.pexels.com/photos/708777/pexels-photo-708777.jpeg',
 //     title: 'द्राक्ष आणि दवबिंदू',
-//     description: 'नाशिकच्या द्राक्ष बागांमधील पहाटेचे मनमोहक दृश्य',
+//     description: 'नासिकच्या द्राक्ष बागांमधील पहाटेचे मनमोहक दृश्य',
 //     category: 'निसर्ग',
 //     aspectRatio: 'square',
 //     views: 8920,
 //     likes: 620,
 //     date: '१२ जानेवारी २०२६',
-//     location: 'द्राक्ष बाग, नाशिक',
+//     location: 'द्राक्ष बाग, नासिक',
 //     photographer: 'प्रिया देशपांडे',
 //     tags: ['द्राक्ष', 'बाग', 'पहाट', 'निसर्ग']
 //   },
@@ -68,21 +68,21 @@
 //     views: 10450,
 //     likes: 721,
 //     date: '११ जानेवारी २०२६',
-//     location: 'इगतपुरी, नाशिक',
+//     location: 'इगतपुरी, नासिक',
 //     photographer: 'विक्रम साळुंके',
 //     tags: ['पर्वत', 'धुके', 'पावसाळा', 'इगतपुरी']
 //   },
 //   {
 //     id: '4',
 //     url: 'https://static.vecteezy.com/system/resources/thumbnails/070/593/008/small/winter-night-in-urban-park-with-snow-and-soft-glow-of-lights-photo.jpeg',
-//     title: 'नाशिक सिटी लाइट्स',
+//     title: 'नासिक सिटी लाइट्स',
 //     description: 'स्मार्ट सिटी अंतर्गत सुशोभित केलेले रस्ते',
 //     category: 'शहर',
 //     aspectRatio: 'square',
 //     views: 7560,
 //     likes: 512,
 //     date: '१० जानेवारी २०२६',
-//     location: 'नाशिक शहर',
+//     location: 'नासिक शहर',
 //     photographer: 'अनिल जाधव',
 //     tags: ['स्मार्ट सिटी', 'रस्ते', 'आधुनिक', 'विकास']
 //   },
@@ -90,13 +90,13 @@
 //     id: '5',
 //     url: 'https://images.unsplash.com/photo-1677442136019-21780ecad995',
 //     title: 'प्रगतीची नवी ओळख',
-//     description: 'नाशिकमधील प्रस्तावित आयटी पार्क',
+//     description: 'नासिकमधील प्रस्तावित आयटी पार्क',
 //     category: 'विकास',
 //     aspectRatio: 'wide',
 //     views: 11200,
 //     likes: 834,
 //     date: '९ जानेवारी २०२६',
-//     location: 'सातपूर, नाशिक',
+//     location: 'सातपूर, नासिक',
 //     photographer: 'महेश शिंदे',
 //     tags: ['आयटी पार्क', 'विकास', 'रोजगार', 'प्रगती'],
 //     isExclusive: true
@@ -141,7 +141,7 @@
 //             खबरनामा <span className="text-lokmat-red">फोटो गॅलरी</span>
 //           </h1>
 //           <p className="text-gray-500 font-medium">
-//             नाशिक आणि परिसरातील महत्त्वाच्या घडामोडींचे, निसर्गाचे आणि संस्कृतीचे बोलके क्षणचित्रे..
+//             नासिक आणि परिसरातील महत्त्वाच्या घडामोडींचे, निसर्गाचे आणि संस्कृतीचे बोलके क्षणचित्रे..
 //           </p>
 //         </div>
 //       </div>
@@ -266,7 +266,7 @@ const PhotoGalleryPage = () => {
             खबरनामा <span className="text-red-600">फोटो गॅलरी</span>
           </h1>
           <p className="text-gray-500 font-medium">
-            नाशिक आणि परिसरातील महत्त्वाच्या घडामोडींचे, निसर्गाचे आणि संस्कृतीचे बोलके क्षणचित्रे..
+            नासिक आणि परिसरातील महत्त्वाच्या घडामोडींचे, निसर्गाचे आणि संस्कृतीचे बोलके क्षणचित्रे..
           </p>
         </div>
       </div>

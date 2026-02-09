@@ -3,6 +3,7 @@ import Link from "next/link";
 
 interface LatestNewsItem {
   id: string;
+  slug: string;
   title: string;
   img: string;
   time?: string;
@@ -24,7 +25,7 @@ export default function LatestNews({ news }: { news: LatestNewsItem[] }) {
         {news.map((item, i) => (
           <Link
             key={i}
-            href={`/news/${item.id}`}
+            href={`/news/${item.id}/${item.slug}`}
             className="flex gap-4 py-4 first:pt-0 last:pb-0 cursor-pointer group"
           >
             <div className="flex-1">

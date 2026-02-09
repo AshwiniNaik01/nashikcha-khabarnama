@@ -8,6 +8,7 @@ type Article = {
     title: string;
     excerpt: string;
     image: string;
+    id: string; // Added id
     slug: string;
     category?: string;
     date?: string;
@@ -100,7 +101,7 @@ const NewsSlider: React.FC<Props> = ({ articles, title }) => {
                         className="min-w-[280px] md:min-w-[320px] lg:min-w-[360px] snap-start group"
                     >
                         {/* Image */}
-                        <Link href={`/news/${article.slug}`} className="block">
+                        <Link href={`/news/${article.id}/${article.slug}`} className="block">
                             <div className="relative aspect-[16/9] overflow-hidden rounded-md shadow-md">
                                 <img
                                     src={article.image}
@@ -122,7 +123,7 @@ const NewsSlider: React.FC<Props> = ({ articles, title }) => {
                         {/* Content */}
                         <div className="pt-3 space-y-2">
                             <h3 className="font-bold text-sm md:text-base leading-snug line-clamp-2 group-hover:text-lokmat-red transition-colors">
-                                <Link href={`/news/${article.slug}`}>
+                                <Link href={`/news/${article.id}/${article.slug}`}>
                                     {article.title}
                                 </Link>
                             </h3>
@@ -132,7 +133,7 @@ const NewsSlider: React.FC<Props> = ({ articles, title }) => {
                                     <span className="text-gray-400">{article.date}</span>
                                 )}
                                 <Link
-                                    href={`/news/${article.slug}`}
+                                    href={`/news/${article.id}/${article.slug}`}
                                     className="uppercase font-black hover:text-lokmat-red hover:underline"
                                 >
                                     वाचा »

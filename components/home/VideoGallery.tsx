@@ -72,7 +72,7 @@ export default function VideoGallery() {
           {/* Main Featured Video */}
           {activeVideo && (
             <div className="lg:col-span-2 group cursor-pointer relative">
-              <Link href={`/news/${activeVideo._id}`}>
+              <Link href={`/news/${activeVideo._id}/${activeVideo.slug}`}>
                 <div className="relative aspect-video rounded-xl overflow-hidden shadow-inner border-4 border-lokmat-maroon">
                   <img
                     src={activeVideo.image?.cdnUrl || "https://via.placeholder.com/800x450"}

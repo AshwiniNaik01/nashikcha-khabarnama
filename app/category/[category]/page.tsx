@@ -30,7 +30,8 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
             title: news.title,
             excerpt: news.shortDescription || (news.content ? news.content.substring(0, 120) + "..." : ""),
             image: news.image?.cdnUrl || "https://via.placeholder.com/800x600",
-            slug: news._id,
+            id: news._id,
+            slug: news.slug || news._id,
             date: new Date(news.createdAt).toLocaleDateString('mr-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
             category: getCategoryLabel(news.category)
           }));

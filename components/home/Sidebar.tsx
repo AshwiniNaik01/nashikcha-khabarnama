@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 interface TrendingItem {
-  id: number;
+  id: string; // Changed to string (Article ID)
   title: string;
   slug: string;
 }
@@ -44,7 +44,7 @@ const Sidebar: React.FC<SidebarProps> = ({ trendingItems }) => {
               {trendingItems.map((item, index) => (
                 <Link
                   key={item.id}
-                  href={`/news/${item.slug}`}
+                  href={`/news/${item.id}/${item.slug}`}
                   className="flex gap-3 items-start group cursor-pointer border-b border-gray-100 pb-3 last:border-0 last:pb-0"
                 >
                   <span className="text-xl font-black text-lokmat-red/20 group-hover:text-lokmat-red transition-colors duration-300">

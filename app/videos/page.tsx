@@ -60,7 +60,7 @@ const VideosPage = () => {
     <div className="space-y-12 animate-in fade-in duration-700">
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 mb-12 md:mb-20">
         <div className="lg:col-span-8 group relative cursor-pointer overflow-hidden bg-zinc-900 shadow-2xl rounded-2xl">
-          <Link href={`/news/${featured._id}`}>
+          <Link href={`/news/${featured._id}/${featured.slug || featured._id}`}>
             <div className="relative aspect-video">
               <img
                 src={featured.image?.cdnUrl || "https://via.placeholder.com/1200x675"}
@@ -96,7 +96,7 @@ const VideosPage = () => {
           </div>
           <div className="bg-gray-100 aspect-video lg:aspect-square flex flex-col items-center justify-center border-2 border-dashed border-zinc-200 p-6 group cursor-pointer transition-all rounded-xl text-center">
             <p className="text-zinc-400 text-[10px] font-black tracking-[0.3em] uppercase mb-4">Advertisement</p>
-            <span className="text-zinc-400 italic font-medium group-hover:text-zinc-600">नाशिक एक्सप्रेस <br /> विशेष जाहिरात जागा</span>
+            <span className="text-zinc-400 italic font-medium group-hover:text-zinc-600">नासिक एक्सप्रेस <br /> विशेष जाहिरात जागा</span>
           </div>
         </div>
       </section>
@@ -109,11 +109,11 @@ const VideosPage = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {videos.slice(1).map((post) => (
-            <Link key={post._id} href={`/news/${post._id}`} className="flex flex-col group bg-white overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 rounded-xl">
+            <Link key={post._id} href={`/news/${post._id}/${post.slug || post._id}`} className="flex flex-col group bg-white overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 rounded-xl">
               <div className="relative aspect-video overflow-hidden">
                 <img
                   src={post.image?.cdnUrl || "https://via.placeholder.com/800x450"}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-fit group-hover:scale-110 transition-transform duration-700"
                   alt={post.title}
                 />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">

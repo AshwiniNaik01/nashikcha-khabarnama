@@ -3,6 +3,7 @@ import Link from "next/link";
 
 interface NewsItem {
   id: string;
+  slug: string;
   title: string;
   img: string;
 }
@@ -23,7 +24,7 @@ export default function RelatedNews({
       {news.map((item, i) => (
         <Link
           key={i}
-          href={`/news/${item.id}`}
+          href={`/news/${item.id}/${item.slug}`}
           className="flex gap-4 border-b border-gray-100 pb-4 last:border-0 cursor-pointer group"
         >
           <p className="text-sm font-bold flex-1 leading-snug group-hover:text-red-600">

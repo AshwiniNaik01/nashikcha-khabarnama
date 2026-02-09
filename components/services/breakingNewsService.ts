@@ -4,6 +4,8 @@ import instance from "./instance";
 
 export interface ApiBreakingNews {
     _id: string;
+    newsId?: string;
+    slug?: string;
     headline: string;
     category: string;
     priority: number;

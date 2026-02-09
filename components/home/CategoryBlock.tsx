@@ -3,6 +3,7 @@ import Link from "next/link";
 import ArticleCard from "@/components/ArticleCard";
 
 interface Article {
+  id: string;
   title: string;
   excerpt: string;
   image: string;

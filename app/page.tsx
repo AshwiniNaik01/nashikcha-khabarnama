@@ -13,12 +13,14 @@ import PhotoGallery from "@/components/home/PhotoGallery";
 import { getAllNews, News, NEWS_IMAGE_BASE_URL } from "@/components/services/newsService";
 import { Loader2 } from "lucide-react";
 import { getCategoryLabel } from "@/components/constants/categories";
+import Advertisement from "@/components/news/Advertisement";
+// import Advertisement from "@/components/home/Add";
 
-// Unified Article definition
 interface Article {
   title: string;
   excerpt: string;
   image: string;
+  id: string;
   slug: string;
   category: string;
   date: string;
@@ -38,7 +40,8 @@ export default function HomePage() {
           title: news.title,
           excerpt: news.shortDescription || (news.content ? news.content.substring(0, 120) + "..." : ""),
           image: news.image?.cdnUrl || "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800",
-          slug: news._id, // Using _id as slug for routing
+          id: news._id,
+          slug: news.slug || news._id, // Use actual slug if exists, fallback to _id
           category: getCategoryLabel(news.category),
           date: new Date(news.createdAt).toLocaleDateString('mr-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
           views: '०',
@@ -56,9 +59,9 @@ export default function HomePage() {
   }, []);
 
   const trendingItems = articles.slice(0, 5).map((a, i) => ({
-    id: i + 1,
+    id: a.id,
     title: a.title,
-    slug: a.slug, // Include slug
+    slug: a.slug,
     views: '१२.३k'
   }));
 
@@ -73,12 +76,17 @@ export default function HomePage() {
 
   return (
     <>
+      <BreakingNews />
       <div className="space-y-12 animate-in fade-in duration-700">
+
+        <Advertisement className="w-full" />
+
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
 
 
           <div className="lg:col-span-2 space-y-12">
+
 
             <div className="space-y-4">
               <div className="flex items-center justify-between border-b-2 border-lokmat-red pb-2">
@@ -126,13 +134,13 @@ export default function HomePage() {
             <NewsSlider articles={articles.filter(a => a.category === "राजकारण")} title="राजकारण" />
           )}
 
-          {articles.filter(a => a.category === "नाशिक शहर").length > 0 && (
-            <NewsSlider articles={articles.filter(a => a.category === "नाशिक शहर")} title="नाशिक शहर" />
+          {articles.filter(a => a.category === "नासिक शहर").length > 0 && (
+            <NewsSlider articles={articles.filter(a => a.category === "नासिक शहर")} title="नासिक शहर" />
           )}
 
           <div className="space-y-12">
-            {articles.filter(a => a.category === "नाशिक ग्रामीण").length > 0 && (
-              <NewsSlider articles={articles.filter(a => a.category === "नाशिक ग्रामीण")} title="नाशिक ग्रामीण" />
+            {articles.filter(a => a.category === "नासिक ग्रामीण").length > 0 && (
+              <NewsSlider articles={articles.filter(a => a.category === "नासिक ग्रामीण")} title="नासिक ग्रामीण" />
             )}
 
             {/* NEW: Asymmetric Photo Gallery */}

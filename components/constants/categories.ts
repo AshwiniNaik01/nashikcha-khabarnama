@@ -1,15 +1,15 @@
 export const NEWS_CATEGORIES = [
     { label: "देश-विदेश", value: "desh-videsh", slugs: ["national", "desh-videsh", "দেশ বিদেশ"] },
     { label: "महाराष्ट्र", value: "maharashtra", slugs: ["maharashtra"] },
-    { label: "नाशिक शहर", value: "nashik-city", slugs: ["nashik-city", "nashik city"] },
-    { label: "नाशिक ग्रामीण", value: "nashik-rural", slugs: ["nashik-rural", "nashik rural"] },
+    { label: "नासिक शहर", value: "nashik-city", slugs: ["nashik-city", "nashik city"] },
+    { label: "नासिक ग्रामीण", value: "nashik-rural", slugs: ["nashik-rural", "nashik rural"] },
     { label: "राजकारण", value: "rajkaran", slugs: ["politics", "rajkaran"] },
     { label: "क्रीडा", value: "sports", slugs: ["sports"] },
     { label: "शेती", value: "sheti", slugs: ["agriculture", "sheti"] },
     { label: "अर्थकारण", value: "arthakaran", slugs: ["business", "arthakaran", "अर्थकारण"] },
     { label: "गुन्हेगारी", value: "crime", slugs: ["crime", "punish", "गुन्हेगारी"] },
     { label: "पंचायत राज", value: "panchayat-raj", slugs: ["panchayat-raj", "panchayat raj"] },
-    { label: "नाशिक", value: "nashik", slugs: ["nashik"] },
+    { label: "नासिक", value: "nashik", slugs: ["nashik"] },
     { label: "राशीभविष्य", value: "horoscope", slugs: ["horoscope", "rashi"] },
     { label: "व्हिडीओ", value: "videos", slugs: ["videos", "video", "व्हिडीओ"] },
 ];
