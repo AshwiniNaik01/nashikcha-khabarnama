@@ -92,21 +92,20 @@
 //     </html>
 //   );
 // }
+"use client"; // जाहिराती फेच करण्यासाठी क्लायंट कंपोनंट आवश्यक आहे
 
-
-// app/layout.tsx
-import type { Metadata } from "next";
+import React, { useEffect, useState } from "react";
 import { Tiro_Devanagari_Marathi } from "next/font/google";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
-import BreakingNews from "@/components/home/BreakingNews";
-import Add from "@/components/home/Add";
+import AdDisplay from "@/components/advertisement/AdDisplay";
+import {
+  getAdsByCategory,
+  Advertisement as AdType,
+} from "@/components/services/adService";
 
-/* ----------------------------------------
-   Fonts - Tiro Devanagari Marathi
------------------------------------------ */
 const tiroDevanagariMarathi = Tiro_Devanagari_Marathi({
   subsets: ["devanagari"],
   weight: ["400"],
@@ -114,29 +113,28 @@ const tiroDevanagariMarathi = Tiro_Devanagari_Marathi({
   variable: "--font-marathi",
 });
 
-/* ----------------------------------------
-   Metadata
------------------------------------------ */
-export const metadata: Metadata = {
-  title: {
-    default: "Nashikcha Khabarnama",
-    template: "%s | Nashikcha Khabarnama",
-  },
-  description:
-    "नाशिक व महाराष्ट्रातील ताज्या बातम्या, राजकारण, गुन्हे, क्रीडा, मनोरंजन आणि स्थानिक घडामोडी वाचा – Nashikcha Khabarnama.",
-  icons: {
-    icon: "/favicon.png",
-  },
-};
-
-/* ----------------------------------------
-   Root Layout
------------------------------------------ */
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [globalAds, setGlobalAds] = useState<AdType[]>([]);
+
+  // सर्व पेजेससाठी 'all' कॅटेगरीच्या जाहिराती फेच करणे
+  useEffect(() => {
+    const fetchGlobalAds = async () => {
+      try {
+        const res = await getAdsByCategory("all");
+        if (res.success) {
+          setGlobalAds(res.data);
+        }
+      } catch (err) {
+        console.error("Layout Ads Fetch Error:", err);
+      }
+    };
+    fetchGlobalAds();
+  }, []);
+
   return (
     <html
       lang="mr"
@@ -144,29 +142,37 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className="min-h-screen flex flex-col bg-white text-gray-900 antialiased selection:bg-lokmat-red/10 selection:text-lokmat-red"
+        className="min-h-screen flex flex-col bg-white text-gray-900 antialiased"
         suppressHydrationWarning
       >
         <Header />
         <Navbar />
 
-        <div className="site-layout-wrapper">
-          {/* LEFT GUTTER – STICKY AD */}
-          <aside className="hidden xl:flex flex-col w-24 p-2 border-r border-gray-100/50">
-            <div className="sticky top-[40px] h-[calc(100vh-160px)]">
-              <Add className="w-full h-full grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-[1.2s]" />
+        <div className="site-layout-wrapper flex justify-center">
+          {/* --- LEFT STICKY AD --- */}
+          <aside className="hidden xl:flex flex-col w-28 p-2 border-r border-gray-100/50">
+            <div className="sticky top-[100px] h-[600px]">
+              <AdDisplay
+                ads={globalAds}
+                position="left"
+                className="w-full h-full object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+              />
             </div>
           </aside>
 
-          {/* MAIN CONTENT */}
-          <main className="site-main-content">
+          {/* --- MAIN CONTENT --- */}
+          <main className="site-main-content flex-1 max-w-6xl">
             <div className="parity-container">{children}</div>
           </main>
 
-          {/* RIGHT GUTTER – STICKY AD */}
-          <aside className="hidden xl:flex flex-col w-24 p-4 border-l border-gray-100/50">
-            <div className="sticky top-[40px] h-[calc(100vh-160px)]">
-              <Add className="w-full h-full grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-[1.2s]" />
+          {/* --- RIGHT STICKY AD --- */}
+          <aside className="hidden xl:flex flex-col w-28 p-2 border-l border-gray-100/50">
+            <div className="sticky top-[100px] h-[600px]">
+              <AdDisplay
+                ads={globalAds}
+                position="right"
+                className="w-full h-full object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+              />
             </div>
           </aside>
         </div>
@@ -176,4 +182,3 @@ export default function RootLayout({
     </html>
   );
 }
-
