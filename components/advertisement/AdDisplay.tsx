@@ -51,13 +51,12 @@ const AdDisplay: React.FC<AdDisplayProps> = ({
         isSticky ? "h-full w-full" : "w-full my-4"
       } ${className}`}
     >
-      <p className="w-full text-center text-[10px] font-black tracking-widest text-gray-800 bg-gray-100 py-1 mb-2 uppercase border border-gray-200">
+      <p className="w-full text-center text-[10px] font-black tracking-widest text-gray-800 py-1 mb-2 uppercase border-b border-gray-200">
         जाहिरात
       </p>
 
-      {/* Main Content Area */}
       <div
-        className={`relative w-full overflow-hidden transition-all duration-700 border-2 border-gray-500 rounded-md flex items-center justify-center bg-gray-50 ${
+        className={`relative w-full overflow-hidden transition-all duration-700 border-2 border-gray-500 rounded-md flex items-center justify-center ${
           isSticky ? "flex-1" : "h-auto"
         }`}
       >
@@ -80,15 +79,15 @@ const AdDisplay: React.FC<AdDisplayProps> = ({
             />
           </a>
         ) : (
-          <div className="flex items-center justify-center w-full h-full bg-gradient-to-b from-gray-50 to-gray-200">
-            <span className="text-gray-900 font-bold text-xs rotate-90 whitespace-nowrap tracking-[0.2em] uppercase opacity-50 group-hover:opacity-100 transition-opacity">
+          /* Placeholder UI: जेव्हा जाहिरात नसेल तेव्हाचा क्लीन लूक */
+          <div className="flex items-center justify-center w-full h-full">
+            <span className="text-gray-900 font-bold text-[11px] rotate-90 whitespace-nowrap tracking-[0.3em] uppercase opacity-40 group-hover:opacity-100 transition-opacity">
               नासिकचा खबरनामा विशेष
             </span>
           </div>
         )}
       </div>
 
-      {/* Fade-in Animation CSS */}
       <style jsx>{`
         .ad-container {
           animation: fadeIn ${activeAd?.displayDuration || 1}s ease-in-out;
