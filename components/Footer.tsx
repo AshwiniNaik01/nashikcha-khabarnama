@@ -46,10 +46,15 @@ export default function Footer() {
                 </span>
               </div>
               <div className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors justify-center sm:justify-start">
-                <FaPhoneAlt className="text-lokmat-red shrink-0" />
-                <span className="text-xs font-bold uppercase tracking-wider">
-                  +९१ २२३३४४५५६६
-                </span>
+                <a
+                  href="tel:+919921812577"
+                  className="flex items-center gap-3 text-gray-400 hover:text-lokmat-red transition-all duration-300 justify-center sm:justify-start group"
+                >
+                  <FaPhoneAlt className="text-lokmat-red shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="text-xs font-bold uppercase tracking-wider">
+                    +91 9921812577
+                  </span>
+                </a>
               </div>
             </div>
           </div>
