@@ -52,7 +52,7 @@ export default function Footer() {
                 >
                   <FaPhoneAlt className="text-lokmat-red shrink-0 group-hover:scale-110 transition-transform" />
                   <span className="text-xs font-bold uppercase tracking-wider">
-                    +९१ 9921812577
+                    +91 9921812577
                   </span>
                 </a>
               </div>
