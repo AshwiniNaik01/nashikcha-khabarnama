@@ -1,0 +1,58 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import AdDisplay from "@/components/advertisement/AdDisplay";
+import {
+  getAdsByCategory,
+  Advertisement as AdType,
+} from "@/components/services/adService";
+
+export default function LayoutClientWrapper({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [globalAds, setGlobalAds] = useState<AdType[]>([]);
+
+  useEffect(() => {
+    const fetchGlobalAds = async () => {
+      try {
+        const res = await getAdsByCategory("all");
+        if (res.success) setGlobalAds(res.data);
+      } catch (err) {
+        console.error("Layout Ads Error:", err);
+      }
+    };
+    fetchGlobalAds();
+  }, []);
+
+  return (
+    <div className="site-layout-wrapper flex justify-center min-h-screen bg-white">
+
+      <aside className="hidden xl:flex flex-col w-[120px] p-2 border-r border-gray-100/50">
+        <div className="sticky top-[100px] h-[calc(100vh-120px)]">
+          <AdDisplay
+            ads={globalAds}
+            position="sticky-left"
+            className="w-full h-full"
+          />
+        </div>
+      </aside>
+
+      <main className="site-main-content flex-1 max-w-6xl">
+        <div className="parity-container">{children}</div>
+      </main>
+
+
+      <aside className="hidden xl:flex flex-col w-[120px] p-2 border-l border-gray-100/50">
+        <div className="sticky top-[100px] h-[calc(100vh-120px)]">
+          <AdDisplay
+            ads={globalAds}
+            position="sticky-right"
+            className="w-full h-full"
+          />
+        </div>
+      </aside>
+    </div>
+  );
+}
