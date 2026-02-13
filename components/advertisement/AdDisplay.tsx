@@ -21,29 +21,42 @@ const AdDisplay: React.FC<AdDisplayProps> = ({
   position,
   className = "",
 }) => {
-  const [activeAd, setActiveAd] = useState<Advertisement | null>(null);
+  const [filteredAds, setFilteredAds] = useState<Advertisement[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     if (ads && ads.length > 0) {
-      const filteredAds = ads.filter(
+      const active = ads.filter(
         (ad) => ad.position === position && ad.isActive,
       );
-
-      if (filteredAds.length > 0) {
-        const randomAd =
-          filteredAds[Math.floor(Math.random() * filteredAds.length)];
-        setActiveAd(randomAd);
-      } else {
-        setActiveAd(null);
-      }
+      setFilteredAds(active);
+      setCurrentIndex(0);
     }
   }, [ads, position]);
 
+  useEffect(() => {
+    if (filteredAds.length > 1) {
+      const currentAd = filteredAds[currentIndex];
+
+      const durationInSeconds = currentAd?.displayDuration || 10;
+      const durationInMs = durationInSeconds * 1000;
+
+      const timer = setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % filteredAds.length);
+      }, durationInMs);
+
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex, filteredAds]);
+
+  const activeAd = filteredAds[currentIndex] || null;
   const isSticky = position === "sticky-left" || position === "sticky-right";
 
   if (!activeAd && !isSticky) return null;
 
   const imageUrl = activeAd ? getAdImageUrl(activeAd.image) : null;
+
+  const animFadeTime = 0.8;
 
   return (
     <div
@@ -51,56 +64,55 @@ const AdDisplay: React.FC<AdDisplayProps> = ({
         isSticky ? "h-full w-full" : "w-full my-4"
       } ${className}`}
     >
-      <p className="w-full text-center text-[10px] font-black tracking-widest text-gray-800 bg-gray-100 py-1 mb-2 uppercase border border-gray-200">
-        जाहिरात
+      <p className="w-full text-center text-[9px] font-black tracking-[0.2em] text-gray-400 py-1 mb-1 uppercase border-b border-gray-100">
+        जाहिरात{" "}
+        {filteredAds.length > 1 &&
+          `(${currentIndex + 1}/${filteredAds.length})`}
       </p>
 
-      {/* Main Content Area */}
       <div
-        className={`relative w-full overflow-hidden transition-all duration-700 border-2 border-gray-500 rounded-md flex items-center justify-center bg-gray-50 ${
-          isSticky ? "flex-1" : "h-auto"
+        className={`relative w-full overflow-hidden border border-gray-200 rounded-lg flex items-center justify-center bg-white shadow-sm ${
+          isSticky ? "flex-1" : "h-auto min-h-[80px]"
         }`}
       >
         {activeAd ? (
           <a
+            key={activeAd._id}
             href={activeAd.link || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full h-full"
+            className="block w-full h-full animate-fade"
           >
             <img
               src={imageUrl!}
               alt={activeAd.title}
-              className={`w-full h-full transition-all duration-700 ${
+              className={`w-full h-full transition-all duration-500 ${
                 isSticky
-                  ? "object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100"
+                  ? "object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100"
                   : "object-contain"
               }`}
               loading="lazy"
             />
           </a>
         ) : (
-          <div className="flex items-center justify-center w-full h-full bg-gradient-to-b from-gray-50 to-gray-200">
-            <span className="text-gray-900 font-bold text-xs rotate-90 whitespace-nowrap tracking-[0.2em] uppercase opacity-50 group-hover:opacity-100 transition-opacity">
-              नासिकचा खबरनामा विशेष
+          <div className="flex items-center justify-center w-full h-full bg-gray-50 p-4">
+            <span className="text-gray-300 font-bold text-[10px] rotate-90 whitespace-nowrap tracking-widest uppercase">
+              खबरनामा विशेष
             </span>
           </div>
         )}
       </div>
 
-      {/* Fade-in Animation CSS */}
       <style jsx>{`
-        .ad-container {
-          animation: fadeIn ${activeAd?.displayDuration || 1}s ease-in-out;
+        .animate-fade {
+          animation: fadeEffect ${animFadeTime}s ease-in-out;
         }
-        @keyframes fadeIn {
+        @keyframes fadeEffect {
           from {
-            opacity: 0;
-            transform: translateY(5px);
+            opacity: 0.5;
           }
           to {
             opacity: 1;
-            transform: translateY(0);
           }
         }
       `}</style>

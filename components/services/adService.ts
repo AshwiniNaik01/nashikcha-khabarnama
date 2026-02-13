@@ -15,7 +15,14 @@ export interface Advertisement {
   title: string;
   image: AdPhoto;
   category: string[];
-  position: "top" | "bottom" | "left" | "right" | "in-between";
+  position:
+    | "top"
+    | "bottom"
+    | "left"
+    | "right"
+    | "in-between"
+    | "sticky-right"
+    | "sticky-left";
   displayDuration: number;
   link?: string;
   isActive: boolean;
