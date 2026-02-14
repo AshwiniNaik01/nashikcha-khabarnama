@@ -3,23 +3,23 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Star, Calendar, TrendingUp } from "lucide-react";
-// तुमच्या फाईल पाथनुसार हे चेक करा
+
 import { rashiData } from "./RashiData";
 import { ApiRashi } from "@/components/services/rashiService";
 
 interface RashiCardProps {
-    rashi: ApiRashi; // API कडून येणारा डायनॅमिक डेटा
+    rashi: ApiRashi;
 }
 
 const RashiCard: React.FC<RashiCardProps> = ({ rashi }) => {
     const router = useRouter();
 
-    // API मधील 'rashi' की वापरून लोकल rashiData मधून Image आणि Icon मॅच करणे
+
     const staticInfo = rashiData.find((item) => item.name === rashi.rashi);
 
     const handleDetail = (e: React.MouseEvent) => {
         e.stopPropagation();
-        // API च्या _id चा वापर करून नेव्हिगेशन
+
         router.push(`/rashi/${rashi._id}`);
     };
 

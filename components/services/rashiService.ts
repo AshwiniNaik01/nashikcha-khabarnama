@@ -41,10 +41,18 @@ export interface ApiRashiSingleResponse {
 }
 
 /* ================== API CALLS ================== */
-export const getAllRashi = async (): Promise<ApiRashiListResponse> => {
-    const res = await instance.get("/api/v1/rashi");
+
+export const getAllRashi = async (
+    date?: string
+): Promise<ApiRashiListResponse> => {
+
+    const res = await instance.get("/api/v1/rashi/filtered", {
+        params: date ? { date } : {},
+    });
+
     return res.data;
 };
+
 
 export const getRashiById = async (id: string): Promise<ApiRashiSingleResponse> => {
 
