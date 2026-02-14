@@ -6,7 +6,6 @@ export interface ApiRashi {
     rashi: string;
     tatva: string;
     currentDate: string;
-
     kalavadi: string;
     description: string;
     bhagyank: string;
