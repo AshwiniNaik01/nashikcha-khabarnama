@@ -186,13 +186,13 @@ export default function HomePage() {
           <div className="space-y-12">
             {articles.filter((a) => a.category === "नाशिक ग्रामीण").length >
               0 && (
-              <NewsSlider
-                articles={articles.filter(
-                  (a) => a.category === "नाशिक ग्रामीण",
-                )}
-                title="नाशिक ग्रामीण"
-              />
-            )}
+                <NewsSlider
+                  articles={articles.filter(
+                    (a) => a.category === "नाशिक ग्रामीण",
+                  )}
+                  title="नाशिक ग्रामीण"
+                />
+              )}
 
             {/* NEW: Asymmetric Photo Gallery */}
             {/* <PhotoGallery /> */}
