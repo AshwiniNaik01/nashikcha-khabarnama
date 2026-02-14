@@ -5,8 +5,8 @@ export interface ApiRashi {
     _id: string;
     rashi: string;
     tatva: string;
-    startDate: string;
-    endDate: string;
+    currentDate: string;
+
     kalavadi: string;
     description: string;
     bhagyank: string;
