@@ -25,6 +25,7 @@ const navItems: NavItem[] = [
     href: "#",
     subItems: [
       { label: "अर्थकारण", href: "/category/business" },
+      { label: "राशीभविष्य", href: "/rashi" },
       { label: "क्रीडा", href: "/category/sports" },
       { label: "पंचायत राज", href: "/category/panchayat-raj" },
     ],
@@ -53,10 +54,9 @@ export default function Navbar() {
               <Link
                 href={item.href}
                 className={`px-4 py-4 flex items-center gap-1 border-r border-gray-700
-                  ${
-                    isActive(item.href)
-                      ? "bg-lokmat-red"
-                      : "hover:bg-white hover:text-black"
+                  ${isActive(item.href)
+                    ? "bg-lokmat-red"
+                    : "hover:bg-white hover:text-black"
                   }
                 `}
               >
@@ -101,9 +101,8 @@ export default function Navbar() {
                     >
                       अधिक
                       <FaChevronDown
-                        className={`text-xs transition ${
-                          mobileAdhikOpen ? "rotate-180" : ""
-                        }`}
+                        className={`text-xs transition ${mobileAdhikOpen ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
                   </li>
@@ -115,9 +114,8 @@ export default function Navbar() {
                   <Link
                     href={item.href}
                     className={`flex items-center justify-center px-4 py-3 rounded-full font-bold uppercase whitespace-nowrap leading-none
-        ${
-          active ? "bg-lokmat-red text-white" : "text-gray-300 hover:text-white"
-        }
+        ${active ? "bg-lokmat-red text-white" : "text-gray-300 hover:text-white"
+                      }
       `}
                   >
                     {item.label}

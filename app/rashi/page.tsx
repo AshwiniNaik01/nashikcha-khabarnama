@@ -32,23 +32,23 @@ const RashiPage = () => {
             />
 
             {/* MAIN CONTENT LAYER */}
-            <div className="py-8 md:py-12 relative z-10">
+            <div className="py-2 md:py-2 relative z-10">
                 {/* Hero Section */}
                 <div className="text-center mb-10 md:mb-16 relative">
                     <div className="inline-block mb-4 px-4 py-1 rounded-full bg-red-50 border border-red-100 text-red-600 text-[10px] font-black uppercase tracking-[0.2em]">
                         भाग्य आणि भविष्य
                     </div>
 
-                    <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter leading-none">
+                    <h1 className="text-5xl md:text-5xl font-black mb-6 tracking-tighter leading-none">
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-600 via-orange-500 to-red-500">
                             राशी
                         </span>
                         <span className="text-lokmat-red"> भविष्य</span>
                     </h1>
 
-                    <p className="text-lg md:text-2xl text-gray-700 max-w-2xl mx-auto font-serif italic">
+                    <p className="text-lg md:text-xl text-gray-700 max-w-xl mx-auto font-serif italic">
                         ग्रह-ताऱ्यांच्या चालीवर आधारित तुमचे आजचे, उद्याचे आणि या आठवड्याचे भविष्य जाणून घ्या.
-                        <span className="block mt-3 text-lokmat-maroon font-black not-italic">
+                        <span className="block mt-2 text-lokmat-maroon font-black not-italic">
                             तुमचा दिवस शुभ राहो!
                         </span>
                     </p>
