@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -35,7 +37,7 @@ const RashiGrid = () => {
 
       if (response.success) {
 
-        const data = response.data.currentRashi || [];
+        const data = response.data || [];
 
         setRashiList(data);
         setFilteredList(data);
