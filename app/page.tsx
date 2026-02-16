@@ -44,13 +44,13 @@ export default function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // १. बातम्या आणि जाहिराती समांतर फेच करा
+
         const [newsData, adsResponse] = await Promise.all([
           getAllNews(),
           getAdsByCategory("all"),
         ]);
 
-        // बातम्यांचे मॅपिंग
+
         const mappedArticles: Article[] = newsData.map((news: any) => ({
           title: news.title,
           excerpt:
@@ -73,7 +73,6 @@ export default function HomePage() {
 
         setArticles(mappedArticles);
 
-        // २. जाहिरात डेटा स्टेटमध्ये सेट करा
         if (adsResponse.success) {
           setAds(adsResponse.data);
         }
@@ -109,10 +108,11 @@ export default function HomePage() {
     <>
       <BreakingNews />
       <div className="space-y-12 animate-in fade-in duration-700">
-        <div className="w-full h-40 overflow-hidden rounded-lg">
-          <AdDisplay ads={ads} position="top" />
-        </div>
-
+        {ads?.some(ad => ad.position === "top") && (
+          <div className="w-full h-40 overflow-hidden rounded-lg mb-4">
+            <AdDisplay ads={ads} position="top" />
+          </div>
+        )}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           <div className="lg:col-span-2 space-y-12">
             <div className="space-y-4">
@@ -194,8 +194,7 @@ export default function HomePage() {
                 />
               )}
 
-            {/* NEW: Asymmetric Photo Gallery */}
-            {/* <PhotoGallery /> */}
+
           </div>
 
           {articles.filter((a) => a.category === "क्राईम").length > 0 && (

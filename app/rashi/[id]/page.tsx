@@ -16,6 +16,12 @@ import {
     Loader2
 } from "lucide-react";
 
+// Helper to strip HTML tags
+const stripHtml = (html: string | undefined) => {
+    if (!html) return "";
+    return html.replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim();
+};
+
 /* -------------------- Helper Components -------------------- */
 
 const Stat = ({ label, value }: { label: string; value: string }) => (
@@ -158,7 +164,7 @@ export default function RashiDetailPage() {
                                 </div>
 
                                 <p className="text-2xl lg:text-3xl font-bold italic leading-tight text-gray-800">
-                                    “{apiData.description}”
+                                    “{stripHtml(apiData.description)}”
                                 </p>
 
                                 <div className="grid grid-cols-2 gap-4">
@@ -173,22 +179,22 @@ export default function RashiDetailPage() {
                             <DetailCard
                                 icon={<Heart className="text-pink-600" />}
                                 title="प्रेम आणि नातेसंबंध"
-                                text={apiData.prem_ani_natesambandh}
+                                text={stripHtml(apiData.prem_ani_natesambandh)}
                             />
                             <DetailCard
                                 icon={<Briefcase className="text-blue-600" />}
                                 title="करिअर आणि शिक्षण"
-                                text={apiData.kariyar_ani_shikshan}
+                                text={stripHtml(apiData.kariyar_ani_shikshan)}
                             />
                             <DetailCard
                                 icon={<Coins className="text-green-600" />}
                                 title="आर्थिक स्थिती"
-                                text={apiData.arthik_stiti}
+                                text={stripHtml(apiData.arthik_stiti)}
                             />
                             <DetailCard
                                 icon={<Activity className="text-orange-600" />}
                                 title="आरोग्य"
-                                text={apiData.arogya}
+                                text={stripHtml(apiData.arogya)}
                             />
                         </section>
                     </div>

@@ -81,7 +81,7 @@ export default async function Page({
   return (
     <NewsDetailClient
       initialNews={news}
-      initialNewsList={allNewsItems}
+      initialNewsList={allNewsItems.filter((item) => item._id !== id)}
       initialAds={ads}
       id={id}
       slug={slug}

@@ -102,7 +102,7 @@ const tiroDevanagariMarathi = Tiro_Devanagari_Marathi({
 
 export const metadata: Metadata = {
   title: {
-    default: "नाशिकचा खबरनामा | नाशिकच्या ताज्या घडामोडी",
+    default: "नाशिकचा खबरनामा | मुख्य बातम्या | नाशिकच्या ताज्या घडामोडी",
     template: "%s | नाशिकचा खबरनामा",
   },
   description:
