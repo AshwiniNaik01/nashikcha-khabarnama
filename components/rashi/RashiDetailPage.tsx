@@ -19,6 +19,12 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+// Helper to strip HTML tags
+const stripHtml = (html: string | undefined) => {
+  if (!html) return "";
+  return html.replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim();
+};
+
 interface PageProps {
   params: Promise<{ id: string }>;
 }
@@ -156,7 +162,7 @@ export default function RashiDetailPage({ params }: PageProps) {
 
                 <div className="space-y-6">
                   <p className="text-2xl md:text-4xl font-black text-gray-900 leading-snug italic font-serif">
-                    “{rashiApi.description}”
+                    “{stripHtml(rashiApi.description)}”
                   </p>
                 </div>
 
@@ -247,7 +253,7 @@ export default function RashiDetailPage({ params }: PageProps) {
                     <h4 className="text-2xl font-black">प्रेम आणि नातेसंबंध</h4>
                     {rashiApi.prem_ani_natesambandh ? (
                       <p className="text-gray-600 leading-relaxed text-lg">
-                        {rashiApi.prem_ani_natesambandh}
+                        {stripHtml(rashiApi.prem_ani_natesambandh)}
                       </p>
                     ) : (
                       <p className="text-zinc-400 italic">माहिती उपलब्ध नाही</p>
@@ -264,7 +270,7 @@ export default function RashiDetailPage({ params }: PageProps) {
                     <h4 className="text-2xl font-black">करिअर आणि शिक्षण</h4>
                     {rashiApi.kariyar_ani_shikshan ? (
                       <p className="text-gray-600 leading-relaxed text-lg">
-                        {rashiApi.kariyar_ani_shikshan}
+                        {stripHtml(rashiApi.kariyar_ani_shikshan)}
                       </p>
                     ) : (
                       <p className="text-zinc-400 italic">माहिती उपलब्ध नाही</p>
@@ -281,7 +287,7 @@ export default function RashiDetailPage({ params }: PageProps) {
                     <h4 className="text-2xl font-black">आर्थिक स्थिती</h4>
                     {rashiApi.arthik_stiti ? (
                       <p className="text-gray-600 leading-relaxed text-lg">
-                        {rashiApi.arthik_stiti}
+                        {stripHtml(rashiApi.arthik_stiti)}
                       </p>
                     ) : (
                       <p className="text-zinc-400 italic">माहिती उपलब्ध नाही</p>
@@ -298,7 +304,7 @@ export default function RashiDetailPage({ params }: PageProps) {
                     <h4 className="text-2xl font-black">आरोग्य</h4>
                     {rashiApi.arogya ? (
                       <p className="text-gray-600 leading-relaxed text-lg">
-                        {rashiApi.arogya}
+                        {stripHtml(rashiApi.arogya)}
                       </p>
                     ) : (
                       <p className="text-zinc-400 italic">माहिती उपलब्ध नाही</p>

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-
+import { getCategoryLabel } from "@/components/constants/categories";
 interface Article {
   title: string;
   excerpt: string;
@@ -27,14 +27,14 @@ const HeroGrid: React.FC<HeroGridProps> = ({ articles }) => {
       <div className="lg:col-span-2">
         <Link href={`/news/${mainArticle.id}/${mainArticle.slug}`} className="block">
           {/* Image card */}
-          <div className="relative group overflow-hidden rounded-sm shadow-xl aspect-[16/10] mb-4">
+          <div className="relative w-full h-full group overflow-hidden rounded-sm shadow-xl aspect-[16/10] mb-4">
             <img
               src={mainArticle.image}
               alt={mainArticle.title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
 
-            {/* Gradient overlay (category only) */}
+
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-6">
               <span className="bg-lokmat-red text-white text-[10px] uppercase font-black px-2 py-0.5 w-fit tracking-wider shadow-sm">
                 {mainArticle.category}
@@ -42,7 +42,6 @@ const HeroGrid: React.FC<HeroGridProps> = ({ articles }) => {
             </div>
           </div>
 
-          {/* Title BELOW image */}
           <h1 className="mt-12 text-gray-900 text-xl md:text-2xl font-black leading-tight line-clamp-2 hover:text-lokmat-red cursor-pointer transition-all">
             {mainArticle.title}
           </h1>
@@ -55,23 +54,28 @@ const HeroGrid: React.FC<HeroGridProps> = ({ articles }) => {
           <Link
             key={i}
             href={`/news/${article.id}/${article.slug}`}
-            className="flex flex-col gap-3 group cursor-pointer border-b border-gray-100 pb-3"
+            className="block group"
           >
-            <div className="relative overflow-hidden aspect-[16/9] rounded-sm">
+            {/* Image Card with Category Overlay */}
+            <div className="relative overflow-hidden rounded-sm shadow-md aspect-[16/10] mb-3">
               <img
                 src={article.image}
                 alt={article.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
+
+              {/* Gradient overlay (category only) - Matches Main Article */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-4">
+                <span className="bg-lokmat-red text-white text-[10px] md:text-[8px] uppercase font-black px-2 py-0.5 w-fit tracking-wider shadow-sm">
+                  {getCategoryLabel(article.category)}
+                </span>
+              </div>
             </div>
-            <div>
-              <span className="text-lokmat-red text-[10px] font-black uppercase tracking-wider">
-                {article.category}
-              </span>
-              <h3 className="text-sm font-bold line-clamp-2 group-hover:text-lokmat-red transition-colors leading-snug mt-1">
-                {article.title}
-              </h3>
-            </div>
+
+            {/* Title BELOW image - Matches Main Article Style */}
+            <h3 className="text-gray-900 text-lg font-black leading-tight line-clamp-2 group-hover:text-lokmat-red transition-all">
+              {article.title}
+            </h3>
           </Link>
         ))}
       </div>

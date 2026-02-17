@@ -20,16 +20,19 @@ const navItems: NavItem[] = [
   { label: "नाशिक ग्रामीण", href: "/category/nashik-rural" },
   { label: "क्राईम", href: "/category/crime" },
   { label: "शेती", href: "/category/agriculture" },
-  {
-    label: "अधिक",
-    href: "#",
-    subItems: [
-      { label: "अर्थकारण", href: "/category/business" },
-      { label: "राशीभविष्य", href: "/rashi" },
-      { label: "क्रीडा", href: "/category/sports" },
-      { label: "पंचायत राज", href: "/category/panchayat-raj" },
-    ],
-  },
+  { label: "अर्थकारण", href: "/category/business" },
+  { label: "राशीभविष्य", href: "/rashi" },
+  { label: "क्रीडा", href: "/category/sports" },
+  { label: "भक्तीरंग", href: "/category/bahaktirang" },
+  //   label: "अधिक",
+  //   href: "#",
+  //   subItems: [
+  //     { label: "अर्थकारण", href: "/category/business" }
+  //     { label: "राशीभविष्य", href: "/rashi" },
+  //     { label: "क्रीडा", href: "/category/sports" },
+  //     { label: "पंचायत राज", href: "/category/panchayat-raj" },
+  //   ],
+  // },
 ];
 
 export default function Navbar() {

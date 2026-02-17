@@ -144,11 +144,13 @@ const BreakingNews = () => {
   const stripHtml = (html: string) =>
     html.replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim();
 
-  // ✅ ALWAYS create headlines (safe default)
-  const headlines =
+  // ✅ ALWAYS create headlines (safe default) - Memoized to prevent frequent recalculations
+  const headlines = React.useMemo(() =>
     newsList.length > 0
       ? newsList.map((item) => stripHtml(item.headline))
-      : [];
+      : [],
+    [newsList]
+  );
 
   // ✅ ALWAYS call the hook
   const { text: currentText, index: currentIndex } =
@@ -171,7 +173,7 @@ const BreakingNews = () => {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative z-10 bg-red-50 border-y border-red-100 overflow-hidden xs:py-1.5 sm:py-2 flex items-center shadow-sm mx-2 xs:mx-3 sm:mx-4 md:mx-6 rounded-md group cursor-pointer"
+      className="relative z-10 bg-red-50 border-y border-red-100 mb-4 overflow-hidden xs:py-1.5 sm:py-2 flex items-center shadow-sm mx-2 xs:mx-3 sm:mx-4 md:mx-6 rounded-md group cursor-pointer"
     >
 
       {/* Label */}
@@ -180,7 +182,7 @@ const BreakingNews = () => {
       </div>
 
       {/* Typewriter Content */}
-      <div className="flex-1 px-3 xs:px-4 sm:px-6 md:px-8 overflow-hidden">
+      <div className="flex-1 px-3 xs:px-4 sm:px-6 md:px-8  overflow-hidden">
         <Link
           href={`/news/${currentNews?.newsId || currentNews?._id}/${currentNews?.slug || currentNews?.newsId || currentNews?._id}`}
           className="text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-bold text-gray-900 hover:text-red-700 transition-colors"
