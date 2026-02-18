@@ -3,24 +3,27 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Star, Calendar, TrendingUp } from "lucide-react";
-
 import { rashiData } from "./RashiData";
 import { ApiRashi } from "@/components/services/rashiService";
 
 interface RashiCardProps {
     rashi: ApiRashi;
+    date?: string;
 }
 
-const RashiCard: React.FC<RashiCardProps> = ({ rashi }) => {
+const RashiCard: React.FC<RashiCardProps> = ({ rashi, date }) => {
     const router = useRouter();
-
     const staticInfo = rashiData.find((item) => item.name === rashi.rashi);
 
+    // बदललेला भाग:
     const handleDetail = (e: React.MouseEvent) => {
         e.stopPropagation();
-        router.push(`/rashi/${rashi._id}`);
+        // rashi._id मध्ये त्या विशिष्ट तारखेचा डेटा असतो.
+        // आपण डिटेल पेजवर जाताना तो ID पाठवत आहोत.
+        // आणि 'date' सुद्धा पाठवतोय जेणेकरून 'मागे जा' बटण योग्य तारखेवर येईल.
+        const url = date ? `/rashi/${rashi._id}?date=${date}` : `/rashi/${rashi._id}`;
+        router.push(url);
     };
-
 
     const stripHtml = (html: string) => {
         if (!html) return "";
@@ -80,18 +83,15 @@ const RashiCard: React.FC<RashiCardProps> = ({ rashi }) => {
                         </div>
                     </div>
 
-
                     <div className="mb-0">
                         <h4 className="text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
                             <Star size={12} className="text-amber-500" />
                             आजचा भविष्य
                         </h4>
                         <p className="text-zinc-600 text-sm leading-relaxed line-clamp-3 min-h-[4.5rem]">
-
                             {stripHtml(rashi.description)}
                         </p>
                     </div>
-
 
                     <div className="grid grid-cols-3 gap-2 py-4 border-t border-zinc-100 mb-4">
                         <div className="text-center">

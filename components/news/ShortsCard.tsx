@@ -1,16 +1,17 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef } from "react";
 import { Play, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 interface ShortsProps {
   id?: string;
-  slug?: string; // Added slug
+  slug?: string;
   title?: string;
   category?: string;
   time?: string;
   description?: string;
   videoSrc?: string;
-  posterImg?: string;
 }
 
 export default function ShortsCard({
@@ -20,9 +21,28 @@ export default function ShortsCard({
   category = "मनोरंजन",
   time = "15 hr ago",
   description = "टीव्ही अभिनेत्री रश्मी देसाईने तिच्या कास्टिंग काउचच्या अनुभवाबद्दल उघडपणे बोलले आहे. १६ वर्षांची असताना तिला ऑडिशनसाठी बोलावण्यात आले होते...",
-  videoSrc = "https://www.w3schools.com/html/mov_bbb.mp4",
-  posterImg = "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+  videoSrc = "/video.mp4", // खात्री करा की ही फाईल public फोल्डरमध्ये आहे
 }: ShortsProps) {
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      // ब्राउझरच्या नियमाप्रमाणे व्हिडिओ म्यूट असणे आवश्यक आहे
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+
+      // व्हिडिओ प्ले करण्याचा प्रयत्न
+      const playPromise = videoRef.current.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.warn("Autoplay was prevented by browser:", error);
+        });
+      }
+    }
+  }, [videoSrc]);
+
   const content = (
     <>
       <h4 className="text-xl font-bold leading-tight mb-3 hover:text-red-600 transition-colors">
@@ -59,33 +79,37 @@ export default function ShortsCard({
           {/* Video Section */}
           <div className="relative rounded-2xl overflow-hidden h-64 mb-5 bg-black group">
             <video
+              ref={videoRef}
               className="w-full h-full object-cover"
-              autoPlay
-              muted
               loop
+              muted
               playsInline
-              poster={posterImg}
+              autoPlay
+              preload="auto"
+              key={videoSrc} // src बदलल्यास व्हिडिओ रिफ्रेश होईल
             >
               <source src={videoSrc} type="video/mp4" />
+              तुमचा ब्राउझर व्हिडिओ सपोर्ट करत नाही.
             </video>
 
             {/* Play Icon Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+            {/* <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
               <Play size={40} className="text-white fill-current" />
-            </div>
+            </div> */}
           </div>
 
-          {/* Content */}
+          {/* Content Link Logic */}
           {id ? (
-            <Link href={`/news/${id}/${slug || id}`}>
-              {content}
-            </Link>
+            <Link href={`/news/${id}/${slug || id}`}>{content}</Link>
           ) : (
             content
           )}
 
           {/* Footer Button */}
-          <button suppressHydrationWarning className="w-full border-t border-gray-200 pt-5 text-red-600 font-bold text-lg flex items-center justify-center gap-1 hover:underline group transition-all">
+          <button
+            suppressHydrationWarning
+            className="w-full border-t border-gray-200 pt-5 text-red-600 font-bold text-lg flex items-center justify-center gap-1 hover:underline group transition-all"
+          >
             सर्व व्हिडिओज पाहा
             <ChevronRight
               size={22}
