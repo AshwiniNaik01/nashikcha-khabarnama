@@ -32,7 +32,7 @@ jobs:
                   host: ${{ secrets.HOST}}
                   username: ${{secrets.USER}}
                   key: ${{ secrets.PRIVATE_KEY}}
-                  source: '.next,package.json,package-lock.json,public,ecosystem.config.js,next.config.js'
+                  source: '.next,package.json,package-lock.json,public,next.config.js'
                   target: '/var/www/nashik-khabarnama/web'
     
     restart-server:
