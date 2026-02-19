@@ -32,16 +32,22 @@ jobs:
                   host: ${{ secrets.HOST}}
                   username: ${{secrets.USER}}
                   key: ${{ secrets.PRIVATE_KEY}}
-                  source: '.next'
+                  source: '.next,package.json,package-lock.json,public,ecosystem.config.js,next.config.js'
                   target: '/var/www/nashik-khabarnama/web'
-            - name: Restart server
-              uses: appleboy/ssh-action@v1
-              with:
-                  host: ${{ secrets.HOST}}
-                  username: ${{secrets.USER}}
-                  key: ${{secrets.PRIVATE_KEY}}
-                  script: |
-                    . ~/.nvm/nvm.sh
-                    cd /var/www/nashik-khabarnama/web
-                    npm install
-                    pm2 restart ecosystem.config.js --env production
+    
+    restart-server:
+        needs: build-and-deploy
+        runs-on: ubuntu-latest
+
+        steps:
+          - name: Restart server
+            uses: appleboy/ssh-action@v1
+            with:
+                host: ${{ secrets.HOST}}
+                username: ${{secrets.USER}}
+                key: ${{secrets.PRIVATE_KEY}}
+                script: |
+                  . ~/.nvm/nvm.sh
+                  cd /var/www/nashik-khabarnama/web
+                  npm ci --omit=dev
+                  pm2 restart ecosystem.config.js --env production
