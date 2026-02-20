@@ -1,7 +1,7 @@
 "use client";
 
 import React, { use, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { rashiData } from "@/components/rashi/RashiData";
 import { getRashiById, ApiRashi } from "@/components/services/rashiService";
 import {
@@ -22,7 +22,17 @@ import Link from "next/link";
 // Helper to strip HTML tags
 const stripHtml = (html: string | undefined) => {
   if (!html) return "";
-  return html.replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim();
+  return html
+    .replace(/<[^>]*>?/gm, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+};
+
+// तारीख फॉरमॅट: "2026-02-17T00:00:00.000Z" -> "2026-02-17"
+const formatDateOnly = (dateString: string | undefined) => {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  return date.toISOString().split("T")[0];
 };
 
 interface PageProps {
@@ -31,6 +41,7 @@ interface PageProps {
 
 export default function RashiDetailPage({ params }: PageProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { id } = use(params);
 
   const [rashiApi, setRashiApi] = useState<ApiRashi | null>(null);
@@ -61,11 +72,25 @@ export default function RashiDetailPage({ params }: PageProps) {
   // Find static assets (icon, image) based on Marathi name
   const staticData = rashiData.find((r) => r.name === rashiApi?.rashi);
 
+  const handleBack = () => {
+    const dateParam = searchParams.get("date");
+    if (dateParam) {
+      router.push(`/rashi?date=${dateParam}`);
+    } else if (rashiApi?.currentDate) {
+      const formatted = formatDateOnly(rashiApi.currentDate);
+      router.push(`/rashi?date=${formatted}`);
+    } else {
+      router.push('/rashi');
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-white space-y-4">
         <Loader2 className="w-12 h-12 text-red-600 animate-spin" />
-        <p className="text-gray-500 font-medium animate-pulse">तुमचं भविष्य उघडत आहे...</p>
+        <p className="text-gray-500 font-medium animate-pulse">
+          तुमचं भविष्य उघडत आहे...
+        </p>
       </div>
     );
   }
@@ -80,7 +105,9 @@ export default function RashiDetailPage({ params }: PageProps) {
           <h1 className="text-2xl font-black text-gray-900 leading-tight">
             {error || "भविष्य सापडले नाही"}
           </h1>
-          <p className="text-gray-500">आम्ही हे भविष्य शोधण्यात यशस्वी झालो नाही. कृपया पुन्हा तपासा.</p>
+          <p className="text-gray-500">
+            आम्ही हे भविष्य शोधण्यात यशस्वी झालो नाही. कृपया पुन्हा तपासा.
+          </p>
           <Link
             href="/rashi"
             className="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-3 rounded-full font-bold hover:bg-red-700 transition-all shadow-lg"
@@ -112,7 +139,7 @@ export default function RashiDetailPage({ params }: PageProps) {
         <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-100">
           <div className="container mx-auto px-4 h-16 flex items-center justify-between">
             <button
-              onClick={() => router.back()}
+              onClick={handleBack}
               className="flex items-center gap-2 text-gray-800 font-bold hover:text-red-600 transition-colors"
             >
               <ArrowLeft size={20} />
@@ -144,10 +171,10 @@ export default function RashiDetailPage({ params }: PageProps) {
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-8 left-8 right-8 text-white">
-                  <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform">{staticData?.icon}</div>
-                  <h2 className="text-5xl font-black mb-1">
-                    {rashiApi.rashi}
-                  </h2>
+                  <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform">
+                    {staticData?.icon}
+                  </div>
+                  <h2 className="text-5xl font-black mb-1">{rashiApi.rashi}</h2>
                   <p className="text-lg opacity-80 font-bold tracking-widest uppercase">
                     अक्षर: {rashiApi.akshar || "-"}
                   </p>
@@ -156,8 +183,12 @@ export default function RashiDetailPage({ params }: PageProps) {
 
               <div className="lg:col-span-7 space-y-8">
                 <div className="inline-flex items-center gap-2 bg-red-600 text-white px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-lg shadow-red-200">
-                  <Star size={14} fill="currentColor" className="animate-spin-slow" />
-                  आजचा विशेष अंदाज
+                  <Star
+                    size={14}
+                    fill="currentColor"
+                    className="animate-spin-slow"
+                  />
+                  विशेष अंदाज
                 </div>
 
                 <div className="space-y-6">
@@ -195,35 +226,37 @@ export default function RashiDetailPage({ params }: PageProps) {
                   value: rashiApi.subh_graha,
                   color: "text-blue-600",
                   bg: "bg-blue-50/50",
-                  icon: <Zap size={16} />
+                  icon: <Zap size={16} />,
                 },
                 {
                   label: "भाग्यांक",
                   value: rashiApi.bhagyank,
                   color: "text-amber-600",
                   bg: "bg-amber-50/50",
-                  icon: <Star size={16} />
+                  icon: <Star size={16} />,
                 },
                 {
                   label: "शुभ रंग",
                   value: rashiApi.subh_ranga,
                   color: "text-rose-600",
                   bg: "bg-rose-50/50",
-                  icon: <Heart size={16} />
+                  icon: <Heart size={16} />,
                 },
                 {
                   label: "जुळणारी रास",
                   value: rashiApi.julni,
                   color: "text-purple-600",
                   bg: "bg-purple-50/50",
-                  icon: <Activity size={16} />
+                  icon: <Activity size={16} />,
                 },
               ].map((stat, i) => (
                 <div
                   key={i}
                   className={`p-8 rounded-[2.5rem] ${stat.bg} border border-white shadow-sm flex flex-col items-center justify-center text-center group hover:scale-[1.02] transition-transform`}
                 >
-                  <div className={`${stat.color} mb-2 opacity-50`}>{stat.icon}</div>
+                  <div className={`${stat.color} mb-2 opacity-50`}>
+                    {stat.icon}
+                  </div>
                   <div className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-1">
                     {stat.label}
                   </div>
@@ -320,7 +353,9 @@ export default function RashiDetailPage({ params }: PageProps) {
                 तुमच्या कुंडलीबद्दल अधिक जाणून घ्या
               </h2>
               <p className="text-red-700/80 max-w-2xl mx-auto font-medium">
-                नासिकच्या खबरनाम्यावर मिळवा दररोजचे अचूक राशीभविष्य. तज्ज्ञांच्या मार्गदर्शनाखाली तयार केलेले हे भविष्य तुमच्या प्रगतीसाठी उपयुक्त ठरेल.
+                नासिकच्या खबरनाम्यावर मिळवा दररोजचे अचूक राशीभविष्य.
+                तज्ज्ञांच्या मार्गदर्शनाखाली तयार केलेले हे भविष्य तुमच्या
+                प्रगतीसाठी उपयुक्त ठरेल.
               </p>
               <div className="pt-4">
                 <button className="bg-red-600 text-white px-10 py-4 rounded-full font-black uppercase tracking-widest shadow-xl hover:bg-red-700 transition-all hover:scale-105 active:scale-95">
@@ -334,22 +369,31 @@ export default function RashiDetailPage({ params }: PageProps) {
         <footer className="py-12 text-center text-gray-400 text-xs border-t border-gray-100 bg-white/5 backdrop-blur">
           <p>© 2026 नासिकचा खबरनामा. सर्व हक्क राखीव.</p>
           <p className="mt-2 opacity-60">
-            टीप: हे भविष्य ग्रहांच्या स्थितीवर आधारित असून केवळ सामान्य मार्गदर्शनासाठी आहे.
+            टीप: हे भविष्य ग्रहांच्या स्थितीवर आधारित असून केवळ सामान्य
+            मार्गदर्शनासाठी आहे.
           </p>
         </footer>
       </div>
 
       <style jsx global>{`
         @keyframes shimmer {
-          0% { transform: translateX(-100%) skewX(-25deg); }
-          100% { transform: translateX(200%) skewX(-25deg); }
+          0% {
+            transform: translateX(-100%) skewX(-25deg);
+          }
+          100% {
+            transform: translateX(200%) skewX(-25deg);
+          }
         }
         .animate-spin-slow {
           animation: spin 8s linear infinite;
         }
         @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
         }
       `}</style>
     </div>

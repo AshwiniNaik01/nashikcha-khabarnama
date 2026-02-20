@@ -128,7 +128,7 @@ export default function NewsDetailClient({
                 <FaShare
                   size={20}
                   className="block text-white"
-                  style={{ color: 'white', fill: 'white' }}
+                  style={{ color: "white", fill: "white" }}
                 />
               </button>
             </div>
@@ -215,10 +215,9 @@ export default function NewsDetailClient({
                 title={newsList[0].title}
                 category={newsList[0].category}
                 time={new Date(newsList[0].createdAt).toLocaleTimeString()}
-                posterImg={newsList[0].image?.cdnUrl || "/placeholder.png"}
+
               />
             )}
-
 
             <div className="space-y-6 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
               <div className="flex items-center gap-3">
@@ -261,7 +260,7 @@ export default function NewsDetailClient({
             <FaShare
               size={20}
               className="text-white"
-              style={{ minWidth: '20px', minHeight: '20px' }}
+              style={{ minWidth: "20px", minHeight: "20px" }}
             />
           )}
         </button>
