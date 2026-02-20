@@ -22,19 +22,18 @@ export default function ShortsCard({
   title = "“खूपच भयंकर...”, अभिनेत्रीने सांगितला कास्टिंग काउचचा धक्कादायक अनुभव; म्हणाली, “त्याला...”",
   category = "मनोरंजन",
   time = "15 hr ago",
-  description = "टीव्ही अभिनेत्री रश्मी देसाईने तिच्या कास्टिंग काउचच्या अनुभवाबद्दल उघडपणे बोलले आहे. १६ वर्षांची असताना तिला ऑडिशनसाठी बोलावण्यात आले होते...",
-  videoSrc = "/video.mp4", // खात्री करा की ही फाईल public फोल्डरमध्ये आहे
+  description = "",
+  videoSrc = "/video.mp4",
 }: ShortsProps) {
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (videoRef.current) {
-      // ब्राउझरच्या नियमाप्रमाणे व्हिडिओ म्यूट असणे आवश्यक आहे
+
       videoRef.current.defaultMuted = true;
       videoRef.current.muted = true;
 
-      // व्हिडिओ प्ले करण्याचा प्रयत्न
       const playPromise = videoRef.current.play();
 
       if (playPromise !== undefined) {
@@ -51,7 +50,7 @@ export default function ShortsCard({
         {title}
       </h4>
 
-      <div className="flex items-center gap-2 mb-6">
+      <div className="flex items-center gap-2">
         <span className="text-red-600 font-bold text-xs font-sans uppercase">
           {getCategoryLabel(category)}
         </span>
@@ -70,11 +69,11 @@ export default function ShortsCard({
         <div className="p-5">
           {/* Header */}
           <div className="flex items-center gap-2 mb-5">
-            <span className="text-red-600 text-2xl font-black font-sans tracking-tighter">
+            <span className="text-pink-600 text-xl font-black font-sans tracking-tighter">
               नासिकचा खबरनामा
             </span>
             <span className="text-2xl italic font-light font-sans tracking-tighter">
-              Videos
+
             </span>
           </div>
 
@@ -108,16 +107,7 @@ export default function ShortsCard({
           )}
 
           {/* Footer Button */}
-          <button
-            suppressHydrationWarning
-            className="w-full border-t border-gray-200 pt-5 text-red-600 font-bold text-lg flex items-center justify-center gap-1 hover:underline group transition-all"
-          >
-            सर्व व्हिडिओज पाहा
-            <ChevronRight
-              size={22}
-              className="stroke-[3px] group-hover:translate-x-1 transition-transform"
-            />
-          </button>
+
         </div>
       </div>
     </div>
