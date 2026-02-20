@@ -99,15 +99,15 @@ export default function RashiDetailPage() {
 
   const staticInfo = rashiData?.find((r) => r.name === apiData?.rashi);
 
-  // RashiDetailPage.tsx मधील महत्वाचा बदल
+
   const handleBack = () => {
     const dateParam = searchParams.get("date");
     if (dateParam) {
       router.push(`/rashi?date=${dateParam}`);
     } else if (apiData?.currentDate) {
-      // तारीख "2026-02-18" या फॉरमॅटमध्ये मिळवा
+
       const formatted = formatDateOnly(apiData.currentDate);
-      // लिस्टिंग पेजवर जाताना query param म्हणून तारीख पाठवा
+
       router.push(`/rashi?date=${formatted}`);
     } else {
       router.push('/rashi');

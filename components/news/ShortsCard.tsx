@@ -3,6 +3,8 @@
 import React, { useEffect, useRef } from "react";
 import { Play, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { getCategoryLabel } from "@/components/constants/categories";
+
 
 interface ShortsProps {
   id?: string;
@@ -51,7 +53,7 @@ export default function ShortsCard({
 
       <div className="flex items-center gap-2 mb-6">
         <span className="text-red-600 font-bold text-xs font-sans uppercase">
-          {category}
+          {getCategoryLabel(category)}
         </span>
         <span className="text-gray-400 text-xs font-sans">{time}</span>
       </div>
