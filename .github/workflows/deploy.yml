@@ -24,6 +24,7 @@ jobs:
             - name: Build Project
               env:
                   NEXT_PUBLIC_API_URL: https://api.nk.uttirna.in
+                  NEXT_PUBLIC_GA_ID: G-48FNN5BNR0
               run: npm run build
 
             - name: Copy to VPS
