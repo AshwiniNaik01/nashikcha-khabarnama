@@ -116,11 +116,10 @@ export default function RootLayout({
           src="https://www.googletagmanager.com/gtag/js?id=G-48FNN5BNR0"
           strategy="afterInteractive"
         />
-        <Script
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9453516324966322"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
