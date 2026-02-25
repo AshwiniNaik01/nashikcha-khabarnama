@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import AdDisplay from "@/components/advertisement/AdDisplay";
 import {
   getAdsByCategory,
@@ -12,7 +13,21 @@ export default function LayoutClientWrapper({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [globalAds, setGlobalAds] = useState<AdType[]>([]);
+
+  useEffect(() => {
+    if (pathname && typeof window !== "undefined" && (window as any).gtag) {
+      const url = searchParams.toString()
+        ? `${pathname}?${searchParams.toString()}`
+        : pathname;
+
+      (window as any).gtag('config', 'G-48FNN5BNR0', {
+        page_path: url,
+      });
+    }
+  }, [pathname, searchParams]);
 
   useEffect(() => {
     const fetchGlobalAds = async () => {
