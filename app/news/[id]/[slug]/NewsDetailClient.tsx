@@ -86,8 +86,8 @@
 //             {news.title}
 //           </h1>
 
-//           <div className="flex flex-wrap items-center justify-between gap-6 border-y border-gray-100 py-6 mb-8">
-//             <div className="flex items-center gap-6 text-gray-600 text-sm md:text-base">
+//           <div className="flex flex-wrap items-center justify-between gap-4 border-y border-gray-100 py-6 mb-8">
+//             <div className="flex flex-wrap items-center gap-4 text-gray-600 text-sm md:text-base">
 //               <div className="flex items-center gap-2">
 //                 <User size={20} className="text-red-600" />
 //                 <span className="font-bold text-gray-900">
@@ -178,7 +178,7 @@
 //           </div>
 
 //           {/* --- RIGHT SIDEBAR --- */}
-//           <div className="col-span-12 lg:col-span-4 space-y-12">
+//           <div className="col-span-12 lg:col-span-4 space-y-12 lg:sticky lg:top-8 self-start">
 //             {/* Sidebar Top Ad */}
 //             <AdDisplay ads={ads} position="top" />
 
@@ -330,11 +330,10 @@ export default function NewsDetailClient({
   const [newsList] = useState<News[]>(initialNewsList);
   const [ads] = useState<AdType[]>(initialAds);
   const [copied, setCopied] = useState(false);
-
-  const baseUrl = "https://www.nasikchakhabarnama.com";
-  const shareUrl = `${baseUrl}/news/${id}/${slug}`;
+  const [shareUrl, setShareUrl] = useState("");
 
   useEffect(() => {
+    setShareUrl(window.location.href);
     setIsMounted(true);
     window.scrollTo({ top: 0, behavior: "instant" });
 
@@ -402,8 +401,8 @@ export default function NewsDetailClient({
             {news.title}
           </h1>
 
-          <div className="flex flex-wrap items-center justify-between gap-6 border-y border-gray-100 py-6 mb-8">
-            <div className="flex items-center gap-6 text-gray-600 text-sm md:text-base">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-y border-gray-100 py-6 mb-8">
+            <div className="flex flex-wrap items-center gap-4 text-gray-600 text-sm md:text-base">
               <div className="flex items-center gap-2">
                 <User size={20} className="text-red-600" />
                 <span className="font-bold text-gray-900">
@@ -488,7 +487,7 @@ export default function NewsDetailClient({
             </div>
           </div>
 
-          <div className="col-span-12 lg:col-span-4 space-y-12">
+          <div className="col-span-12 lg:col-span-4 space-y-12 lg:sticky lg:top-8 self-start">
             <AdDisplay ads={ads} position="top" />
 
             <RelatedNews
@@ -553,13 +552,19 @@ export default function NewsDetailClient({
       </div>
 
       {/* Mobile Floating Buttons with Tracking */}
-      <div className="fixed bottom-10 right-6 flex flex-col gap-3 z-50 md:hidden">
+      <div className="fixed bottom-10 right-6 flex flex-col gap-3 z-[100] md:hidden">
         <button
           onClick={handleShare}
-          className="w-10 h-10 flex items-center justify-center bg-yellow-600 text-white rounded-md shadow-lg active:scale-90 transition-all border-none"
+          type="button"
+          className="w-10 h-10 !p-0 flex items-center justify-center bg-yellow-600 text-white rounded-md shadow-lg active:scale-90 transition-all border-none cursor-pointer"
         >
-          {copied ? <Check size={20} /> : <FaShare size={20} />}
+          {copied ? (
+            <Check size={20} className="text-white" />
+          ) : (
+            <FaShare size={20} className="text-white" />
+          )}
         </button>
+
 
         <a
           href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}

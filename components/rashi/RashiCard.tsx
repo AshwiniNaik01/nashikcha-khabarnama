@@ -15,12 +15,9 @@ const RashiCard: React.FC<RashiCardProps> = ({ rashi, date }) => {
     const router = useRouter();
     const staticInfo = rashiData.find((item) => item.name === rashi.rashi);
 
-    // बदललेला भाग:
     const handleDetail = (e: React.MouseEvent) => {
         e.stopPropagation();
-        // rashi._id मध्ये त्या विशिष्ट तारखेचा डेटा असतो.
-        // आपण डिटेल पेजवर जाताना तो ID पाठवत आहोत.
-        // आणि 'date' सुद्धा पाठवतोय जेणेकरून 'मागे जा' बटण योग्य तारखेवर येईल.
+
         const url = date ? `/rashi/${rashi._id}?date=${date}` : `/rashi/${rashi._id}`;
         router.push(url);
     };

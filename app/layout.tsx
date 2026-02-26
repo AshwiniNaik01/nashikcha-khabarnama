@@ -23,14 +23,14 @@
 //   },
 //   description:
 //     "नाशिक शहर आणि जिल्ह्यातील ताज्या बातम्या, शेती, राजकारण आणि क्राईम अपडेट्स वाचा.",
-//   metadataBase: new URL("https://nashikchakhabarnama.com"),
+//   metadataBase: new URL("https://www.nasikchakhabarnama.com"),
 //   alternates: {
 //     canonical: "/",
 //   },
 //   openGraph: {
 //     type: "website",
 //     locale: "mr_IN",
-//     url: "https://nashikchakhabarnama.com",
+//     url: "https://www.nasikchakhabarnama.com",
 //     siteName: "नाशिकचा खबरनामा",
 //   },
 // };
@@ -86,14 +86,14 @@ export const metadata: Metadata = {
   },
   description:
     "नाशिक शहर आणि जिल्ह्यातील ताज्या बातम्या, शेती, राजकारण आणि क्राईम अपडेट्स वाचा.",
-  metadataBase: new URL("https://nashikchakhabarnama.com"),
+  metadataBase: new URL("https://www.nasikchakhabarnama.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "mr_IN",
-    url: "https://nashikchakhabarnama.com",
+    url: "https://www.nasikchakhabarnama.com",
     siteName: "नाशिकचा खबरनामा",
   },
 };

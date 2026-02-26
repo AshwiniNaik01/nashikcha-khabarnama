@@ -196,14 +196,12 @@ import { getAllRashi, ApiRashi } from "@/components/services/rashiService";
 import { FaChevronLeft, FaChevronRight, FaSearch } from "react-icons/fa";
 import { useRouter, useSearchParams } from "next/navigation";
 
-/* -------------------------------------------------------------------------- */
-/* १. लॉजिक असलेला अंतर्गत कॉम्पोनंट (Grid Content)                              */
-/* -------------------------------------------------------------------------- */
+
 const RashiGridContent = ({ date }: { date?: string | null }) => {
   const [rashiList, setRashiList] = useState<ApiRashi[]>([]);
   const [filteredList, setFilteredList] = useState<ApiRashi[]>([]);
   const router = useRouter();
-  const searchParams = useSearchParams(); // हा हुक Suspense ची मागणी करतो
+  const searchParams = useSearchParams();
 
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -334,7 +332,6 @@ const RashiGridContent = ({ date }: { date?: string | null }) => {
             />
           </div>
 
-          {/* तत्व फिल्टर्स */}
           <div className="flex gap-2 overflow-x-auto pb-2 w-full xl:w-auto no-scrollbar">
             {elements.map((el) => (
               <button
@@ -352,7 +349,7 @@ const RashiGridContent = ({ date }: { date?: string | null }) => {
         </div>
       </div>
 
-      {/* ग्रिड डिस्प्ले */}
+
       {filteredList.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {filteredList.map((rashi) => (
@@ -373,10 +370,6 @@ const RashiGridContent = ({ date }: { date?: string | null }) => {
     </div>
   );
 };
-
-/* -------------------------------------------------------------------------- */
-/* २. मुख्य एक्स्पोर्ट (Suspense Wrapper)                                        */
-/* -------------------------------------------------------------------------- */
 const RashiGrid = (props: { date?: string | null }) => {
   return (
     <Suspense fallback={

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "व्हिडीओ | नाशिकचा खबरनामा",
     description: "नाशिकच्या ताज्या घडामोडींचे व्हिडीओ पहा.",
-    url: "https://nashikchakhabarnama.com/videos",
+    url: "https://www.nasikchakhabarnama.com/videos",
     type: "website",
   },
 };

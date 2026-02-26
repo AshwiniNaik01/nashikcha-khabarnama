@@ -12,7 +12,7 @@
 //     const [copied, setCopied] = useState(false);
 //     const [isMounted, setIsMounted] = useState(false);
 
-//     const baseUrl = "https://nashikchakhabarnama.com";
+//     const baseUrl = "https://www.nasikchakhabarnama.com";
 //     const shareUrl = selectedDate ? `${baseUrl}/rashi?date=${selectedDate}` : `${baseUrl}/rashi`;
 
 //     useEffect(() => {
@@ -131,8 +131,13 @@ const RashiListContent = () => {
     const [copied, setCopied] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
 
-    const baseUrl = "https://nashikchakhabarnama.com";
-    const shareUrl = selectedDate ? `${baseUrl}/rashi?date=${selectedDate}` : `${baseUrl}/rashi`;
+    const [shareUrl, setShareUrl] = useState("");
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setShareUrl(window.location.href);
+        }
+    }, [selectedDate]);
 
     useEffect(() => {
         setIsMounted(true);
