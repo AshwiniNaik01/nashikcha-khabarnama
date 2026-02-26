@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const apiData = response.data;
-  const baseUrl = "https://nashikchakhabarnama.com";
+  const baseUrl = "https://www.nasikchakhabarnama.com";
   const shareUrl = `${baseUrl}/rashi/${id}`;
   const cleanDescription = apiData.description?.replace(/<[^>]*>?/gm, "").slice(0, 160) || `${apiData.rashi} राशी भविष्य`;
 

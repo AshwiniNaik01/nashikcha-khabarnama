@@ -455,3 +455,52 @@ a {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+
+
+/* ----------------------------------
+   Rich Content & Prose (Resets)
+   Using :where() to keep specificity at 0
+----------------------------------- */
+:where(.rich-content, .prose) {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+/* Ensure images, frames, and tables don't overflow their containers 
+   but allow ads (ins.adsbygoogle, iframe) to manage their own sizing */
+:where(.rich-content, .prose) :where(img, video) {
+  max-width: 100%;
+  height: auto;
+}
+
+:where(.rich-content, .prose) :where(iframe):not(.adsbygoogle iframe) {
+  max-width: 100%;
+  height: auto;
+}
+
+:where(.rich-content, .prose) :where(table) {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+}
+
+/* Prevent horizontal scroll globally without breaking sticky/fixed ads */
+html,
+body {
+  max-width: 100vw;
+  overflow-x: clip;
+  /* clip is safer than hidden for sticky elements */
+}
+
+/* Explicitly protect ad components from global interference */
+.ad-container,
+.adsbygoogle,
+ins[data-ad-client] {
+  max-width: none !important;
+  overflow: visible !important;
+}

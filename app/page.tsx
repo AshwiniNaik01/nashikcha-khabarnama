@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "नाशिकचा खबरनामा | मुख्य बातम्या",
     description: "नाशिक शहर आणि जिल्ह्यातील ताज्या बातम्या, शेती, राजकारण आणि क्राईम अपडेट्स वाचा.",
-    url: "https://nashikchakhabarnama.com",
+    url: "https://www.nasikchakhabarnama.com",
     siteName: "नाशिकचा खबरनामा",
     locale: "mr_IN",
     type: "website",

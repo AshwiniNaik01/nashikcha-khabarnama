@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
     openGraph: {
       title: `${label} न्युज | नाशिकचा खबरनामा`,
       description: `नाशिक आणि परिसरातील ${label} विषयावरील ताज्या बातम्या आणि अपडेट्स वाचा.`,
-      url: `https://nashikchakhabarnama.com/category/${categoryKey}`,
+      url: `https://www.nasikchakhabarnama.com/category/${categoryKey}`,
       type: "website",
     },
   };
