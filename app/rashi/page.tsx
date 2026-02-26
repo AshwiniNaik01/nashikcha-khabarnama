@@ -4,10 +4,10 @@ import RashiListClient from "./RashiListClient";
 
 export const metadata: Metadata = {
     title: "राशीभविष्य | नाशिकचा खबरनामा",
-    description: "तुमचे आजचे राशीभविष्य जाणून घ्या. मेष ते मीन सर्व १२ राशींचे अचूक भविष्य.",
+    description: "तुमचे राशीभविष्य जाणून घ्या. मेष ते मीन सर्व १२ राशींचे अचूक भविष्य.",
     openGraph: {
         title: "राशीभविष्य | नाशिकचा खबरनामा",
-        description: "तुमचे आजचे राशीभविष्य जाणून घ्या. मेष ते मीन सर्व १२ राशींचे अचूक भविष्य.",
+        description: "तुमचे राशीभविष्य जाणून घ्या. मेष ते मीन सर्व १२ राशींचे अचूक भविष्य.",
         url: "https://www.nasikchakhabarnama.com/rashi",
         siteName: "नाशिकचा खबरनामा",
         locale: "mr_IN",
