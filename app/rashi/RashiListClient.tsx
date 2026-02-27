@@ -151,6 +151,7 @@ const RashiListContent = () => {
 
     const handleShare = async () => {
         const isShareSupported = typeof navigator.share !== "undefined";
+        const imageUrl = "https://img.freepik.com/premium-psd/circle-golden-zodiac-signs-capricorn_684888-663.jpg?ga=GA1.1.1339275905.1751605421&w=740&q=80";
 
         if (typeof window !== "undefined" && (window as any).gtag) {
             (window as any).gtag('event', 'click_share_rashi_list', {
@@ -160,13 +161,36 @@ const RashiListContent = () => {
 
         if (isShareSupported) {
             try {
-                await navigator.share({
-                    title: "राशीभविष्य | नाशिकचा खबरनामा",
-                    text: "आजचे राशीभविष्य जाणून घ्या. मेष ते मीन सर्व १२ राशींचे अचूक भविष्य.",
-                    url: shareUrl,
-                });
+                // Fetch the image and convert to File for sharing
+                const response = await fetch(imageUrl);
+                const blob = await response.blob();
+                const file = new File([blob], "rashi-bhavishya.jpg", { type: "image/jpeg" });
+
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        title: "राशीभविष्य | नाशिकचा खबरनामा",
+                        text: "आजचे राशीभविष्य जाणून घ्या. मेष ते मीन सर्व १२ राशींचे अचूक भविष्य.",
+                        url: shareUrl,
+                        files: [file]
+                    });
+                } else {
+                    await navigator.share({
+                        title: "राशीभविष्य | नाशिकचा खबरनामा",
+                        text: "आजचे राशीभविष्य जाणून घ्या. मेष ते मीन सर्व १२ राशींचे अचूक भविष्य.",
+                        url: shareUrl,
+                    });
+                }
             } catch (error) {
-                console.log("Error sharing:", error);
+                console.log("Error sharing with file, falling back to basic share:", error);
+                try {
+                    await navigator.share({
+                        title: "राशीभविष्य | नाशिकचा खबरनामा",
+                        text: "आजचे राशीभविष्य जाणून घ्या. मेष ते मीन सर्व १२ राशींचे अचूक भविष्य.",
+                        url: shareUrl,
+                    });
+                } catch (fallbackError) {
+                    console.log("Fallback share failed:", fallbackError);
+                }
             }
         } else {
             navigator.clipboard.writeText(shareUrl);

@@ -30,11 +30,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: shareUrl,
       siteName: "नाशिकचा खबरनामा",
       locale: "mr_IN",
+      images: [
+        {
+          url: "https://img.freepik.com/premium-psd/circle-golden-zodiac-signs-capricorn_684888-663.jpg?ga=GA1.1.1339275905.1751605421&w=740&q=80",
+          width: 1200,
+          height: 630,
+          alt: `${apiData.rashi} राशी भविष्य`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${apiData.rashi} राशी भविष्य`,
       description: cleanDescription,
+      images: ["https://img.freepik.com/premium-psd/circle-golden-zodiac-signs-capricorn_684888-663.jpg?ga=GA1.1.1339275905.1751605421&w=740&q=80"],
     },
   };
 }
