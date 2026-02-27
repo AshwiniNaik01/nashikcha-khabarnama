@@ -12,6 +12,14 @@ export const metadata: Metadata = {
         siteName: "नाशिकचा खबरनामा",
         locale: "mr_IN",
         type: "website",
+        images: [
+            {
+                url: "https://img.freepik.com/premium-psd/circle-golden-zodiac-signs-capricorn_684888-663.jpg?ga=GA1.1.1339275905.1751605421&w=740&q=80",
+                width: 1200,
+                height: 630,
+                alt: "राशीभविष्य",
+            },
+        ],
     },
 };
 
