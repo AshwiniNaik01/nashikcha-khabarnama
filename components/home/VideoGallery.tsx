@@ -1,23 +1,34 @@
+
+
 "use client";
 
 import React, { useEffect, useState } from "react";
 import { Play, ChevronRight, Video, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { getAllNews, News, NEWS_IMAGE_BASE_URL } from "@/components/services/newsService";
+// IMPORT NEW API FUNCTIONS AND TYPES
+import { getAllVideos, ApiVideoItem, getYoutubeThumbnail } from "@/components/services/videoServices";
+import { getCategoryLabel } from "@/components/constants/categories";
 
 export default function VideoGallery() {
-  const [videos, setVideos] = useState<News[]>([]);
-  const [activeVideo, setActiveVideo] = useState<News | null>(null);
+  const [videos, setVideos] = useState<ApiVideoItem[]>([]);
+  const [activeVideo, setActiveVideo] = useState<ApiVideoItem | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        // Fetch news specifically from 'व्हिडीओ' category
-        const videoNews = await getAllNews("व्हिडीओ");
-        const sorted = videoNews.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-        setVideos(sorted);
-        if (sorted.length > 0) setActiveVideo(sorted[0]);
+        // Fetch videos using the new service
+        const response = await getAllVideos();
+
+        if (response.success && response.data.length > 0) {
+          // Sort by creation date descending
+          const sorted = response.data.sort(
+            (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+
+          setVideos(sorted);
+          setActiveVideo(sorted[0]);
+        }
       } catch (error) {
         console.warn("Handled videos fetch issue:", error);
       } finally {
@@ -72,10 +83,12 @@ export default function VideoGallery() {
           {/* Main Featured Video */}
           {activeVideo && (
             <div className="lg:col-span-2 group cursor-pointer relative">
-              <Link href={`/news/${activeVideo._id}/${activeVideo.slug}`}>
+              {/* Updated Link to use _id */}
+              <Link href={`/videos/${activeVideo._id}`}>
                 <div className="relative aspect-video rounded-xl overflow-hidden shadow-inner border-4 border-lokmat-maroon">
                   <img
-                    src={activeVideo.image?.cdnUrl || "https://via.placeholder.com/800x450"}
+                    // Generate thumbnail from YouTube URL
+                    src={getYoutubeThumbnail(activeVideo.videoUrl)}
                     alt={activeVideo.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70"
                   />
@@ -91,7 +104,7 @@ export default function VideoGallery() {
                   {/* Info Overlay */}
                   <div className="absolute bottom-6 left-6 right-6">
                     <span className="bg-lokmat-red text-white text-[10px] font-black px-3 py-1 rounded uppercase tracking-widest mb-3 inline-block">
-                      {activeVideo.category}
+                      {getCategoryLabel(activeVideo.category)}
                     </span>
                     <h3 className="text-xl md:text-2xl font-black text-white leading-tight line-clamp-2">
                       {activeVideo.title}
@@ -104,7 +117,7 @@ export default function VideoGallery() {
 
           {/* Playlist items */}
           <div className="space-y-4 max-h-[450px] overflow-y-auto pr-2 custom-scrollbar">
-            {videos.map((video) => (
+            {videos.slice(0, 3).map((video) => (
               <div
                 key={video._id}
                 onClick={() => setActiveVideo(video)}
@@ -115,9 +128,10 @@ export default function VideoGallery() {
               >
                 <div className="relative w-32 aspect-video rounded-lg overflow-hidden flex-shrink-0 border-4 border-lokmat-maroon">
                   <img
-                    src={video.image?.cdnUrl || "https://via.placeholder.com/400x225"}
+                    // Generate thumbnail for playlist items
+                    src={getYoutubeThumbnail(video.videoUrl)}
                     className="w-full h-full object-cover opacity-80"
-                    alt=""
+                    alt={video.title}
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Play size={14} className="text-white fill-white/50" />
@@ -128,7 +142,7 @@ export default function VideoGallery() {
                     {video.title}
                   </h4>
                   <span className="text-lokmat-red text-[10px] uppercase font-black tracking-tighter">
-                    {video.category}
+                    {getCategoryLabel(video.category)}
                   </span>
                 </div>
               </div>

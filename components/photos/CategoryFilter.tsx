@@ -1,38 +1,4 @@
-// // components/photos/CategoryFilter.tsx
-// "use client";
 
-// import React from 'react';
-
-// interface CategoryFilterProps {
-//     categories: string[];
-//     activeCategory: string;
-//     onSelect: (category: string) => void;
-// }
-
-// const CategoryFilter: React.FC<CategoryFilterProps> = ({ categories, activeCategory, onSelect }) => {
-//     return (
-//         <div className="flex flex-wrap items-center gap-2 mb-8 overflow-x-auto pb-2 scrollbar-hide">
-//             {categories.map((category) => (
-//                 <button
-//                     key={category}
-//                     onClick={() => onSelect(category)}
-//                     className={`px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 ${activeCategory === category
-//                             ? 'bg-lokmat-red text-white shadow-md scale-105'
-//                             : 'bg-white text-gray-600 border border-gray-200 hover:border-lokmat-red hover:text-lokmat-red'
-//                         }`}
-//                 >
-//                     {category}
-//                 </button>
-//             ))}
-//         </div>
-//     );
-// };
-
-// export default CategoryFilter;
-
-
-
-// components/photos/CategoryFilter.tsx
 "use client";
 
 import React from 'react';

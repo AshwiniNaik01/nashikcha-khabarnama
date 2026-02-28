@@ -21,6 +21,12 @@ export const metadata: Metadata = {
             },
         ],
     },
+    twitter: {
+        card: "summary_large_image",
+        title: "राशीभविष्य | नाशिकचा खबरनामा",
+        description: "तुमचे राशीभविष्य जाणून घ्या. मेष ते मीन सर्व १२ राशींचे अचूक भविष्य.",
+        images: ["https://img.freepik.com/premium-psd/circle-golden-zodiac-signs-capricorn_684888-663.jpg?ga=GA1.1.1339275905.1751605421&w=740&q=80"],
+    },
 };
 
 export default function RashiPage() {

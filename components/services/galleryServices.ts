@@ -2,7 +2,7 @@ import instance from "./instance";
 export interface ApiGalleryItem {
   _id: string;
   title: string;
-  photo: GalleryPhoto; // 🔥 FIXED
+  photo: GalleryPhoto;
   category: string;
   description?: string;
   location?: string;
@@ -32,9 +32,15 @@ export interface GalleryResponse {
   message: string;
 }
 
-// गॅलरी डेटा मिळवण्यासाठी फंक्शन
+export interface GalleryActionResponse {
+  success: boolean;
+  data: ApiGalleryItem;
+  message: string;
+  statusCode?: number;
+}
+
 export const getAllGalleryItems = async (): Promise<GalleryResponse> => {
-  const tryEndpoints = ["/api/v1/gallery", "/api/v1/gallery/all"];
+  const tryEndpoints = ["/api/v1/gallery/all"];
 
   for (const endpoint of tryEndpoints) {
     try {
@@ -50,7 +56,30 @@ export const getAllGalleryItems = async (): Promise<GalleryResponse> => {
   return { success: false, data: [], message: "Failed to fetch gallery" };
 };
 
-// इमेजचा पूर्ण पाथ मिळवण्यासाठी हेल्पर
+
+// Like API call
+export const likeGalleryItem = async (id: string): Promise<GalleryActionResponse> => {
+  try {
+    const res = await instance.put(`/api/v1/gallery/${id}/like`);
+    return res.data;
+  } catch (error) {
+    console.error("Error liking gallery item:", error);
+    throw error;
+  }
+};
+
+// View API call
+export const viewGalleryItem = async (id: string): Promise<GalleryActionResponse> => {
+  try {
+    const res = await instance.put(`/api/v1/gallery/${id}/view`);
+    return res.data;
+  } catch (error) {
+    console.error("Error updating views:", error);
+    throw error;
+  }
+};
+
+
 export const getGalleryImageUrl = (photo: {
   cdnUrl?: string;
   fullS3URL?: string;

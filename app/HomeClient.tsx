@@ -14,6 +14,8 @@ import {
 import { Loader2 } from "lucide-react";
 import { getCategoryLabel } from "@/components/constants/categories";
 import AdDisplay from "@/components/advertisement/AdDisplay";
+import PhotoGallery from "@/components/home/PhotoGallery";
+import VideoGallery from "@/components/home/VideoGallery";
 import {
     getAdsByCategory,
     Advertisement as AdType,
@@ -154,6 +156,8 @@ export default function HomeClient() {
                                 title="महाराष्ट्र"
                             />
                         )}
+
+                        <VideoGallery />
                     </div>
 
                     {articles.filter((a) => a.category === "राजकारण").length > 0 && (
@@ -180,6 +184,10 @@ export default function HomeClient() {
                                     title="नाशिक ग्रामीण"
                                 />
                             )}
+
+
+                        {/* NEW: Asymmetric Photo Gallery */}
+                        <PhotoGallery />
                     </div>
 
                     {articles.filter((a) => a.category === "क्राईम").length > 0 && (
@@ -200,6 +208,13 @@ export default function HomeClient() {
                         <NewsSlider
                             articles={articles.filter((a) => a.category === "क्रीडा")}
                             title="क्रीडा"
+                        />
+                    )}
+
+                    {articles.filter((a) => a.category === "भक्तीरंग").length > 0 && (
+                        <NewsSlider
+                            articles={articles.filter((a) => a.category === "भक्तीरंग")}
+                            title="भक्तीरंग"
                         />
                     )}
                 </div>
