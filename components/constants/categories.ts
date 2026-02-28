@@ -8,7 +8,7 @@ export const NEWS_CATEGORIES = [
     { label: "शेती", value: "sheti", slugs: ["agriculture", "sheti"] },
     { label: "अर्थकारण", value: "arthakaran", slugs: ["business", "arthakaran", "अर्थकारण"] },
     { label: "गुन्हेगारी", value: "crime", slugs: ["crime", "punish", "गुन्हेगारी"] },
-    { label: "पंचायत राज", value: "panchayat-raj", slugs: ["panchayat-raj", "panchayat raj"] },
+    { label: "भक्तीरंग", value: "bahaktirang", slugs: ["bahaktirang", "bahaktirang"] },
     { label: "नाशिक", value: "nashik", slugs: ["nashik"] },
     { label: "राशीभविष्य", value: "horoscope", slugs: ["horoscope", "rashi"] },
     { label: "व्हिडीओ", value: "videos", slugs: ["videos", "video", "व्हिडीओ"] },
