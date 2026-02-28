@@ -296,11 +296,11 @@
 
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Calendar, User, Check, Play } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { Calendar, User, Check, Play, X, Eye } from "lucide-react";
 import { FaShare } from "react-icons/fa";
 import { getCategoryLabel } from "@/components/constants/categories";
-import { News } from "@/components/services/newsService";
+import { News, incrementNewsViews } from "@/components/services/newsService";
 import { Advertisement as AdType } from "@/components/services/adService";
 
 import RelatedNews from "@/components/news/RelatedNews";
@@ -331,11 +331,30 @@ export default function NewsDetailClient({
   const [ads] = useState<AdType[]>(initialAds);
   const [copied, setCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [viewCount, setViewCount] = useState<number>(news.views || 0);
+
+  const hasTrackedView = useRef(false);
 
   useEffect(() => {
     setShareUrl(window.location.href);
     setIsMounted(true);
     window.scrollTo({ top: 0, behavior: "instant" });
+
+
+    const trackView = async () => {
+      if (!hasTrackedView.current) {
+        hasTrackedView.current = true;
+        try {
+          await incrementNewsViews(id);
+          setViewCount((prev) => prev + 1);
+        } catch (error) {
+          hasTrackedView.current = false;
+          console.warn("View tracking error:", error);
+        }
+      }
+    };
+    trackView();
 
     // --- Google Analytics: Track News View ---
     if (typeof window !== "undefined" && (window as any).gtag) {
@@ -413,6 +432,10 @@ export default function NewsDetailClient({
                 <Calendar size={20} className="text-red-600" />
                 <span>{formattedDate}</span>
               </div>
+              <div className="flex items-center gap-2">
+                <Eye size={20} className="text-red-600" />
+                <span>{viewCount}</span>
+              </div>
             </div>
 
             <div className="hidden md:flex items-center gap-2">
@@ -455,11 +478,14 @@ export default function NewsDetailClient({
 
         <div className="grid grid-cols-12 gap-8 lg:gap-12">
           <div className="col-span-12 lg:col-span-8 space-y-10">
-            <div className="relative aspect-video rounded-xl overflow-hidden shadow-xl bg-gray-100">
+            <div
+              className="relative aspect-video rounded-xl overflow-hidden shadow-xl bg-gray-100 cursor-pointer group"
+              onClick={() => setIsPreviewOpen(true)}
+            >
               <img
                 src={news.image?.cdnUrl || "/placeholder.png"}
                 alt={news.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
 
@@ -590,6 +616,30 @@ export default function NewsDetailClient({
           </svg>
         </a>
       </div>
+
+      {isPreviewOpen && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+          onClick={() => setIsPreviewOpen(false)}
+        >
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsPreviewOpen(false);
+            }}
+            className="absolute top-6 right-6 p-2 bg-white/20 text-white rounded-full hover:bg-white/30 transition-colors z-[210]"
+          >
+            <X size={28} />
+          </button>
+
+          <img
+            src={news.image?.cdnUrl || "/placeholder.png"}
+            alt={news.title}
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-full max-h-[90vh] object-contain rounded-lg relative z-[205] shadow-2xl"
+          />
+        </div>
+      )}
     </div>
   );
 }
