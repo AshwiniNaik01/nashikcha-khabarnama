@@ -64,15 +64,6 @@ const Sidebar: React.FC<SidebarProps> = ({ trendingItems }) => {
           </div>
         </div>
       </div>
-
-      {/* Newsletter or Link */}
-      {/* <div className="bg-gradient-to-br from-lokmat-maroon to-[#600000] text-white p-6 rounded-lg text-center shadow-lg border border-red-900/20">
-                <h3 className="text-sm font-black uppercase mb-2 tracking-widest">महत्वाच्या बातम्या मिळवा</h3>
-                <p className="text-[10px] mb-5 opacity-80 font-medium leading-relaxed">आमच्या व्हॉट्सॲप चॅनेलला जॉईन करा आणि ताज्या अपडेट्स मिळवा</p>
-                <button className="bg-white text-lokmat-maroon w-full py-2.5 text-xs font-black uppercase rounded-md hover:bg-gray-100 transition-all transform hover:scale-[1.02] shadow-sm">
-                    जॉईन करा
-                </button>
-            </div> */}
     </div>
   );
 };
