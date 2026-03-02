@@ -1,0 +1,54 @@
+name: deploy_nashikchakhabarnama.com
+
+on:
+    push:
+        branches:
+            - dev-ashwini
+            
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Clone repo
+              uses: actions/checkout@v4
+
+            - name: Setup node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build Project
+              env:
+                  NEXT_PUBLIC_API_URL: https://api.nasikchakhabarnama.com
+                  NEXT_PUBLIC_GA_ID: G-48FNN5BNR0
+              run: npm run build
+
+            - name: Copy to VPS
+              uses: appleboy/scp-action@v0.1.7
+              with:
+                  host: ${{ secrets.HOST}}
+                  username: ${{secrets.USER}}
+                  key: ${{ secrets.PRIVATE_KEY}}
+                  source: '.next,package.json,package-lock.json,public,next.config.js'
+                  target: '/var/www/nashik-khabarnama/web'
+
+    restart-server:
+        needs: build
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Restart server
+              uses: appleboy/ssh-action@v1
+              with:
+                  host: ${{ secrets.HOST}}
+                  username: ${{secrets.USER}}
+                  key: ${{secrets.PRIVATE_KEY}}
+                  script: |
+                      . ~/.nvm/nvm.sh
+                      cd /var/www/nashik-khabarnama/web
+                      npm install
+                      pm2 restart ecosystem.config.js --env production
