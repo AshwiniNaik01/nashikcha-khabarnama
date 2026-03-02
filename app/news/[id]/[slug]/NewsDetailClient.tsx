@@ -295,11 +295,12 @@
 // }
 
 "use client";
-import React, { useEffect, useState } from "react";
-import { Calendar, User, Check, Play } from "lucide-react";
+
+import React, { useEffect, useRef, useState } from "react";
+import { Calendar, User, Check, Play, X, Eye } from "lucide-react";
 import { FaShare } from "react-icons/fa";
 import { getCategoryLabel } from "@/components/constants/categories";
-import { News } from "@/components/services/newsService";
+import { News, incrementNewsViews } from "@/components/services/newsService";
 import { Advertisement as AdType } from "@/components/services/adService";
 
 import RelatedNews from "@/components/news/RelatedNews";
@@ -330,19 +331,36 @@ export default function NewsDetailClient({
   const [ads] = useState<AdType[]>(initialAds);
   const [copied, setCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [viewCount, setViewCount] = useState<number>(news.views || 0);
+
+  const hasTrackedView = useRef(false);
 
   useEffect(() => {
     setShareUrl(window.location.href);
     setIsMounted(true);
     window.scrollTo({ top: 0, behavior: "instant" });
 
-    // --- Google Analytics: Track News View ---
+    const trackView = async () => {
+      if (!hasTrackedView.current) {
+        hasTrackedView.current = true;
+        try {
+          await incrementNewsViews(id);
+          setViewCount((prev) => prev + 1);
+        } catch (error) {
+          hasTrackedView.current = false;
+          console.warn("View tracking error:", error);
+        }
+      }
+    };
+    trackView();
+
     if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag('event', 'view_news', {
+      (window as any).gtag("event", "view_news", {
         news_title: news.title,
         news_category: news.category,
         news_id: id,
-        page_location: window.location.href
+        page_location: window.location.href,
       });
     }
   }, [id, news.title, news.category]);
@@ -352,9 +370,9 @@ export default function NewsDetailClient({
 
     // --- Google Analytics: Track Share Click ---
     if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag('event', 'click_share_main', {
+      (window as any).gtag("event", "click_share_main", {
         news_title: news.title,
-        method: isShareSupported ? 'System Share' : 'Copy Link'
+        method: isShareSupported ? "System Share" : "Copy Link",
       });
     }
 
@@ -412,6 +430,10 @@ export default function NewsDetailClient({
                 <Calendar size={20} className="text-red-600" />
                 <span>{formattedDate}</span>
               </div>
+              <div className="flex items-center gap-2">
+                <Eye size={20} className="text-red-600" />
+                <span>{viewCount}</span>
+              </div>
             </div>
 
             <div className="hidden md:flex items-center gap-2">
@@ -420,7 +442,12 @@ export default function NewsDetailClient({
                 href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => (window as any).gtag?.('event', 'share', { method: 'Facebook', content_id: id })}
+                onClick={() =>
+                  (window as any).gtag?.("event", "share", {
+                    method: "Facebook",
+                    content_id: id,
+                  })
+                }
                 className="w-10 h-10 bg-[#1877F2] text-white flex items-center justify-center rounded-md hover:opacity-90 transition-opacity"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
@@ -433,7 +460,12 @@ export default function NewsDetailClient({
                 href={`https://wa.me/?text=${encodeURIComponent(news.title + " " + shareUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => (window as any).gtag?.('event', 'share', { method: 'WhatsApp', content_id: id })}
+                onClick={() =>
+                  (window as any).gtag?.("event", "share", {
+                    method: "WhatsApp",
+                    content_id: id,
+                  })
+                }
                 className="w-10 h-10 bg-[#25D366] text-white flex items-center justify-center rounded-md hover:opacity-90 transition-opacity"
               >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
@@ -454,18 +486,23 @@ export default function NewsDetailClient({
 
         <div className="grid grid-cols-12 gap-8 lg:gap-12">
           <div className="col-span-12 lg:col-span-8 space-y-10">
-            <div className="relative aspect-video rounded-xl overflow-hidden shadow-xl bg-gray-100">
+            <div
+              className="relative aspect-video rounded-xl overflow-hidden shadow-xl bg-gray-100 cursor-pointer group"
+              onClick={() => setIsPreviewOpen(true)}
+            >
               <img
                 src={news.image?.cdnUrl || "/placeholder.png"}
                 alt={news.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
 
             <article className="prose prose-lg max-w-none prose-p:text-gray-800">
               {news.shortDescription && (
                 <div className="text-xl font-bold italic mb-8 border-l-4 border-red-600 pl-6 py-4 bg-red-50/50 rounded-r-lg">
-                  <div dangerouslySetInnerHTML={{ __html: news.shortDescription }} />
+                  <div
+                    dangerouslySetInnerHTML={{ __html: news.shortDescription }}
+                  />
                 </div>
               )}
               <div
@@ -474,13 +511,16 @@ export default function NewsDetailClient({
               />
             </article>
 
-            {news.quotes && news.quotes.length > 0 && <QuoteSection quotes={news.quotes} />}
+            {news.quotes && news.quotes.length > 0 && (
+              <QuoteSection quotes={news.quotes} />
+            )}
 
             <AdDisplay ads={ads} position="in-between" />
 
             <div className="bg-gray-50 p-6 md:p-8 rounded-2xl border border-gray-100">
               <h3 className="text-2xl font-black mb-6 flex items-center gap-3 text-gray-900">
-                <span className="w-2 h-8 bg-red-600 rounded-full" /> आणखी बातम्या
+                <span className="w-2 h-8 bg-red-600 rounded-full" /> आणखी
+                बातम्या
               </h3>
               <NewsList news={newsList.slice(0, 4)} />
             </div>
@@ -492,7 +532,9 @@ export default function NewsDetailClient({
             <RelatedNews
               title="संबंधित बातम्या"
               news={newsList
-                .filter((n) => n._id !== news._id && n.category === news.category)
+                .filter(
+                  (n) => n._id !== news._id && n.category === news.category,
+                )
                 .slice(0, 6)
                 .map((n) => ({
                   title: n.title,
@@ -564,12 +606,16 @@ export default function NewsDetailClient({
           )}
         </button>
 
-
         <a
           href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => (window as any).gtag?.('event', 'share', { method: 'Facebook_Mobile', content_id: id })}
+          onClick={() =>
+            (window as any).gtag?.("event", "share", {
+              method: "Facebook_Mobile",
+              content_id: id,
+            })
+          }
           className="w-10 h-10 bg-[#1877F2] text-white flex items-center justify-center rounded-md shadow-lg"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
@@ -581,7 +627,12 @@ export default function NewsDetailClient({
           href={`https://wa.me/?text=${encodeURIComponent(news.title + " " + shareUrl)}`}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => (window as any).gtag?.('event', 'share', { method: 'WhatsApp_Mobile', content_id: id })}
+          onClick={() =>
+            (window as any).gtag?.("event", "share", {
+              method: "WhatsApp_Mobile",
+              content_id: id,
+            })
+          }
           className="w-10 h-10 bg-[#25D366] text-white flex items-center justify-center rounded-md shadow-lg"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
@@ -589,6 +640,30 @@ export default function NewsDetailClient({
           </svg>
         </a>
       </div>
+
+      {isPreviewOpen && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+          onClick={() => setIsPreviewOpen(false)}
+        >
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsPreviewOpen(false);
+            }}
+            className="absolute top-6 right-6 p-2 bg-white/20 text-white rounded-full hover:bg-white/30 transition-colors z-[210]"
+          >
+            <X size={28} />
+          </button>
+
+          <img
+            src={news.image?.cdnUrl || "/placeholder.png"}
+            alt={news.title}
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-full max-h-[90vh] object-contain rounded-lg relative z-[205] shadow-2xl"
+          />
+        </div>
+      )}
     </div>
   );
 }

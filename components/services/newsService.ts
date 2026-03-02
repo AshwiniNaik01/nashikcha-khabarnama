@@ -42,6 +42,7 @@ export interface News {
   image?: NewsImage;
   quotes?: Quote[];
   createdAt: string;
+  views?: number;
 }
 
 
@@ -107,5 +108,16 @@ export const getNewsById = async (id: string): Promise<News | null> => {
       console.warn(`Error fetching news ${id} (handled):`, error.message || error);
     }
     return null;
+  }
+};
+
+export const incrementNewsViews = async (id: string): Promise<void> => {
+  if (!id) return;
+  try {
+    await instance.put(`/api/v1/news/views/${id}`);
+  } catch (error: any) {
+    if (error.response?.status !== 401) {
+      console.warn(`Error incrementing views for news ${id} (handled):`, error.message || error);
+    }
   }
 };
