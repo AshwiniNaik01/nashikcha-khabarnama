@@ -14,10 +14,11 @@ const categoryMap: Record<string, string> = {
   crime: "क्राईम",
   agriculture: "शेती",
 
-  horoscope: "राशीभविष्य",
+  horoscope: "आजचे राशीभविष्य",
   business: "अर्थकारण",
   sports: "क्रीडा",
   bahaktirang: "भक्तीरंग",
+  "rashi-vrutta": "राशी वृत्त",
 };
 
 export default async function CategoryPage({ params }: Props) {
