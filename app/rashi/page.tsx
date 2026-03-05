@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import RashiListClient from "./RashiListClient";
 
 export const metadata: Metadata = {
+    icons: "./logo.png",
     title: "राशीभविष्य | नाशिकचा खबरनामा",
     description: "तुमचे राशीभविष्य जाणून घ्या. मेष ते मीन सर्व १२ राशींचे अचूक भविष्य.",
     openGraph: {

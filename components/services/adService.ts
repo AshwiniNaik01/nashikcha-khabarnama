@@ -16,13 +16,13 @@ export interface Advertisement {
   image: AdPhoto;
   category: string[];
   position:
-    | "top"
-    | "bottom"
-    | "left"
-    | "right"
-    | "in-between"
-    | "sticky-right"
-    | "sticky-left";
+  | "top"
+  | "bottom"
+  | "left"
+  | "right"
+  | "in-between"
+  | "sticky-right"
+  | "sticky-left";
   displayDuration: number;
   link?: string;
   isActive: boolean;
@@ -54,6 +54,18 @@ export const getAdsByCategory = async (
     return { success: false, data: [], message: "Server Error" };
   }
 };
+
+export const getAllAds = async (): Promise<Advertisement[]> => {
+  try {
+    const res = await instance.get("/api/v1/advertisement/category/all");
+    return res.data.data || [];
+  } catch (error) {
+    console.warn("Failed to fetch all ads:", error);
+    return [];
+  }
+};
+
+
 
 export const getAdImageUrl = (image: AdPhoto | undefined | null) => {
   if (!image) return "";

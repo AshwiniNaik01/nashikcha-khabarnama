@@ -21,7 +21,9 @@ const navItems: NavItem[] = [
   { label: "क्राईम", href: "/category/crime" },
   { label: "शेती", href: "/category/agriculture" },
   { label: "अर्थकारण", href: "/category/business" },
-  { label: "राशीभविष्य", href: "/rashi" },
+  { label: "राशी वृत्त", href: "/category/rashi-vrutta" },
+  { label: "आजचे राशीभविष्य", href: "/rashi" },
+  { label: "साप्ताहिक राशिभविष्य", href: "/weekly-rashibhavishya" },
   { label: "क्रीडा", href: "/category/sports" },
   { label: "भक्तीरंग", href: "/category/bahaktirang" },
   { label: "फोटो", href: "/photos" },
@@ -101,14 +103,13 @@ export default function Navbar() {
     return false;
   };
 
-  // 'अधिक' मेनू शोधणे (जर array मधे असेल तर)
+
   const adhikItem = navItems.find((i) => i.label === "अधिक");
 
   return (
     <nav className="bg-black sticky top-0 z-[60] border-b-2 border-gray-800 text-white">
       <div className="container mx-auto">
-        {/* ---------------- Desktop Menu (Scrollable) ---------------- */}
-        {/* जोडलेले क्लासेस: overflow-x-auto, no-scrollbar */}
+
         <ul
           ref={desktopScrollRef}
           onMouseDown={handleMouseDown}
