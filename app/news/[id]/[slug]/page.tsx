@@ -27,10 +27,12 @@ export async function generateMetadata({
     imageExtension === 'png' ? 'image/png' : 'image/jpeg';
 
   return {
+
     title: `${news.title} | नाशिकचा खबरनामा`,
     description: cleanDescription,
     alternates: { canonical: shareUrl },
     openGraph: {
+
       type: "article",
       title: news.title,
       description: cleanDescription,

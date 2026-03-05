@@ -217,6 +217,13 @@ export default function HomeClient() {
                             title="भक्तीरंग"
                         />
                     )}
+
+                    {articles.filter((a) => a.category === "राशी वृत्त").length > 0 && (
+                        <NewsSlider
+                            articles={articles.filter((a) => a.category === "राशी वृत्त")}
+                            title="राशी वृत्त"
+                        />
+                    )}
                 </div>
             </div>
         </>
