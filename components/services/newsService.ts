@@ -35,6 +35,7 @@ export interface News {
   _id: string;
   title: string;
   slug: string;
+  tags: string[];
   category: string;
   reporterName: string;
   shortDescription?: string;
@@ -42,16 +43,11 @@ export interface News {
   image?: NewsImage;
   quotes?: Quote[];
   createdAt: string;
+  views?: number;
 }
 
 
-/* ---------------- API CALLS ---------------- */
 
-// Get all news
-// export const getAllNews = async (): Promise<News[]> => {
-//   const res = await instance.get("/api/v1/news");
-//   return res.data.data; // because sendResponse wraps data
-// };
 
 
 import { getCategoryValue } from "@/components/constants/categories";
@@ -79,25 +75,37 @@ export const getAllNews = async (
     } else {
       console.warn("News fetch issue (handled):", error.message || error);
     }
-    return []; // Never throw, always return empty list to UI
+    return [];
   }
 };
 
+// Get news filtered by tag
+export const getNewsByTag = async (tag: string): Promise<News[]> => {
+  try {
+    const res = await instance.get("/api/v1/news/all", { params: { tags: tag } });
+    if (res.data?.success && res.data?.data) return res.data.data;
 
-// Get single news by ID
+    const fallback = await instance.get("/api/v1/news", { params: { tags: tag } });
+    return fallback.data?.data || [];
+  } catch (error: any) {
+    console.warn("Tag news fetch issue (handled):", error.message || error);
+    return [];
+  }
+};
+
 export const getNewsById = async (id: string): Promise<News | null> => {
   if (!id) return null;
 
   try {
-    // 1. Try primary ID endpoint
+
     const res = await instance.get(`/api/v1/news/${id}`);
     if (res.data?.success && res.data?.data) return res.data.data;
 
-    // 2. Try alternative ID endpoint
+
     const resAlt = await instance.get(`/api/v1/news/id/${id}`);
     if (resAlt.data?.success && resAlt.data?.data) return resAlt.data.data;
 
-    // 3. Last resort: search in all news
+
     console.info(`Specific fetch for ${id} returned no data. Searching in comprehensive list...`);
     const all = await getAllNews();
     return all.find(n => n._id === id) || null;
@@ -107,5 +115,16 @@ export const getNewsById = async (id: string): Promise<News | null> => {
       console.warn(`Error fetching news ${id} (handled):`, error.message || error);
     }
     return null;
+  }
+};
+
+export const incrementNewsViews = async (id: string): Promise<void> => {
+  if (!id) return;
+  try {
+    await instance.put(`/api/v1/news/views/${id}`);
+  } catch (error: any) {
+    if (error.response?.status !== 401) {
+      console.warn(`Error incrementing views for news ${id} (handled):`, error.message || error);
+    }
   }
 };

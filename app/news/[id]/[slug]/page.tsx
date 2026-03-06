@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { getNewsById, getAllNews } from "@/components/services/newsService";
+import { getAdsByCategory } from "@/components/services/adService";
 import NewsDetailClient from "./NewsDetailClient";
 
 export async function generateMetadata({
@@ -21,18 +22,17 @@ export async function generateMetadata({
   const shareUrl = `${baseUrl}/news/${id}/${slug}`;
   const cleanDescription = news.shortDescription?.replace(/<[^>]*>?/gm, "").slice(0, 160) || news.title;
 
-
   const imageExtension = imageUrl.split('.').pop()?.toLowerCase();
   const imageType = imageExtension === 'webp' ? 'image/webp' :
     imageExtension === 'png' ? 'image/png' : 'image/jpeg';
 
   return {
+
     title: `${news.title} | नाशिकचा खबरनामा`,
     description: cleanDescription,
     alternates: { canonical: shareUrl },
-
-
     openGraph: {
+
       type: "article",
       title: news.title,
       description: cleanDescription,
@@ -50,15 +50,12 @@ export async function generateMetadata({
       ],
       locale: "mr_IN",
     },
-
     twitter: {
       card: "summary_large_image",
       title: news.title,
       description: cleanDescription,
       images: [imageUrl],
     },
-
-
     other: {
       "twitter:image": imageUrl,
       "og:image:width": "1200",
@@ -73,15 +70,21 @@ export default async function Page({
   params: Promise<{ id: string; slug: string }>;
 }) {
   const { id, slug } = await params;
+
   const news = await getNewsById(id);
   const allNewsItems = await getAllNews();
 
   if (!news) return <div className="text-center py-20">बातमी सापडली नाही.</div>;
 
+
+  const adsResponse = await getAdsByCategory(news.category || "all");
+  const ads = adsResponse.success ? adsResponse.data : [];
+
   return (
     <NewsDetailClient
       initialNews={news}
-      initialNewsList={allNewsItems}
+      initialNewsList={allNewsItems.filter((item) => item._id !== id)}
+      initialAds={ads}
       id={id}
       slug={slug}
     />

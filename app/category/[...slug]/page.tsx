@@ -1,4 +1,5 @@
 import ArticleCard from "@/components/ArticleCard";
+import { getCategoryLabel } from "@/components/constants/categories";
 
 interface Props {
   params: Promise<{ slug: string[] }>;
@@ -12,10 +13,12 @@ const categoryMap: Record<string, string> = {
   "nashik-rural": "नाशिक ग्रामीण",
   crime: "क्राईम",
   agriculture: "शेती",
-  horoscope: "राशीभविष्य",
+
+  horoscope: "आजचे राशीभविष्य",
   business: "अर्थकारण",
   sports: "क्रीडा",
-  "panchayat-raj": "पंचायत राज",
+  bahaktirang: "भक्तीरंग",
+  "rashi-vrutta": "राशी वृत्त",
 };
 
 export default async function CategoryPage({ params }: Props) {
@@ -128,7 +131,7 @@ export default async function CategoryPage({ params }: Props) {
       {/* Header */}
       <div className="border-b-4 border-[var(--color-primary)] pb-2 mb-8">
         <h1 className="text-3xl font-black tracking-tight text-gray-900">
-          {categoryName}{" "}
+          {getCategoryLabel(categoryKey)}{" "}
           <span className="text-[var(--color-primary)]">न्युज</span>
         </h1>
       </div>

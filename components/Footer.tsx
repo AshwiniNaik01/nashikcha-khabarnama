@@ -73,7 +73,7 @@ export default function Footer() {
                 { name: "क्राईम", href: "/category/crime" },
                 { name: "क्रीडा", href: "/category/sports" },
                 { name: "करमणूक", href: "/category/entertainment" },
-                { name: "राशीभविष्य", href: "/rashi" },
+                { name: "आजचे राशीभविष्य", href: "/rashi" },
                 { name: "फोटो गॅलरी", href: "/photos" },
               ].map((link) => (
                 <li key={link.name}>
