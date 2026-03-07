@@ -13,7 +13,7 @@ import {
 
 const stripHtml = (html?: string) => {
   if (!html) return "";
-  return html.replace(/<[^>]*>?/gm, "").trim();
+  return html.replace(/<[^>]*>?/gm, "").replace(/&nbsp;/g, " ").trim();
 };
 
 export default function PhotoGallery() {

@@ -24,7 +24,7 @@ const RashiCard: React.FC<RashiCardProps> = ({ rashi, date }) => {
 
     const stripHtml = (html: string) => {
         if (!html) return "";
-        return html.replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim();
+        return html.replace(/<[^>]*>?/gm, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
     };
 
     return (

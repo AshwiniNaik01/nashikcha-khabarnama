@@ -8,7 +8,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   const label = getCategoryLabel(categoryKey);
 
   return {
-    icons: "./logo.png",
+    icons: "/logo.png",
     title: `${label} न्युज | नाशिकचा खबरनामा`,
     description: `नाशिक आणि परिसरातील ${label} विषयावरील ताज्या बातम्या आणि अपडेट्स वाचा.`,
     openGraph: {
