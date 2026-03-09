@@ -16,7 +16,9 @@ export async function generateMetadata({ params }: TagPageProps) {
 }
 
 export default async function TagPage({ params }: TagPageProps) {
-  //   console.log(await params, "=params");
+  console.log(params, "=params");
+  console.log(await params, "=params");
+  console.log(await params.tag, "=params");
   const decodedTag = decodeURIComponent(await params.tag);
   const news = await getNewsByTag(decodedTag);
 
