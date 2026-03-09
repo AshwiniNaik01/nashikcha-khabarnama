@@ -32,7 +32,6 @@ export const NEWS_CATEGORIES = [
     label: "भक्तीरंग",
     value: "bahaktirang",
     slugs: ["bahaktirang", "bahaktirang"],
-
   },
   {
     label: "राशी वृत्त",
@@ -40,7 +39,11 @@ export const NEWS_CATEGORIES = [
     slugs: ["rashi-vrutta", "rashi-vrutta"],
   },
   { label: "नाशिक", value: "nashik", slugs: ["nashik"] },
-  { label: "आजचे राशीभविष्य", value: "horoscope", slugs: ["horoscope", "rashi"] },
+  {
+    label: "आजचे राशीभविष्य",
+    value: "horoscope",
+    slugs: ["horoscope", "rashi"],
+  },
   { label: "व्हिडीओ", value: "videos", slugs: ["videos", "video", "व्हिडीओ"] },
 ];
 
@@ -58,9 +61,6 @@ export const getCategoryLabel = (value: string): string => {
   return category ? category.label : value;
 };
 
-/**
- * Returns the primary English value (slug) for a given category label or value.
- */
 export const getCategoryValue = (label: string): string => {
   if (!label) return "";
   const searchValue = label.toLowerCase().trim();

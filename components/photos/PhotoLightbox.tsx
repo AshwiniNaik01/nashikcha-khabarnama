@@ -36,7 +36,7 @@ const PhotoLightbox: React.FC<PhotoLightboxProps> = ({ photos, initialIndex = 0,
   const [likeCount, setLikeCount] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const stripHtml = (text: string) => text?.replace(/<[^>]*>?/gm, "") || "";
+  const stripHtml = (text: string) => text?.replace(/<[^>]*>?/gm, "").replace(/&nbsp;/g, " ") || "";
 
   const formatDate = (dateString: string | undefined) => {
     if (!dateString) return "";

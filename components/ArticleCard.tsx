@@ -90,7 +90,7 @@ export default function ArticleCard({
           className={`text-gray-500 leading-relaxed font-medium mb-5 ${featured ? "text-base lg:text-lg line-clamp-3" : "text-sm line-clamp-2"
             }`}
         >
-          {excerpt.replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim()}
+          {excerpt.replace(/<[^>]*>?/gm, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim()}
         </p>
 
         {/* Action Button */}

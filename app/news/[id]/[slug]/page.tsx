@@ -15,10 +15,12 @@ export async function generateMetadata({
 
   const baseUrl = "https://www.nasikchakhabarnama.com";
 
-  const imageUrl = news.image?.cdnUrl?.startsWith('http://')
-    ? news.image.cdnUrl.replace('http://', 'https://')
-    : news.image?.cdnUrl || `${baseUrl}/default-share-image.jpg`;
-
+  let imageUrl = news.image?.cdnUrl || `${baseUrl}/default-share-image.jpg`;
+  if (imageUrl.startsWith('http://')) {
+    imageUrl = imageUrl.replace('http://', 'https://');
+  } else if (imageUrl.startsWith('//')) {
+    imageUrl = `https:${imageUrl}`;
+  }
   const shareUrl = `${baseUrl}/news/${id}/${slug}`;
   const cleanDescription = news.shortDescription?.replace(/<[^>]*>?/gm, "").slice(0, 160) || news.title;
 
@@ -27,7 +29,7 @@ export async function generateMetadata({
     imageExtension === 'png' ? 'image/png' : 'image/jpeg';
 
   return {
-
+    icons: "/logo.png",
     title: `${news.title} | नाशिकचा खबरनामा`,
     description: cleanDescription,
     alternates: { canonical: shareUrl },

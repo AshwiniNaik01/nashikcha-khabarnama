@@ -142,7 +142,7 @@ const BreakingNews = () => {
   }, []);
 
   const stripHtml = (html: string) =>
-    html.replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim();
+    html.replace(/<[^>]*>?/gm, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
 
   // ✅ ALWAYS create headlines (safe default) - Memoized to prevent frequent recalculations
   const headlines = React.useMemo(() =>

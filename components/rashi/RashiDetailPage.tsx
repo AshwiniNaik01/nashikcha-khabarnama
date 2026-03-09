@@ -24,7 +24,7 @@ import Link from "next/link";
 /* -------------------- Helpers -------------------- */
 const stripHtml = (html: string | undefined) => {
   if (!html) return "";
-  return html.replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim();
+  return html.replace(/<[^>]*>?/gm, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
 };
 
 const formatDateOnly = (dateString: string | undefined) => {
