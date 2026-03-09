@@ -8,6 +8,7 @@ import './globals.css';
 
 import Script from 'next/script';
 import ClientTracker from '@/components/ClientTracker';
+import { Suspense } from 'react';
 
 const tiroDevanagariMarathi = Tiro_Devanagari_Marathi({
     subsets: ['devanagari'],
@@ -64,7 +65,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Header />
                 <Navbar />
 
-                <ClientTracker />
+                <Suspense fallback={null}>
+                    <ClientTracker />
+                </Suspense>
 
                 <LayoutClientWrapper>{children}</LayoutClientWrapper>
                 <Footer />
