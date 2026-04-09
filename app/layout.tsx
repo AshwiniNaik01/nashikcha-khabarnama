@@ -96,6 +96,7 @@ export const metadata: Metadata = {
     url: "https://www.nasikchakhabarnama.com",
     siteName: "नाशिकचा खबरनामा",
   },
+  icons: "/logo.png",
 };
 
 export default function RootLayout({

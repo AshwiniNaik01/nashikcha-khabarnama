@@ -43,7 +43,7 @@ export default function NewsList({ news }: Props) {
 
             <Link href={`/news/${item._id}/${item.slug}`}>
               <p className="text-gray-600 text-lg leading-relaxed line-clamp-2">
-                {item.shortDescription?.replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim()}
+                {item.shortDescription?.replace(/<[^>]*>?/gm, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim()}
               </p>
             </Link>
           </div>

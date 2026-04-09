@@ -44,10 +44,15 @@ export default function NewsDetailClient({
   const hasTrackedView = useRef(false);
 
   useEffect(() => {
-    setShareUrl(window.location.href);
+    // १. बदलले आहे: localhost ऐवजी तुमची वेबसाईटची मूळ URL वापरा
+    const BASE_URL = "https://www.nasikchakhabarnama.com";
+    const currentShareUrl = `${BASE_URL}/news/${id}/${slug}`;
+    setShareUrl(currentShareUrl);
+
     setIsMounted(true);
     window.scrollTo({ top: 0, behavior: "instant" });
 
+    // View tracking logic तसेच राहील
     const trackView = async () => {
       if (!hasTrackedView.current) {
         hasTrackedView.current = true;
@@ -67,21 +72,16 @@ export default function NewsDetailClient({
         news_title: news.title,
         news_category: news.category,
         news_id: id,
-        page_location: window.location.href,
+        page_location: currentShareUrl,
       });
     }
-  }, [id, news.title, news.category]);
+  }, [id, slug, news.title, news.category]);
 
   const handleShare = async () => {
     const isShareSupported = typeof navigator.share !== "undefined";
 
-    // --- Google Analytics: Track Share Click ---
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "click_share_main", {
-        news_title: news.title,
-        method: isShareSupported ? "System Share" : "Copy Link",
-      });
-    }
+    // २. बदलले आहे: WhatsApp मेसेज अधिक आकर्षक बनवला
+    const shareMessage = `*${news.title}*\n\nसविस्तर बातमी वाचण्यासाठी खालील लिंकवर क्लिक करा:\n${shareUrl}`;
 
     if (isShareSupported) {
       try {
@@ -90,11 +90,10 @@ export default function NewsDetailClient({
           text: news.title,
           url: shareUrl,
         });
-      } catch (error) {
-        console.log("Error sharing:", error);
-      }
+      } catch (error) { console.log("Error sharing:", error); }
     } else {
-      navigator.clipboard.writeText(shareUrl);
+      // मेसेज कॉपी करण्यासाठी सुधारणा
+      navigator.clipboard.writeText(shareMessage);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }

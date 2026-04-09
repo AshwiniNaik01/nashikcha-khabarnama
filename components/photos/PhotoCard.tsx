@@ -48,7 +48,7 @@ const PhotoCard: React.FC<PhotoCardProps> = ({
   }, [initialLikes]);
 
 
-  const stripHtml = (text: string) => text?.replace(/<[^>]*>?/gm, "") || "";
+  const stripHtml = (text: string) => text?.replace(/<[^>]*>?/gm, "").replace(/&nbsp;/g, " ") || "";
 
   const spanClasses = {
     square: "col-span-1 row-span-1",

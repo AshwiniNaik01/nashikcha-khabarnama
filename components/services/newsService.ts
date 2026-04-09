@@ -46,27 +46,43 @@ export interface News {
   views?: number;
 }
 
+export interface PaginationMeta {
+  totalNews: number;
+  currentPage: number;
+  totalPages: number;
+  hasNextPage: boolean;
+}
 
-
-
+export interface PaginatedNewsResponse {
+  news: News[];
+  pagination: PaginationMeta;
+}
 
 import { getCategoryValue } from "@/components/constants/categories";
 
-// Get all news (optionally by category)
+// Get all news (page 1, 20 items) — used by home page sliders
 export const getAllNews = async (
   category?: string
 ): Promise<News[]> => {
-  // Always convert to English slug for the API (e.g., "व्हिडीओ" -> "videos")
   const apiCategory = category ? getCategoryValue(category) : undefined;
-  const config = { params: apiCategory ? { category: apiCategory } : {} };
+  const params: Record<string, any> = { page: 1, limit: 20 };
+  if (apiCategory) params.category = apiCategory;
 
   try {
-    // Try primary endpoint
-    const res = await instance.get("/api/v1/news/all", config);
-    if (res.data?.success && res.data?.data) return res.data.data;
+    const res = await instance.get("/api/v1/news/all", { params });
 
-    // If not successful, try fallback immediately
-    const fallbackRes = await instance.get("/api/v1/news", config);
+    // Actual API shape: { success: true, data: { news: [...], pagination: {...} } }
+    if (res.data?.success && res.data?.data?.news && Array.isArray(res.data.data.news)) {
+      return res.data.data.news;
+    }
+
+    // Old flat shape: { success: true, data: [...] }
+    if (res.data?.success && Array.isArray(res.data?.data)) {
+      return res.data.data;
+    }
+
+    // Fallback endpoint
+    const fallbackRes = await instance.get("/api/v1/news", { params });
     return fallbackRes.data?.data || [];
 
   } catch (error: any) {
@@ -76,6 +92,56 @@ export const getAllNews = async (
       console.warn("News fetch issue (handled):", error.message || error);
     }
     return [];
+  }
+};
+
+// Paginated news — used by category pages for infinite scroll
+export const getNewsPaginated = async ({
+  category,
+  page = 1,
+  limit = 20,
+}: {
+  category?: string;
+  page?: number;
+  limit?: number;
+}): Promise<PaginatedNewsResponse> => {
+  const apiCategory = category ? getCategoryValue(category) : undefined;
+  const params: Record<string, any> = { page, limit };
+  if (apiCategory) params.category = apiCategory;
+
+  const empty: PaginatedNewsResponse = {
+    news: [],
+    pagination: { totalNews: 0, currentPage: page, totalPages: 0, hasNextPage: false },
+  };
+
+  try {
+    const res = await instance.get("/api/v1/news/all", { params });
+
+    // Actual API shape: { success: true, data: { news: [...], pagination: {...} } }
+    if (res.data?.success && res.data?.data?.news && res.data?.data?.pagination) {
+      return { news: res.data.data.news, pagination: res.data.data.pagination };
+    }
+
+    // Old flat shape — wrap it so callers always get the same structure
+    if (res.data?.success && Array.isArray(res.data?.data)) {
+      const data: News[] = res.data.data;
+      return {
+        news: data,
+        pagination: {
+          totalNews: data.length,
+          currentPage: page,
+          totalPages: 1,
+          hasNextPage: false,
+        },
+      };
+    }
+
+    return empty;
+  } catch (error: any) {
+    if (error.response?.status !== 401) {
+      console.warn("Paginated news fetch issue (handled):", error.message || error);
+    }
+    return empty;
   }
 };
 
