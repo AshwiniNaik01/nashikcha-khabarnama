@@ -18,6 +18,7 @@ const navItems: NavItem[] = [
   { label: "राजकारण", href: "/category/politics" },
   { label: "नाशिक शहर", href: "/category/nashik-city" },
   { label: "नाशिक ग्रामीण", href: "/category/nashik-rural" },
+  { label: "अहील्यानगर अपडेट्स", href: "/category/ahilyanagar-updates" },
   { label: "क्राईम", href: "/category/crime" },
   { label: "शेती", href: "/category/agriculture" },
   { label: "अर्थकारण", href: "/category/business" },

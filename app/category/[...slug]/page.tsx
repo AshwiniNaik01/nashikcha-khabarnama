@@ -11,6 +11,7 @@ const categoryMap: Record<string, string> = {
   politics: "राजकारण",
   "nashik-city": "नाशिक शहर",
   "nashik-rural": "नाशिक ग्रामीण",
+  "ahilyanagar-updates": "अहील्यानगर अपडेट्स",
   crime: "क्राईम",
   agriculture: "शेती",
 

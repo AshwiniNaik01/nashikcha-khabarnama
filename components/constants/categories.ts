@@ -15,6 +15,11 @@ export const NEWS_CATEGORIES = [
     value: "nashik-rural",
     slugs: ["nashik-rural", "nashik rural"],
   },
+  {
+    label: "अहील्यानगर अपडेट्स",
+    value: "ahilyanagar-updates",
+    slugs: ["ahilyanagar-updates", "ahilyanagar"],
+  },
   { label: "राजकारण", value: "rajkaran", slugs: ["politics", "rajkaran"] },
   { label: "क्रीडा", value: "sports", slugs: ["sports"] },
   { label: "शेती", value: "sheti", slugs: ["agriculture", "sheti"] },
