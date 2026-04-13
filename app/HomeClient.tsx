@@ -185,6 +185,16 @@ export default function HomeClient() {
                                 />
                             )}
 
+                        {articles.filter((a) => a.category === "अहील्यानगर अपडेट्स").length >
+                            0 && (
+                                <NewsSlider
+                                    articles={articles.filter(
+                                        (a) => a.category === "अहील्यानगर अपडेट्स",
+                                    )}
+                                    title="अहील्यानगर अपडेट्स"
+                                />
+                            )}
+
 
                         {/* NEW: Asymmetric Photo Gallery */}
                         <PhotoGallery />
