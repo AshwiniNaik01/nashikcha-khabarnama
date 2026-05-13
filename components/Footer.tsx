@@ -186,6 +186,7 @@ export default function Footer() {
               src="/logo.png"
               alt=""
               className="h-6 opacity-20 grayscale brightness-0 invert hidden sm:block"
+              loading="lazy"
             />
             <div className="h-4 w-px bg-white/10 hidden md:block"></div>
             <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest flex items-center gap-2">

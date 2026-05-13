@@ -91,6 +91,7 @@ export default function VideoGallery() {
                     src={getYoutubeThumbnail(activeVideo.videoUrl)}
                     alt={activeVideo.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
 
@@ -132,6 +133,7 @@ export default function VideoGallery() {
                     src={getYoutubeThumbnail(video.videoUrl)}
                     className="w-full h-full object-cover opacity-80"
                     alt={video.title}
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Play size={14} className="text-white fill-white/50" />

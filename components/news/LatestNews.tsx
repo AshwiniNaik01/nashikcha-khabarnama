@@ -45,6 +45,7 @@ export default function LatestNews({ news }: { news: LatestNewsItem[] }) {
                 src={item.img}
                 alt=""
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
               />
             </div>
           </Link>

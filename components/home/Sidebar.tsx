@@ -29,6 +29,7 @@ const Sidebar: React.FC<SidebarProps> = ({ trendingItems }) => {
               src="/logo.png"
               alt="Logo"
               className="h-6 brightness-0 invert mb-1"
+              loading="lazy"
             />
             <span className="text-[10px] text-white/80 font-black uppercase tracking-widest">
               ट्रेन्डिंग

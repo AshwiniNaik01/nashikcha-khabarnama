@@ -8,7 +8,7 @@ import CategoryClient from "./CategoryClient";
 const mapNews = (news: any, getCategoryLabel: (k: string) => string) => ({
     title: news.title,
     excerpt: news.shortDescription || (news.content ? news.content.substring(0, 120) + "..." : ""),
-    image: news.image?.cdnUrl || "https://via.placeholder.com/800x600",
+    image: news.thumbnailImage?.cdnUrl || news.image?.cdnUrl || "https://via.placeholder.com/800x600",
     id: news._id,
     slug: news.slug || news._id,
     date: new Date(news.createdAt).toLocaleDateString("mr-IN", {

@@ -139,7 +139,7 @@ const PhotoLightbox: React.FC<PhotoLightboxProps> = ({ photos, initialIndex = 0,
       <div className="absolute -inset-24 bg-black/90 blur-[120px] pointer-events-none" />
       <div className="relative w-full md:w-[60%] lg:w-[65%] h-[40%] md:h-full bg-black/5 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 opacity-30 blur-3xl scale-110" style={{ backgroundImage: `url(${photo.url})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-        <img src={photo.url} alt={photo.title} className="relative z-10 w-full h-full object-contain p-0" />
+        <img src={photo.url} alt={photo.title} className="relative z-10 w-full h-full object-contain p-0" loading="lazy" />
         <div className="absolute top-4 left-4 lg:top-8 lg:left-8 space-y-2 z-20">
           <span className="inline-block px-4 py-1.5 text-xs font-black bg-red-600 text-white rounded-full shadow-xl tracking-wider uppercase"> {getCategoryLabel(photo.category)}</span>
         </div>

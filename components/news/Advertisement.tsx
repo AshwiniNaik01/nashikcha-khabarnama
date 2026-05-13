@@ -8,6 +8,7 @@ export default function Advertisement({ className }: { className?: string }) {
         <img
           src="https://dummyimage.com/300x250/0aa/fff&text=Advertisement"
           className="w-full h-30 object-cover"
+          loading="lazy"
         />
       </div>
     </div>

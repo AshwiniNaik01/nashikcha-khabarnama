@@ -14,6 +14,7 @@ export default function HeroSection({ category, title, img }: HeroProps) {
           src={img}
           alt={title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-6">
           <span className="bg-red-600 text-white text-xs font-bold px-2 py-1 w-fit mb-3 font-sans">

@@ -41,6 +41,7 @@ export interface News {
   shortDescription?: string;
   content: string;
   image?: NewsImage;
+  thumbnailImage?: NewsImage;
   quotes?: Quote[];
   createdAt: string;
   views?: number;
