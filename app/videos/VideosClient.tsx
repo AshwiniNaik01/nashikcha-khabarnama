@@ -83,6 +83,7 @@ const VideosClient = () => {
                             }
                             className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-[1.5s]"
                             alt={featured.title}
+                            loading="lazy"
                         />
                         <div className="absolute inset-0 flex items-center justify-center">
                             <div className="w-16 h-16 md:w-24 md:h-24 bg-red-600 text-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
@@ -137,6 +138,7 @@ const VideosClient = () => {
                                             src={getYoutubeThumbnail(video.videoUrl) || "https://via.placeholder.com/300x168"}
                                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                             alt={video.title}
+                                            loading="lazy"
                                         />
                                         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
                                             <div className="w-8 h-8 rounded-full bg-red-600/90 text-white flex items-center justify-center backdrop-blur-sm shadow-lg">
@@ -186,6 +188,7 @@ const VideosClient = () => {
                                     }
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                     alt={post.title}
+                                    loading="lazy"
                                 />
                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
                                     <div className="w-14 h-14 bg-red-600 backdrop-blur-md border border-white/30 rounded-full flex items-center justify-center text-white">

@@ -210,6 +210,7 @@ export default function NewsDetailClient({
                 src={news.image?.cdnUrl || "/placeholder.png"}
                 alt={news.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
               />
             </div>
 
@@ -256,7 +257,7 @@ export default function NewsDetailClient({
                 .slice(0, 6)
                 .map((n) => ({
                   title: n.title,
-                  img: n.image?.cdnUrl || "/placeholder.png",
+                  img: n.thumbnailImage?.cdnUrl || n.image?.cdnUrl || "/placeholder.png",
                   id: n._id,
                   slug: n.slug,
                 }))}
@@ -270,7 +271,7 @@ export default function NewsDetailClient({
                 .slice(0, 5)
                 .map((n) => ({
                   title: n.title,
-                  img: n.image?.cdnUrl || "/placeholder.png",
+                  img: n.thumbnailImage?.cdnUrl || n.image?.cdnUrl || "/placeholder.png",
                   id: n._id,
                   slug: n.slug,
                 }))}
@@ -291,6 +292,7 @@ export default function NewsDetailClient({
                   src="https://images.unsplash.com/photo-1563805042-7684c019e1cb"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   alt="Gallery"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-60" />
                 <div className="absolute top-4 left-4 bg-red-600 text-white text-[11px] font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
@@ -376,6 +378,7 @@ export default function NewsDetailClient({
             alt={news.title}
             onClick={(e) => e.stopPropagation()}
             className="max-w-full max-h-[90vh] object-contain rounded-lg relative z-[205] shadow-2xl"
+            loading="lazy"
           />
         </div>
       )}

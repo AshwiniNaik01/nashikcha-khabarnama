@@ -146,6 +146,7 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ quotes }) => {
                     src={quote.quoteImage?.cdnUrl}
                     alt={quote.name}
                     className="w-full h-full object-fit transition-transform duration-700 group-hover/quote:scale-105"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent pointer-events-none" />
                 </div>

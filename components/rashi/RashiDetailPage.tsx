@@ -129,7 +129,7 @@ function RashiDetailContent({ id }: { id: string }) {
             <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               <div className="lg:col-span-5 relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-2 border-white group">
                 {staticData && (
-                  <img src={staticData.image} alt={rashiApi.rashi} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]" />
+                  <img src={staticData.image} alt={rashiApi.rashi} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]" loading="lazy" />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-8 left-8 right-8 text-white">

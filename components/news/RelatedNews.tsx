@@ -31,7 +31,7 @@ export default function RelatedNews({
             {item.title}
           </p>
           <div className="w-24 h-16 shrink-0 overflow-hidden">
-            <img src={item.img} className="w-full h-full object-cover" alt="" />
+            <img src={item.img} className="w-full h-full object-cover" alt="" loading="lazy" />
           </div>
         </Link>
       ))}

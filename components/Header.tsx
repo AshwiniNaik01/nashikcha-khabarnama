@@ -171,7 +171,7 @@ export default function Header() {
       {/* MAIN HEADER */}
       <div className="relative bg-red-50 border-b border-gray-100 py-2 xs:py-3">
         <div className="parity-container flex items-center justify-center">
-          <img src="/logo.png" alt="Lokmat Logo" className="h-10 lg:h-12" />
+          <img src="/logo.png" alt="Lokmat Logo" className="h-10 lg:h-12" loading="lazy" />
         </div>
       </div>
     </div>

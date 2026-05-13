@@ -163,7 +163,7 @@ const WeeklyHoroscope = () => {
                                     <div key={sign._id} className="flex flex-col md:flex-row gap-8 pb-10 border-b border-gray-100 last:border-0 group">
                                         <div className="w-32 h-32 md:w-40 md:h-40 shrink-0 rounded-3xl overflow-hidden border border-gray-100 group-hover:border-red-400 transition-all duration-500 shadow-sm relative">
                                             {staticInfo?.image ? (
-                                                <img src={staticInfo.image} alt={sign.signName} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                <img src={staticInfo.image} alt={sign.signName} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
                                             ) : (
                                                 <div className="w-full h-full bg-gray-100 flex items-center justify-center text-[80px] md:text-[100px] text-gray-300 group-hover:text-red-600">
                                                     {staticInfo?.icon}
@@ -216,7 +216,7 @@ const WeeklyHoroscope = () => {
                             id: n._id,
                             slug: n.slug || n._id,
                             title: n.title,
-                            img: n.image?.cdnUrl || "/placeholder.jpg"
+                            img: n.thumbnailImage?.cdnUrl || n.image?.cdnUrl || "/placeholder.jpg"
                         }))}
                     />
                     <ShortsCard category="राशी वृत्त" />

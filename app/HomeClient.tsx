@@ -52,6 +52,7 @@ export default function HomeClient() {
                         news.shortDescription ||
                         (news.content ? news.content.substring(0, 120) + "..." : ""),
                     image:
+                        news.thumbnailImage?.cdnUrl ||
                         news.image?.cdnUrl ||
                         "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800",
                     id: news._id,

@@ -51,10 +51,11 @@ export default function NewsList({ news }: Props) {
           <Link href={`/news/${item._id}/${item.slug}`} className="w-full md:w-64 h-40 order-1 md:order-2 shrink-0 overflow-hidden rounded-sm">
             <img
               src={
-                item.image?.cdnUrl || "https://img.freepik.com/free-psd/3d-rendering-ui-icon_23-2149182289.jpg?t=st=1770375637~exp=1770379237~hmac=26e2df5a765bcce5a35efd84e1a2942bd17fbecc876c17ad88830c3885149494&w=1480://images.unsplash.com/photo-1542291026-7eec264c27ff"
+                item.thumbnailImage?.cdnUrl || item.image?.cdnUrl || "https://img.freepik.com/free-psd/3d-rendering-ui-icon_23-2149182289.jpg?t=st=1770375637~exp=1770379237~hmac=26e2df5a765bcce5a35efd84e1a2942bd17fbecc876c17ad88830c3885149494&w=1480://images.unsplash.com/photo-1542291026-7eec264c27ff"
               }
               className="w-full h-full object-fit group-hover:scale-110 transition-transform duration-700"
               alt={item.title}
+              loading="lazy"
             />
           </Link>
         </div>

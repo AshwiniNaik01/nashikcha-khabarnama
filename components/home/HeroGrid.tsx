@@ -32,6 +32,7 @@ const HeroGrid: React.FC<HeroGridProps> = ({ articles }) => {
               src={mainArticle.image}
               alt={mainArticle.title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
             />
 
 
@@ -62,6 +63,7 @@ const HeroGrid: React.FC<HeroGridProps> = ({ articles }) => {
                 src={article.image}
                 alt={article.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
               />
 
               {/* Gradient overlay (category only) - Matches Main Article */}

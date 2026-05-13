@@ -71,6 +71,7 @@ import "./globals.css";
 
 
 import Script from "next/script";
+import PushNotificationManager from "@/components/PushNotificationManager";
 
 const tiroDevanagariMarathi = Tiro_Devanagari_Marathi({
   subsets: ["devanagari"],
@@ -139,6 +140,7 @@ export default function RootLayout({
         <Navbar />
 
         <LayoutClientWrapper>{children}</LayoutClientWrapper>
+        <PushNotificationManager />
         <Footer />
       </body>
     </html>

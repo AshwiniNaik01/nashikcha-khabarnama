@@ -41,7 +41,7 @@ export default async function TagPage({ params }: TagPageProps) {
               title={article.title}
               slug={article.slug}
               excerpt={article.shortDescription || article.content || ""}
-              image={article.image?.cdnUrl || "/placeholder.png"}
+              image={article.thumbnailImage?.cdnUrl || article.image?.cdnUrl || "/placeholder.png"}
               category={getCategoryLabel(article.category)}
               date={new Date(article.createdAt).toLocaleDateString("mr-IN", {
                 day: "numeric",

@@ -107,6 +107,7 @@ export default function PhotoGallery() {
                 src={getGalleryImageUrl(photo.photo)}
                 alt={photo.title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
                 <h3 className="text-white text-sm md:text-base font-bold line-clamp-2">

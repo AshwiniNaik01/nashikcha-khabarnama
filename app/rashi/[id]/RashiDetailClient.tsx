@@ -127,7 +127,7 @@ function RashiDetailContent({ apiData, id }: { apiData: ApiRashi; id: string }) 
                             <div className="relative group mx-auto w-full max-w-[450px] lg:max-w-none">
                                 <div className="absolute -inset-4 bg-gradient-to-tr from-orange-500/30 to-red-500/30 rounded-[3rem] sm:rounded-[4rem] blur-3xl opacity-50 group-hover:opacity-100 transition duration-1000" />
                                 <div className="relative aspect-square rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden shadow-2xl border-[8px] sm:border-[12px] border-white">
-                                    <img src={staticInfo?.image} alt={apiData.rashi} className="w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-1000" />
+                                    <img src={staticInfo?.image} alt={apiData.rashi} className="w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-1000" loading="lazy" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                                     <div className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 text-white">
                                         <h2 className="text-4xl sm:text-6xl font-black mb-1 sm:mb-2 tracking-tighter">{apiData.rashi}</h2>
