@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import NewsSlider from "@/components/NewsSlider";
+import LazyNewsSlider from "@/components/home/LazyNewsSlider";
+import LazyComponentWrapper from "@/components/home/LazyComponentWrapper";
 import BreakingNews from "@/components/home/BreakingNews";
 import HeroGrid from "@/components/home/HeroGrid";
 import CategoryBlock from "@/components/home/CategoryBlock";
@@ -143,98 +145,39 @@ export default function HomeClient() {
                 </div>
 
                 <div className="space-y-16 w-full">
-                    {articles.filter((a) => a.category === "देश-विदेश").length > 0 && (
-                        <NewsSlider
-                            articles={articles.filter((a) => a.category === "देश-विदेश")}
-                            title="देश-विदेश"
-                        />
-                    )}
+                    <LazyNewsSlider categoryTitle="देश-विदेश" categoryValue="desh-videsh" />
 
                     <div className="space-y-12">
-                        {articles.filter((a) => a.category === "महाराष्ट्र").length > 0 && (
-                            <NewsSlider
-                                articles={articles.filter((a) => a.category === "महाराष्ट्र")}
-                                title="महाराष्ट्र"
-                            />
-                        )}
-
-                        <VideoGallery />
+                        <LazyNewsSlider categoryTitle="महाराष्ट्र" categoryValue="maharashtra" />
+                        <LazyComponentWrapper>
+                            <VideoGallery />
+                        </LazyComponentWrapper>
                     </div>
 
-                    {articles.filter((a) => a.category === "राजकारण").length > 0 && (
-                        <NewsSlider
-                            articles={articles.filter((a) => a.category === "राजकारण")}
-                            title="राजकारण"
-                        />
-                    )}
+                    <LazyNewsSlider categoryTitle="राजकारण" categoryValue="rajkaran" />
 
-                    {articles.filter((a) => a.category === "नाशिक शहर").length > 0 && (
-                        <NewsSlider
-                            articles={articles.filter((a) => a.category === "नाशिक शहर")}
-                            title="नाशिक शहर"
-                        />
-                    )}
+                    <LazyNewsSlider categoryTitle="नाशिक शहर" categoryValue="nashik-city" />
 
                     <div className="space-y-12">
-                        {articles.filter((a) => a.category === "नाशिक ग्रामीण").length >
-                            0 && (
-                                <NewsSlider
-                                    articles={articles.filter(
-                                        (a) => a.category === "नाशिक ग्रामीण",
-                                    )}
-                                    title="नाशिक ग्रामीण"
-                                />
-                            )}
+                        <LazyNewsSlider categoryTitle="नाशिक ग्रामीण" categoryValue="nashik-rural" />
 
-                        {articles.filter((a) => a.category === "अहील्यानगर अपडेट्स").length >
-                            0 && (
-                                <NewsSlider
-                                    articles={articles.filter(
-                                        (a) => a.category === "अहील्यानगर अपडेट्स",
-                                    )}
-                                    title="अहील्यानगर अपडेट्स"
-                                />
-                            )}
-
+                        <LazyNewsSlider categoryTitle="अहील्यानगर अपडेट्स" categoryValue="ahilyanagar-updates" />
 
                         {/* NEW: Asymmetric Photo Gallery */}
-                        <PhotoGallery />
+                        <LazyComponentWrapper>
+                            <PhotoGallery />
+                        </LazyComponentWrapper>
                     </div>
 
-                    {articles.filter((a) => a.category === "क्राईम").length > 0 && (
-                        <NewsSlider
-                            articles={articles.filter((a) => a.category === "क्राईम")}
-                            title="क्राईम"
-                        />
-                    )}
+                    <LazyNewsSlider categoryTitle="क्राईम" categoryValue="crime" />
 
-                    {articles.filter((a) => a.category === "शेती").length > 0 && (
-                        <NewsSlider
-                            articles={articles.filter((a) => a.category === "शेती")}
-                            title="शेती"
-                        />
-                    )}
+                    <LazyNewsSlider categoryTitle="शेती" categoryValue="sheti" />
 
-                    {articles.filter((a) => a.category === "क्रीडा").length > 0 && (
-                        <NewsSlider
-                            articles={articles.filter((a) => a.category === "क्रीडा")}
-                            title="क्रीडा"
-                        />
-                    )}
+                    <LazyNewsSlider categoryTitle="क्रीडा" categoryValue="sports" />
 
-                    {articles.filter((a) => a.category === "भक्तीरंग").length > 0 && (
-                        <NewsSlider
-                            articles={articles.filter((a) => a.category === "भक्तीरंग")}
-                            title="भक्तीरंग"
-                        />
-                    )}
+                    <LazyNewsSlider categoryTitle="भक्तीरंग" categoryValue="bahaktirang" />
 
-                    {articles.filter((a) => a.category === "राशी वृत्त").length > 0 && (
-                        <NewsSlider
-                            articles={articles.filter((a) => a.category === "राशी वृत्त")}
-                            title="राशी वृत्त"
-                        />
-                    )}
+                    <LazyNewsSlider categoryTitle="राशी वृत्त" categoryValue="rashi-vrutta" />
                 </div>
             </div>
         </>
