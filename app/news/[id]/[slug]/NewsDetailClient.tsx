@@ -16,6 +16,7 @@ import NewsList from "@/components/news/NewsList";
 import QuoteSection from "@/components/news/QuoteSection";
 import AdDisplay from "@/components/advertisement/AdDisplay";
 import ShortsCard from "@/components/news/ShortsCard";
+import NewsDetailSkeleton from "@/components/NewsDetailSkeleton";
 
 interface NewsDetailClientProps {
   initialNews: News;
@@ -99,7 +100,14 @@ export default function NewsDetailClient({
     }
   };
 
-  if (!isMounted) return null;
+  if (!isMounted) {
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center space-y-4">
+        <div className="w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin" />
+        <p className="text-gray-500 font-medium font-marathi text-lg">बातमी लोड होत आहे...</p>
+      </div>
+    );
+  }
 
   const formattedDate = new Date(news.createdAt).toLocaleDateString("mr-IN", {
     day: "numeric",
